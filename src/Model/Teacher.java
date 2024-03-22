@@ -4,7 +4,7 @@ public class Teacher {
    
 public
     Teacher(){
-        System.out.println("Function: Teacher + Konstructor");
+        System.out.println("Function: Teacher + tryToKill");
     }
      void tryToKill(){
         System.out.println("Function: Teacher + tryToKill");

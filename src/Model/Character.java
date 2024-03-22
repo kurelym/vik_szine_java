@@ -3,20 +3,16 @@ package Model;
 import java.util.List;
 
 public abstract class Character {
-    String name;
-    List<Item> inventory;
-    Room location;
-    bool alive;
-    List<Item> activatedItems;
+
 public
     Character(){
         System.out.println("Function: Character + Constructor");
     }
-    bool pickUpItem(Item i){
+    bool pickUpItem(Using i){
         System.out.println("Function: Character + pickUpItem");
         return true;
     }
-    void dropItem(Item i){
+    void dropItem(Using i){
         System.out.println("Function: Character + dropItem");
     }
     String getName(){
@@ -44,5 +40,5 @@ public
     }
     abstract bool teacherAttack();
 
-    abstract bool  ragAttack();
+    abstract bool ragAttack();
 }
