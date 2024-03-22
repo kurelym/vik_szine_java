@@ -2,19 +2,18 @@ package Model;
 
 public class Student {
 
-public
-    Student(){
-        System.out.println("Konstructor: Student");
+    public Student(){
+        System.out.println("Function: Student class + Constructor func");
     }
-    void useItem(Item i){
-        System.out.println("Function: Student + useItem");
+    public void useItem(Item i){
+        System.out.println("Function: Student class + useItem func");
     }
-    bool teacherAttack(){
-        System.out.println("Function: Student + teacherAttack");
+    public boolean teacherAttack(){
+        System.out.println("Function: Student class + teacherAttack func");
         return false;
     }
-    bool ragAttack(){
-        System.out.println("Function: Student + ragAttack");
+    public boolean ragAttack(){
+        System.out.println("Function: Student class + ragAttack func");
         return true;
     }
 }
