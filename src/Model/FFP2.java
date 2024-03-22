@@ -1,6 +1,11 @@
 package Model;
-
+/*
+ * Az FFP2-maszk tárgyak működéséért felel, kezeli a maszk használatát, és megszűnését.
+ */
 public class FFP2 extends Item {
+    public FFP2(){
+        System.out.println("Function: FFP2 class + Constructor func");
+    }
     public String getDescription(){
         System.out.println("Function: FFP2 class + getDescription func");
         return "Description";

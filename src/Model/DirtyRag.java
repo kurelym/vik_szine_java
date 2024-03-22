@@ -2,6 +2,9 @@
 package Model;
 
 public class DirtyRag extends Item{
+    public DirtyRag(){
+        System.out.println("Function: DirtyRag class + Constructor func");
+    }
     public String getDescription(){
         System.out.println("Function: DirtyRag class + getDescription func");
         return "Description";

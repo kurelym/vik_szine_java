@@ -1,6 +1,12 @@
 package Model;
-
+/*
+ * A Szent söröspoharak tárgyak működéséért felel, 
+ * és számon tartja hogy hány körig tart még a hatása, és kezeli a megszűnését.
+ */
 public class HolyBeer extends Item{
+    public HolyBeer(){
+        System.out.println("Function: HolyBeer class + Constructor func");
+    }
     public String getDescription(){
         System.out.println("Function: HolyBeer class + getDescription func");
         return "Description";
