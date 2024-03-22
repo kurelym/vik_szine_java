@@ -28,7 +28,7 @@ abstract class Item implements Using {
     public final Character getOwner()
     {
         System.out.println("Function: Item class + getOwner func");
-        return new Character();
+        return null;
     }
     public final void roundPassed(){
         System.out.println("Function: Item class + roundPassed func");
