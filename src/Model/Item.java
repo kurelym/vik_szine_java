@@ -1,5 +1,7 @@
 package Model;
-
+/*
+ * Absztrakt ősosztálya a tárgyaknak.
+ */
 abstract class Item implements Using {
     public String getName(){
         System.out.println("Function: Item class + getName func");

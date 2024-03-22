@@ -1,6 +1,12 @@
 package Model;
-
+/*
+ * A TVSZ denevérbőrre nyomtatott példányai tárgyak működéséért felel, 
+ * és számon tartja hogy eddig hányszor volt használva, és kezeli a megszűnését.
+ */
 public class TVSZ extends Item{
+    public TVSZ(){
+        System.out.println("Function: TVSZ class + Constructor func");
+    }
     public String getDescription(){
         System.out.println("Function: TVSZ class + getDescription func");
         return "Description";

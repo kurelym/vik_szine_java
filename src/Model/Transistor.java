@@ -1,6 +1,12 @@
 package Model;
-
+/*
+ * A Tranzisztor tárgy működéséért felel. Kezeli a tranzisztorok összekapcsolását, 
+ * illetve ennek a kapcsolatnak a bontását.
+ */
 public class Transistor extends Item{
+    public Transistor(){
+        System.out.println("Function: Transistor class + Constructor func");
+    }
     public String getDescription(){
         System.out.println("Function: Transistor class + getDescription func");
         return "Description";
