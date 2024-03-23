@@ -1,6 +1,9 @@
 
 package Model;
-
+/**
+ * A Nedves táblatörlő rongy tárgy működéséért felel. Kezeli a rongy használatát, a 
+ * különböző típusú használati esetekben.
+ */
 public class DirtyRag extends Item{
     public DirtyRag(){
         System.out.println("Function: DirtyRag class + Constructor func");
