@@ -181,23 +181,16 @@ public class SkeletonTest {
             input = scanner.nextInt();
             switch (input) {
                 case 1:
-                    game.manipulateRooms();
-                    room1.Merge(room2);
-                    room1.removeNeighbour(room2);
-                    room2.removeNeighbour(room1);
+                    mergeRoomsTest(scanner);
                     break;
                 case 2:
-                    game.manipulateRooms();
-                    room3 = room1.Split();
-                    room3.addNeighbour(room1);
-                    room1.addNeighbour(room3);
+                    splitRoomTest(scanner);
                     break;
                 case 3:
-                    cursedroom.doorManipulation();
+                    doorManipulation(scanner);
                     break;
                 case 4:
-                    room4.addNeighbour(room5);
-                    room5.addNeighbour(room4);
+                    createAdjacencies(scanner);
                     break;
                 case 0:
                     break;
@@ -317,5 +310,40 @@ public class SkeletonTest {
         student.hasTheSlideRule();
         sliderule.finishGame();
                     
+    }
+
+    static void mergeRoomsTest(Scanner scanner){
+        game.manipulateRooms();
+        room1.Merge(room2);
+        room1.removeNeighbour(room2);
+        room2.removeNeighbour(room1);
+    }
+
+    static void splitRoomTest(Scanner scanner){
+        game.manipulateRooms();
+        room3 = room1.Split();
+        room3.addNeighbour(room1);
+        room1.addNeighbour(room3);
+    }
+
+    static void doorManipulation(Scanner scanner){
+        int hidden;
+        System.out.println("Láthatóak az ajtajai a szobának? Igen: 1 Nem: 0");
+        hidden = scanner.nextInt();
+        if (hidden == 1){
+            cursedroom.doorManipulation();
+            cursedroom.removeNeighbour(room1);
+            room1.removeNeighbour(cursedroom);
+        }
+        else if (hidden == 0){
+            cursedroom.doorManipulation();
+            cursedroom.addNeighbour(room1);
+            room1.addNeighbour(cursedroom);
+        }
+    }
+
+    static void createAdjacencies(Scanner scanner){
+            room4.addNeighbour(room5);
+            room5.addNeighbour(room4);
     }
 }
