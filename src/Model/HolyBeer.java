@@ -1,5 +1,5 @@
 package Model;
-/*
+/**
  * A Szent söröspoharak tárgyak működéséért felel, 
  * és számon tartja hogy hány körig tart még a hatása, és kezeli a megszűnését.
  */

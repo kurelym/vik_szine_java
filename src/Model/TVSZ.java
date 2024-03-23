@@ -1,5 +1,5 @@
 package Model;
-/*
+/**
  * A TVSZ denevérbőrre nyomtatott példányai tárgyak működéséért felel, 
  * és számon tartja hogy eddig hányszor volt használva, és kezeli a megszűnését.
  */
