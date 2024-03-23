@@ -1,5 +1,5 @@
 package Model;
-/*
+/**
  * A Tranzisztor tárgy működéséért felel. Kezeli a tranzisztorok összekapcsolását, 
  * illetve ennek a kapcsolatnak a bontását.
  */
