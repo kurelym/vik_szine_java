@@ -13,8 +13,10 @@ public class Room {
      * Az osztódó szoba két olyan szobára válik szét, amelyek egymás szomszédai lesznek, és megosztoznak a korábbi szoba képességein és szomszédain (a korábbi szomszédok vagy csak az egyik, vagy csak a
      * másik “új” szobának lesznek szomszédai). Csak olyan szobák transzformálódhatnak amelyekben nincsen se hallgató se oktató.
      */
-    public void Split(){
+    public Room Split(){
+        Room newroom = new Room();
         System.out.println("Function: Room class + Split func");
+        return newroom;
     }
     /*
      * Két szomszédos szoba egyesülésével létrejött szoba a korábbi két szoba tulajdonságaival és szomszédaival rendelkezik,de a befogadóképessége a nagyobb szoba
@@ -43,7 +45,7 @@ public class Room {
      * @param anotherone, az a karakter, ami belép a szobába
      * @return a szobába való lépés sikerességét adja vissza
      */
-    public Boolean addCharacter(Character anotherone){
+    public boolean addCharacter(Character anotherone){
         System.out.println("Function: Room class + addCharacter func");
         return true;
     }
@@ -59,7 +61,7 @@ public class Room {
      * @param u, az a tárgy, ami bekerül a szobába
      * @return a tárgy bekerülésének sikerességét adja vissza
      */
-    public Boolean addItem(Using u){
+    public boolean addItem(Using u){
         System.out.println("Function: Room class + addItem func");
         return true;
     }
