@@ -9,14 +9,14 @@ public class Teacher extends Character {
      * Konstruktor a Teacher osztályhoz.
      */
     public Teacher(){
-        System.out.println("Függvény: Teacher osztály + Konstruktor függvény");
+        System.out.println("Function: Teacher osztály + Konstruktor Func");
     }
 
     /**
      * Metódus amely levezérli az oktató támadási próbálkozását abban a szobában ahol tartózkodik
      */
     public void tryToKill(){
-        System.out.println("Függvény: Teacher osztály + tryToKill függvény");
+        System.out.println("Function: Teacher osztály + tryToKill Func");
     }
 
     /**
@@ -24,7 +24,7 @@ public class Teacher extends Character {
      * @return Mindig false, mivel az oktatók támadása nincs hatással egy másik oktatóra
      */
     public boolean teacherAttack(){
-        System.out.println("Függvény: Teacher osztály + teacherAttack függvény");
+        System.out.println("Function: Teacher osztály + teacherAttack Func");
         return false;
     }
 
@@ -33,7 +33,7 @@ public class Teacher extends Character {
      * @return Mindig true, mivel a nedves táblatörlő mindig hatásos az oktatók ellen.
      */
     public boolean ragAttack(){
-        System.out.println("Függvény: Teacher osztály + ragAttack függvény");
+        System.out.println("Function: Teacher osztály + ragAttack Func");
         return true;
     }
 }
