@@ -9,7 +9,7 @@ public class Student extends Character {
      * Konstruktor a Student osztályhoz.
      */
     public Student(){
-        System.out.println("Függvény: Student osztály + Konstruktor függvény");
+        System.out.println("Function: Student osztály + Konstruktor Func");
     }
 
     /**
@@ -17,7 +17,7 @@ public class Student extends Character {
      * @param item A használni kívánt tárgy.
      */
     public void useItem(Using item){
-        System.out.println("Függvény: Student osztály + useItem függvény");
+        System.out.println("Function: Student osztály + useItem Func");
     }
 
     /**
@@ -25,7 +25,7 @@ public class Student extends Character {
      * @return true, ha a hallgató meg tudja védeni magát az oktatóval szemben, egyébként false.
      */
     public boolean teacherAttack(){
-        System.out.println("Függvény: Student osztály + teacherAttack függvény");
+        System.out.println("Function: Student osztály + teacherAttack Func");
         return false;
     }
 
@@ -34,7 +34,7 @@ public class Student extends Character {
      * @return Mindig true, mivel a táblatörlő rongy a hallgatókra nincs hatással.
      */
     public boolean ragAttack(){
-        System.out.println("Függvény: Student osztály + ragAttack függvény");
+        System.out.println("Function: Student osztály + ragAttack Func");
         return true;
     }
 }
