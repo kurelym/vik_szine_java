@@ -9,7 +9,7 @@ public abstract class Character {
      * Konstruktor a Character osztályhoz.
      */
     protected Character(){
-        System.out.println("Függvény: Character osztály + Konstruktor függvény");
+        System.out.println("Function: Character osztály + Konstruktor Func");
     }
 
     /**
@@ -18,7 +18,7 @@ public abstract class Character {
      * @return true, ha a tárgy sikeresen fel lett véve, egyébként false.
      */
     public boolean pickUpItem(Using item){
-        System.out.println("Függvény: Character osztály + pickUpItem függvény");
+        System.out.println("Function: Character osztály + pickUpItem Func");
         return true;
     }
 
@@ -27,7 +27,7 @@ public abstract class Character {
      * @param item Az eldobni kívánt tárgy.
      */
     public void dropItem(Using item){
-        System.out.println("Függvény: Character osztály + dropItem függvény");
+        System.out.println("Function: Character osztály + dropItem Func");
     }
 
         /**
@@ -36,7 +36,7 @@ public abstract class Character {
      * @return true, ha a karakter sikeresen átmegy a szobába, egyébként false.
      */
     public boolean goToRoom(Room destionation){
-        System.out.println("Függvény: Character osztály + goToRoom függvény");
+        System.out.println("Function: Character osztály + goToRoom Func");
         return true;
     }
 
@@ -45,7 +45,7 @@ public abstract class Character {
      * @return A szoba, ahol a karakter tartózkodik.
      */
     public Room getRoom(){
-        System.out.println("Függvény: Character osztály + getRoom függvény");
+        System.out.println("Function: Character osztály + getRoom Func");
         return null;
     }
     /**
@@ -53,7 +53,7 @@ public abstract class Character {
      * @return A karakter neve.
      */
     public String getName(){
-        System.out.println("Függvény: Character osztály + getName függvény");
+        System.out.println("Function: Character osztály + getName Func");
         return "";
     }
 
@@ -62,7 +62,7 @@ public abstract class Character {
      * @return A szoba, ahol a karakter tartózkodik.
      */
     public Room getLocation(){
-        System.out.println("Függvény: Character osztály + getLocation függvény");
+        System.out.println("Function: Character osztály + getLocation Func");
         return null;
     }
 
@@ -70,7 +70,7 @@ public abstract class Character {
      * Metódus az összes tárgy eldobására a karakter zsebéből.
      */
     public void dropAllItem(){
-        System.out.println("Függvény: Character osztály + dropAllItem függvény");
+        System.out.println("Function: Character osztály + dropAllItem Func");
     }
 
     /**
@@ -78,7 +78,7 @@ public abstract class Character {
      * @return true, ha a karakter meg tudja magát védeni a gáz támadás ellen, egyébként false.
      */
     public boolean gasAttack(){
-        System.out.println("Függvény: Character osztály + gasAttack függvény");
+        System.out.println("Function: Character osztály + gasAttack Func");
         return true;
     }
 
@@ -87,7 +87,7 @@ public abstract class Character {
      * @return true, ha a karakternek van, egyébként false.
      */
     public boolean hasTheSlideRule(){
-        System.out.println("Függvény: Character osztály + hasTheSlideRule függvény");
+        System.out.println("Function: Character osztály + hasTheSlideRule Func");
         return true;
     }
 
@@ -96,7 +96,7 @@ public abstract class Character {
      * @return true, ha a karakter életben van, egyébként false.
      */
     public boolean isAlive(){
-        System.out.println("Függvény: Character osztály + isAlive függvény");
+        System.out.println("Function: Character osztály + isAlive Func");
         return true;
     }
 

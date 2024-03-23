@@ -6,14 +6,14 @@ package Model;
 public class Game {
 
     public Game() {
-        System.out.println("Function: Game class consturctor");
+        System.out.println("Function: Game class consturctor Func");
     }
 
     /**
      * @return az aktualis kor szama
      */
     public int getRound() {
-        System.out.println("Function: Game class + getRound()");
+        System.out.println("Function: Game class + getRound() Func");
         return 1;
     }
 
@@ -21,28 +21,28 @@ public class Game {
      * Elinditja a jatekot (inicializal)
      */
     public void startGame() {
-        System.out.println("Function: Game class + startGame()");
+        System.out.println("Function: Game class + startGame() Func");
     }
 
     /**
      * Ellenorzi, hogy valamely hallgato felvette-e a logarlecet
      */
     public void win() {
-        System.out.println("Function: Game class + win()");
+        System.out.println("Function: Game class + win() Func");
     }
 
     /**
      * Noveli a kor szamat
      */
     public void incrementRound() {
-        System.out.println("Function: Game class + incrementRound()");
+        System.out.println("Function: Game class + incrementRound() Func");
     }
 
     /**
      * Csokken az erteke, ha egy jatekos meghal
      */
     public void decreasePlayerNumber() {
-        System.out.println("Function: Game class + decreasePlayerNumber()");
+        System.out.println("Function: Game class + decreasePlayerNumber() Func");
     }
 
     /**
@@ -51,7 +51,7 @@ public class Game {
      * @param Felvett hallgato
      */
     public void addStudent(Student s) {
-        System.out.println("Function: Game class + addStudent()");
+        System.out.println("Function: Game class + addStudent() Func");
     }
 
     /**
@@ -60,7 +60,7 @@ public class Game {
      * @param Felvett oktato
      */
     public void addTeacher(Teacher t) {
-        System.out.println("Function: Game class + addTeacher()");
+        System.out.println("Function: Game class + addTeacher() Func");
     }
 
     /**
@@ -69,7 +69,7 @@ public class Game {
      * @param s Elvett hallgato
      */
     public void removeStudent(Student s) {
-        System.out.println("Function: Game class + removeStudent()");
+        System.out.println("Function: Game class + removeStudent() Func");
     }
 
     /**
@@ -78,21 +78,21 @@ public class Game {
      * @param t Elvett oktato
      */
     public void removeTeacher(Teacher t) {
-        System.out.println("Function: Game class + removeTeacher()");
+        System.out.println("Function: Game class + removeTeacher() Func");
     }
 
     /**
      * A jatek elejen a labirintust epiti fel
      */
     public void initConnectRooms() {
-        System.out.println("Function: Game class + initConnectRooms()");
+        System.out.println("Function: Game class + initConnectRooms() Func");
     }
 
     /**
      * A korok vegen modositja a labirintust
      */
     public void manipulateRooms() {
-        System.out.println("Function: Game class + manipulateRooms()");
+        System.out.println("Function: Game class + manipulateRooms() Func");
     }
 
 }
