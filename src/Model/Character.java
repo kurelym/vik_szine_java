@@ -4,41 +4,40 @@ import java.util.List;
 
 public abstract class Character {
 
-public
-    Character(){
-        System.out.println("Function: Character + Constructor");
+    protected Character(){
+        System.out.println("Function: Character class + Constructor func");
     }
-    bool pickUpItem(Using i){
-        System.out.println("Function: Character + pickUpItem");
+    public boolean pickUpItem(Using i){
+        System.out.println("Function: Character class + pickUpItem func");
         return true;
     }
-    void dropItem(Using i){
-        System.out.println("Function: Character + dropItem");
+    public void dropItem(Using i){
+        System.out.println("Function: Characte class + dropItem func");
     }
-    String getName(){
-        System.out.println("Function: Character + getName");
+    public  String getName(){
+        System.out.println("Function: Character class + getName func");
         return "";
     }
-    Room getLocation(){
-        System.out.println("Function: Character + getLocation");
+    public Room getLocation(){
+        System.out.println("Function: Character class + getLocation func");
         return null;
     }
-    void dropAllItem(){
-        System.out.println("Function: Character + dropAllItem");
+    public void dropAllItem(){
+        System.out.println("Function: Character class + dropAllItem func");
     }
-    bool gasAttack(){
-        System.out.println("Function: Character + gasAttack");
+    public boolean gasAttack(){
+        System.out.println("Function: Character class + gasAttack func");
         return true;
     }
-    bool hasTheSlideRule(){
-        System.out.println("Function: Character + hasTheSlideRule");
+    public boolean hasTheSlideRule(){
+        System.out.println("Function: Character class + hasTheSlideRule func");
         return true;
     }
-    bool isAlive(){
-        System.out.println("Function: Character + isAlive");
+    public boolean isAlive(){
+        System.out.println("Function: Character class + isAlive func");
         return true;
     }
-    abstract bool teacherAttack();
+    abstract boolean teacherAttack();
 
-    abstract bool ragAttack();
+    abstract boolean ragAttack();
 }
