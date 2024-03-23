@@ -1,5 +1,5 @@
 package Model;
-/*
+/**
  * Absztrakt ősosztálya a tárgyaknak.
  */
 abstract class Item implements Using {

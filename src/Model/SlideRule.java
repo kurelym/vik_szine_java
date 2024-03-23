@@ -1,5 +1,5 @@
 package Model;
-/*
+/**
  * A Logarléc tárgy működéséért felel. Ebből a tárgyból egy darab van a pályán,
  * és ha egy hallgató felveszi vége a játéknak és a hallgatók nyertek, de az oktatók 
  * is felvehetik, ezzel nehezítve a hallgatók dolgát.

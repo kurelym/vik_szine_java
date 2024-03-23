@@ -1,5 +1,5 @@
 package Model;
-/*
+/**
  * A Dobozolt káposztás camembert tárgy működéséért felel. Kezeli a sajt használatát és megszűnését.
  */
 public class CamembertCheese extends Item{
