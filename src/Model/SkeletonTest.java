@@ -3,20 +3,37 @@ package Model;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.event.ListDataEvent;
 
 public class SkeletonTest { 
 
-    private Game game = new Game();
-    private Character teacher = new Teacher();
-    private Character student = new Student();
-    private Room room1 = new Room();
-    private Room room2 = new Room();
-    private Room room3 = new Room();
-    private Room room4 = new Room();
-    private Room room5 = new Room();
-    private Room room6 = new Room();
+    private static Game game = new Game();
 
-    private Using item = new TVSZ();
+    private static Teacher teacher = new Teacher();
+    private static Student student = new Student();
+
+    private static List<Character> list = new ArrayList<>();
+
+    private static Room room1 = new Room();
+    private static Room room2 = new Room();
+    private static Room room3 = new Room();
+    private static Room room4 = new Room();
+    private static Room room5 = new Room();
+    private static CursedRoom cursedroom = new CursedRoom();
+
+    private static TVSZ tvsz = new TVSZ();
+    private static SlideRule sliderule = new SlideRule();
+    private static HolyBeer holybeer = new HolyBeer();
+    private static FFP2 ffp2 = new FFP2();
+    private static CamembertCheese camembertcheese = new CamembertCheese();
+    private static Transistor transistor1 = new Transistor();
+    private static Transistor transistor2 = new Transistor();
+    private static DirtyRag dirtyrag = new DirtyRag();
+
+
 
     /**
      * A program belépési pontja. Meghívja a főmenüt.
@@ -24,6 +41,9 @@ public class SkeletonTest {
      */
     public static void main(String[] args) {
         mainMenu(args);
+        list.add(teacher);
+        list.add(student);
+
     }
 
     /**
@@ -50,6 +70,7 @@ public class SkeletonTest {
             e.printStackTrace();
             } 
         }
+
         while(input != 0) {
             System.out.println("Hallgató mód       1");
             System.out.println("Oktató mód         2");
@@ -60,6 +81,8 @@ public class SkeletonTest {
             switch(input) {
                 case 1:
                     studentMenu(scanner);
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
                     break;
                 case 2:
                     teacherMenu(scanner);
@@ -94,7 +117,7 @@ public class SkeletonTest {
             input = scanner.nextInt();
             switch(input) {
                 case 1:
-                    //TODO
+                    student.goToRoom(room1);
                     break;
                 case 2:
                     useItem(scanner);
@@ -126,7 +149,7 @@ public class SkeletonTest {
             input = scanner.nextInt();
             switch(input) {
                 case 1:
-                    //TODO
+                    teacher.goToRoom(room1);
                     break;
                 case 2:
                     pickUpItem(scanner);
@@ -158,16 +181,17 @@ public class SkeletonTest {
             input = scanner.nextInt();
             switch(input) {
                 case 1:
-                    //TODO
+                    room1.Merge(room2);
                     break;
                 case 2:
-                    //TODO
+                    room3 = room1.Split();
                     break;
                 case 3:
-                    //TODO
+                    cursedroom.doorManipulation();
                     break;
                 case 4:
-                    //TODO
+                    room4.addNeighbour(room5);
+                    room5.addNeighbour(room4);
                     break;
                 case 0:
                     break;
@@ -195,13 +219,15 @@ public class SkeletonTest {
             input = scanner.nextInt();
             switch(input) {
                 case 1:
-                    //TODO
+                    student.useItem(camembertcheese);
+                    camembertcheese.useIt();
                     break;
                 case 2:
-                    //TODO
+                    student.useItem(dirtyrag);
+                    dirtyrag.useIt();
                     break;
                 case 3:
-                    //TODO
+                    transistorTest();
                     break;
                 case 0:
                     break;
@@ -228,10 +254,11 @@ public class SkeletonTest {
             input = scanner.nextInt();
             switch(input) {
                 case 1:
-                    //TODO
+                    student.pickUpItem(holybeer);
                     break;
                 case 2:
-                    //TODO
+                    student.pickUpItem(sliderule);
+                    //game.win();
                     break;
                 case 0:
                     break;
@@ -240,6 +267,25 @@ public class SkeletonTest {
                     break;
             }
         }
+    }
+
+    static void transistorTest() {
+        student.pickUpItem(transistor1);
+        student.pickUpItem(transistor2);
+        transistor1.pairing(transistor2);
+        student.dropItem(transistor1);
+        room1.addItem(transistor1);
+        student.goToRoom(room2);
+        room1.removeCharacter(student);
+        room2.addCharacter(student);
+        student.dropItem(transistor2);
+        room2.addItem(transistor2);
+        student.goToRoom(room1);
+        room2.removeCharacter(student);
+        room1.addCharacter(student);
+        transistor1.removePair();
+        transistor2.removePair();
+
     }
 
 
