@@ -2,21 +2,19 @@ package Model;
 
 public class Teacher {
    
-public
-    Teacher(){
-        System.out.println("Function: Teacher + tryToKill");
+   public Teacher(){
+        System.out.println("Function: Teacher class + Constructor func");
     }
-     void tryToKill(){
-        System.out.println("Function: Teacher + tryToKill");
+     public void tryToKill(){
+        System.out.println("Function: Teacher class + tryToKill func");
      }
-     bool teacherAttack(){
-        System.out.println("Function: Teacher + teacherAttack");
+     public boolean teacherAttack(){
+        System.out.println("Function: Teacher class + teacherAttack func");
         return false;
      }
-     bool ragAttack(){
-        System.out.println("Function: Teacher + ragAttack");
+     public boolean ragAttack(){
+        System.out.println("Function: Teacher class + ragAttack func");
         return true;
      }
-
 
 }
