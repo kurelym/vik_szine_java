@@ -502,9 +502,14 @@ public class SkeletonTest {
     }
     static void holyBeerTest(Scanner scanner) {
         int hasEnoughSpace = -1;
+        int f = 0;
         System.out.println("Van elegendő hely a táskában? Igen: 1, Nem: 0");
+        while(hasEnoughSpace!=1){
         hasEnoughSpace = scanner.nextInt();
         if(hasEnoughSpace==1){
+            if(f==1){
+              student.dropItem(camembertcheese);  
+            }
             student.pickUpItem(holybeer);
             holybeer.useIt();
             for(int i = 0; i< 3; i++){
@@ -513,30 +518,47 @@ public class SkeletonTest {
             }
             System.out.println("Elhasználódott a Szentsöröspohár");
         }
-        else if(hasEnoughSpace==0){
+        else if(hasEnoughSpace==0 && f==0){
             System.out.println("Tele van a bag");
+            System.out.println("Csináljunk helyet a táskában a sörnek? Igen: 1, Nem: 0");
+            f++;
+        }
+        else if(hasEnoughSpace==0 && f==1){
+            return;
         }
         else{
             System.out.println("Hibás bemenet: "+hasEnoughSpace);
+        }
         }
     }
     static void slideRuleTest(Scanner scanner){
         int hasEnoughSpace = -1;
+        int f = 0;
         System.out.println("Van elegendő hely a táskában? Igen: 1, Nem: 0");
-        hasEnoughSpace = scanner.nextInt();
-        if(hasEnoughSpace==1){
-            student.pickUpItem(sliderule);
-            game.win();
-            student.hasTheSlideRule();
-            sliderule.finishGame();
-            System.out.println("Nyertél öcsipók!!!");
-        }
-        else if(hasEnoughSpace==0){
-            System.out.println("Tele van a bag");
-        }
-        else{
-            System.out.println("Hibás bemenet: "+hasEnoughSpace);
-        }     
+        while(hasEnoughSpace!=1){
+            hasEnoughSpace = scanner.nextInt();
+            if(hasEnoughSpace==1){
+                if(f==1){
+                    student.dropItem(camembertcheese);  
+                  }
+                student.pickUpItem(sliderule);
+                game.win();
+                student.hasTheSlideRule();
+                sliderule.finishGame();
+                System.out.println("Nyertél öcsipók!!!");
+            }
+            else if(hasEnoughSpace==0 && f==0){
+                System.out.println("Tele van a bag");
+                System.out.println("Csináljunk helyet a táskában a logarlécnek? Igen: 1, Nem: 0");
+                f++;
+            }
+            else if(hasEnoughSpace==0 && f==1){
+                return;
+            }
+            else{
+                System.out.println("Hibás bemenet: "+hasEnoughSpace);
+            }    
+        } 
     }
 
     /*
