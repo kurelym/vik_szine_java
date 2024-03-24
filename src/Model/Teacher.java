@@ -15,7 +15,7 @@ public class Teacher extends Character {
     /**
      * Metódus amely levezérli az oktató támadási próbálkozását abban a szobában ahol tartózkodik
      */
-    public void tryToKill(){
+    public void tryToKill(Room r){
         System.out.println("Function: Teacher osztály + tryToKill Func");
     }
 
