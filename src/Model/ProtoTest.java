@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
-public class SkeletonTest {
-
+public class ProtoTest {
+/* 
     private static Game game = new Game();
 
     private static Teacher teacher = new Teacher();
@@ -34,7 +34,7 @@ public class SkeletonTest {
      * A program belépési pontja. Meghívja a főmenüt.
      * 
      * @param args parancssori argumentumok, amikben teszteseteket lehet megadni
-     */
+     *
     public static void main(String[] args) {
         mainMenu(args);
         list.add(teacher);
@@ -44,7 +44,7 @@ public class SkeletonTest {
 
     /**
      * Főmenü megjelenítése és vezérlése.
-     */
+     *
     static void mainMenu(String[] args) {
         int input = -1;
         Scanner scanner = new Scanner(System.in);
@@ -100,7 +100,7 @@ public class SkeletonTest {
      * Hallgatói menü megjelenítése és vezérlése.
      * 
      * @param scanner a bemeneti adatok beolvasásához használt Scanner objektum
-     */
+     *
     static void studentMenu(Scanner scanner) {
         int input = -1;
         while (input != 0) {
@@ -134,7 +134,7 @@ public class SkeletonTest {
      * Oktatói menü megjelenítése és vezérlése.
      * 
      * @param scanner a bemeneti adatok beolvasásához használt Scanner objektum
-     */
+     *
     static void teacherMenu(Scanner scanner) {
         int input = -1;
         while (input != 0) {
@@ -168,7 +168,7 @@ public class SkeletonTest {
      * Pályamanipulációs menü megjelenítése és vezérlése.
      * 
      * @param scanner a bemeneti adatok beolvasásához használt Scanner objektum
-     */
+     *
     static void roomMenu(Scanner scanner) {
         int input = -1;
 
@@ -207,7 +207,7 @@ public class SkeletonTest {
      * Tárgy használat menü megjelenítése és vezérlése.
      * 
      * @param scanner a bemeneti adatok beolvasásához használt Scanner objektum
-     */
+     *
     static void useItem(Scanner scanner) {
         int input = -1;
 
@@ -242,7 +242,7 @@ public class SkeletonTest {
      * Tárgy felvétel menü megjelenítése és vezérlése.
      * 
      * @param scanner a bemeneti adatok beolvasásához használt Scanner objektum
-     */
+     *
     static void pickUpItem(Scanner scanner) {
         int input = -1;
 
@@ -270,7 +270,7 @@ public class SkeletonTest {
     }
     /*
      * Kristóf
-     */
+     *
     static void teacherGotoRoomTest(Scanner scanner){
         teacher.goToRoom(room1);
         room1.addCharacter(teacher);
@@ -409,7 +409,7 @@ public class SkeletonTest {
     }
     /*
      * Bálint
-     */
+     *
     static void camembertcheeseTest(Scanner scanner){
         int next = -1;
         System.out.println("Aktiválódjon a camembertcheese? Igen: 1, Nem: 0");
@@ -563,7 +563,7 @@ public class SkeletonTest {
 
     /*
      * András
-     */
+     *
     static void mergeRoomsTest(){
         game.manipulateRooms();
         room1.Merge(room2);
@@ -600,7 +600,7 @@ public class SkeletonTest {
     }
     /*
      * Mózes
-     */
+     *
     static void studentGoToRoomTest(Scanner scanner){
         student.goToRoom(room1);
         room1.addCharacter(student);
@@ -649,5 +649,5 @@ public class SkeletonTest {
         else{
             System.out.println("Hibás bemenet: "+hasEnoughSpace);
         }
-    }
+    }*/
 }

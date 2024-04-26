@@ -4,20 +4,25 @@ package Model;
  * Az osztály egy hallgatót reprezentál a játékban.
  */
 public class Student extends Character {
-
+    private static int globalID = 0;
     /**
      * Konstruktor a Student osztályhoz.
      */
     public Student(){
+        super();
+        name = "Student_"+globalID;
+        globalID++;
         System.out.println("Function: Student osztály + Konstruktor Func");
+        
     }
 
     /**
      * Metódus egy tárgy használatára (aktiválására) a hallgató által.
-     * @param item A használni kívánt tárgy.
+     * @param item A használni kívánt tárgy indexe a táskában.
      */
-    public void useItem(Using item){
+    public void useItem(int idx, Transistor anotherItem){
         System.out.println("Function: Student osztály + useItem Func");
+        inventory.get(idx).useSelectedItem(anotherItem);
     }
 
     /**
@@ -26,16 +31,36 @@ public class Student extends Character {
      */
     public boolean teacherAttack(){
         System.out.println("Function: Student osztály + teacherAttack Func");
-        return false;
+        for(Using u: inventory){
+            if(u.useAgainstTeacher()){
+                return alive;
+            }
+        }
+        alive = false;
+        return alive;
     }
 
     /**
      * Metódus a nedves táblatörlő támadás kezelésére a hallgatón.
-     * @return Mindig true, mivel a táblatörlő rongy a hallgatókra nincs hatással.
+     * @return Mindig false, mivel a táblatörlő rongy a hallgatókra nincs hatással.
      */
     public boolean ragAttack(){
         System.out.println("Function: Student osztály + ragAttack Func");
-        return true;
+        return false;
+    }
+
+    /**
+     * Az adott hallgató állapotáról ad leírást
+     * @return Egy stringbe adja vissza a halggatóról a leíást
+     */
+    public String getDescription() {
+        System.out.println("Function: Student osztály + getDescription Func");
+        String itemnames = "Items:";
+        for(Using u:inventory){
+            itemnames = itemnames + " "+u.getName();
+        }
+        boolean winner = hasTheSlideRule();
+        return "Name: "+name+" Location: "+location.getID()+" isAlive: "+alive+" isDazed: "+dazed+itemnames+" Has the SlideRule: "+winner;
     }
 }
 

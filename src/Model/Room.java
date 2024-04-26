@@ -1,30 +1,104 @@
 package Model;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 /**
  * A labirintus menedzselése, a saját kapacitásának és szomszédainak, a benne lévő tárgyak és benne tartózkodó karakterek nyilvántartása. A szoba transzformációk végrehajtása.
  */
-public class Room {
+public class Room implements Description {
+    private static int globalID = 0;
+    protected String name;
+    protected int capacity;
+    protected List<Room> neighbours;
+    protected List<Using> items;
+    protected List<Character> characters;
+    protected List<Using> activatedItems;
+    protected List<Using> stickyItems;
+    protected boolean clear;
+    protected int visitor;
     /**
      * Létrehozza az osztályt
      */
     public Room(){
+        name = "Room_"+globalID;
+        globalID++;
+        Random rand = new Random();
+        capacity = rand.nextInt(10, 30);
+        neighbours = new ArrayList<>();
+        items = new ArrayList<>();
+        characters = new ArrayList<>();
+        activatedItems = new ArrayList<>();
+        stickyItems = new ArrayList<>();
+        clear = false;
+        visitor = 0;
         System.out.println("Function: Room class + constructor func");
     }
     /**
      * Az osztódó szoba két olyan szobára válik szét, amelyek egymás szomszédai lesznek, és megosztoznak a korábbi szoba képességein és szomszédain (a korábbi szomszédok vagy csak az egyik, vagy csak a
      * másik “új” szobának lesznek szomszédai). Csak olyan szobák transzformálódhatnak amelyekben nincsen se hallgató se oktató.
+     * AKTIVÁLT ITEM_EK MARADNAK
      */
     public Room Split(){
         Room newroom = new Room();
         System.out.println("Function: Room class + Split func");
+        if(characters.isEmpty()){
+            this.addNeighbour(newroom);
+            newroom.addNeighbour(this);
+            int sizeOfItems = items.size()/2;
+            int sizeOfNeighbours = neighbours.size()/2;
+            for(int i=0;i<sizeOfItems;i++){
+                newroom.addItem(items.get(i));
+                this.removeItem(items.get(i));
+            }
+            for(int f=0;f<sizeOfNeighbours;f++){
+                newroom.addNeighbour(neighbours.get(f));
+                this.removeNeighbour(neighbours.get(f));
+            }
+        }
         return newroom;
     }
     /**
      * Két szomszédos szoba egyesülésével létrejött szoba a korábbi két szoba tulajdonságaival és szomszédaival rendelkezik,de a befogadóképessége a nagyobb szoba
      * befogadóképességével lesz azonos. Csak olyan szobák transzformálódhatnak amelyekben nincsen se hallgató se oktató.
+     * RAGADÓS TÁRGYAK NEM KERÜLNEK ÁT A MERGE SORÁN
      * @param r az a szoba amivel egyesül ez a helyiség
      */
     public void Merge(Room r){
         System.out.println("Function: Room class + Merge func");
+        if(characters.isEmpty()&&r.characters.isEmpty()&&r!=null){
+            if(this.capacity>=r.capacity){
+                for(Using uR: r.items){
+                    this.addItem(uR);
+                    r.removeItem(uR);
+                }
+                for(Using uaR: r.activatedItems){
+                    this.addItem(uaR);
+                    r.removeItem(uaR);
+                }
+                for(Room nR: r.neighbours){
+                    //Két irányú a kapcsolat
+                    if(nR.isNeighbours(r)){
+                    this.addNeighbour(nR);
+                    nR.addNeighbour(this);
+                    nR.removeNeighbour(r);
+                    r.removeNeighbour(nR);
+                    }
+                    else{
+                        this.addNeighbour(nR);
+                        r.removeNeighbour(nR);
+                    }
+                }
+                r = null;
+            }
+            //Mivel a merge végén ki kell nullázni a kisebb szobát, így ha r a nagyobb,
+            //akkor "átkellmenni" az őr merge-be, és onnan kinullázni ezt a szobát, mert
+            // this = null nem lehetéséges
+            else{
+                r.Merge(this);
+            }
+        }
     }
     /**
      * Az adott szobához új szomszédok vehetőek fel. Ennek a függvénynek jelentős szerepe van az ajtók eltűnés és megjelenése során. Egy szoba csak egyszer lehet egy másik szoba szomszédja.
@@ -32,6 +106,9 @@ public class Room {
      */
     public void addNeighbour(Room anotherone){
         System.out.println("Function: Room class + addNeighbour func");
+        if(this!=anotherone){
+            neighbours.add(anotherone);
+        }
     }
     /**
      * Az adott szoba szomszédai közül ki lehet venni bizonyos szobákat ezzel a függvénnyel.
@@ -39,6 +116,9 @@ public class Room {
      */
     public void removeNeighbour(Room delete){
         System.out.println("Function: Room class + removeNeighbour func");
+        if(neighbours.contains(delete)){
+            neighbours.remove(delete);
+        }
     }
     /**
      * Ha kapacitás engedi, akkor ezzel a függvénnyel lehet új karaktert adni a szobához.
@@ -47,7 +127,25 @@ public class Room {
      */
     public boolean addCharacter(Character anotherone){
         System.out.println("Function: Room class + addCharacter func");
-        return true;
+        if(capacity>characters.size()){
+            for(Using aI:activatedItems){
+                aI.daze(anotherone);
+            }
+            if(clear) visitor++;
+            if(visitor>=5){
+                for(Using u: items){
+                    stickyItems.add(u);
+                }
+                for(Using ua: activatedItems){
+                    stickyItems.add(ua);
+                }
+            }
+            characters.add(anotherone);
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     /**
      * Amikor valaki kimegy a szobából ezzel a függvénnyel lehet eltávolítani a listából.
@@ -55,6 +153,9 @@ public class Room {
      */
     public void removeCharacter(Character left){
         System.out.println("Function: Room class + removeCharacter func");
+        if(characters.contains(left)){
+            characters.remove(left);
+        }
     }
     /**
      * Új tárgy elhelyezése a szobában.
@@ -63,6 +164,19 @@ public class Room {
      */
     public boolean addItem(Using u){
         System.out.println("Function: Room class + addItem func");
+        if(clear && visitor==5){
+            
+        }
+        else if(u.isActive()){
+            activatedItems.add(u);
+            u.setLocation(this);
+            u.setOwner(null);
+        }
+        else{
+            items.add(u);
+            u.setLocation(this);
+            u.setOwner(null);
+        }
         return true;
     }
     /**
@@ -71,14 +185,17 @@ public class Room {
      */
     public void removeItem(Using u){
         System.out.println("Function: Room class + removeItem func");
+        if(items.contains(u)){
+            items.remove(u);
+        }
     }
     /**
      * Visszaadja az ID-t.
      * @return A szoba ID-ját adja vissza
      */
-    public int getID(){
+    public String getID(){
         System.out.println("Function: Room getID");
-        return 1;
+        return name;
     }
     /**
      * Visszaadja a kapacitást.
@@ -86,7 +203,87 @@ public class Room {
      */
     public int getCapacity(){
         System.out.println("Function: Room getCapacity");
-        return 1;
+        return capacity;
     }
-
+    /**
+     * Légfrissítő használatakor hívódik meg
+     */
+    public void Clean(){
+        System.out.println("Function: Room class + Clean Func");
+        for(Using u: activatedItems){
+            u.removeGas();
+        }
+    }
+    /**
+     * Takarító használatakor hívódik meg
+     */
+    public void Clean(Character cleaner){
+        System.out.println("Function: Room class + Clean(Character cleaner) Func");
+        boolean hasGas = false;
+        for(Using u: activatedItems){
+            if(u.removeGas()){
+                hasGas = true;
+            }
+        }
+        if(hasGas){
+        List<Character> temp = new ArrayList<>();
+        int i = 0;
+        for(Character c : characters){
+            if(!c.isDazed()&&c!=cleaner){
+                temp.add(c);
+            }
+        }
+        for(Room n: neighbours){
+            for(Character c: temp){
+                boolean stayAtCurrentNeighbour = n.addCharacter(c);
+                if(stayAtCurrentNeighbour){
+                    temp.remove(c);
+                }
+                else{
+                    break;
+                }
+            }
+            if(temp.isEmpty()){
+                break;
+            }
+        }
+        clear= true;
+        }
+    }
+    /**
+     * A Room objektum állapotáról ad leírást
+     * @return Egy stringbe adja vissza a Room objektumról a leíást
+     */
+    public String getDescription() {
+        System.out.println("Function: Room class + getDescription Func");
+        String members ="Characters:";
+        String stuff ="Items:";
+        String stuffA ="Activated Items:";
+        String neighB ="Neighbours:";
+        for(Using u: items){
+            stuff = stuff + " " +u.getName();
+        }
+        for(Using uA: activatedItems){
+            stuffA = stuffA + " " +uA.getName();
+        }
+        for(Room n: neighbours){
+            neighB = neighB + " " +n.getID();
+        }
+        for(Character c: characters){
+            members = members + " " +c.getName();
+        }
+        return name+": "+members+", "+stuff+", "+stuffA+", "+neighB;
+    }
+    /**
+     * A szobában lévő karaktereket adja vissza
+     * @return szobában lévő karaktereket listája
+     */
+    public  List<Character> getCharacters(){
+        System.out.println("Function: Room class + getCharacters Func");
+        return characters;
+    }
+    public boolean isNeighbours(Room r)
+    {
+        return neighbours.contains(r);
+    }
 }
