@@ -5,11 +5,6 @@ package Model;
  */
 public interface Using {
     /**
-     * Leírást ad az adott tárgyról (Leszármazottakban felüldefiniált)
-     * @return Az adott tárgy leírása
-     */
-    public String getDescription();
-    /**
      * Az adott tárgy neve kérdezhető le vele.
      * @return Az adott tárgy neve
      */
@@ -47,7 +42,7 @@ public interface Using {
     /**
      * Csökkenti a durability attribútum értékét.
      */
-    public void roundPassed();
+    public void decreaseDurability();
     /**
      * Az adott tárgy használata / aktiválása. (Leszármazottakban felüldefiniált).
      * @return A sikerességét adja meg az adott függvénynek
@@ -83,4 +78,35 @@ public interface Using {
      * @return A sikerességét adja meg az adott függvénynek
      */
     public boolean removePair();
+    /**
+     * A légfrissítő működését megvalósító függvény
+     * @return A sikerességét adja meg az adott függvénynek
+     */
+    public boolean cleanTheRoom(Room r);
+    /**
+     * A camembert sajt által megvalósított függvény, amivel a gázt el tudjuk távolítani a szobából
+     * @return A sikerességét adja meg az adott függvénynek
+     */
+    public boolean removeGas();
+    /**
+     * Lekérdezhető vele, hogy az adott tárgy hamis-e vagy sem
+     * @return Igaz, haz adott tárgy hamisítvány
+     */
+    public boolean isFake();
+    /*
+     * A söröskorsó felvételekor hívódik meg
+     */
+    public void useAtPickUp();
+    /**
+     * Csökkenti a durability értékét minden kör végén
+     * Az eltérés a decreaseDurabilityhez képest, hogy csak a HolyBeer, és a DirtyRag osztályok valósítják meg,
+     * mert ezeknél a tárgyaknal csökken a durability a körök végén
+     */
+    public void roundPassed();
+    /**
+     * Egy csomagoló függvényként szolgált az olyan tárgyak esetére, amelyek kiválasztva lehet működésre bírni, 
+     * interaktivitás van a használatukban (WunderBaum,Transistor,CamembertCheese,DirtyRag)
+     * @return az adott tárgy használtának eredménye
+     */
+    public boolean useSelectedItem(Transistor anotherItem);
 } 
