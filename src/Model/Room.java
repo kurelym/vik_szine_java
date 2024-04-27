@@ -33,7 +33,7 @@ public class Room implements Description {
         stickyItems = new ArrayList<>();
         clear = false;
         visitor = 0;
-        System.out.println("Function: Room class + constructor func");
+        System.out.println("Function: Room class + constructor func: " + name);
     }
     /**
      * Az osztódó szoba két olyan szobára válik szét, amelyek egymás szomszédai lesznek, és megosztoznak a korábbi szoba képességein és szomszédain (a korábbi szomszédok vagy csak az egyik, vagy csak a
@@ -105,7 +105,7 @@ public class Room implements Description {
      * @param anotherone az a szoba, ami ennek az adott szobának az új szomszédja lesz
      */
     public void addNeighbour(Room anotherone){
-        System.out.println("Function: Room class + addNeighbour func");
+        System.out.println("Function: Room class + addNeighbour func"+ name+" - " +anotherone.name);
         if(this!=anotherone){
             neighbours.add(anotherone);
         }
@@ -126,7 +126,7 @@ public class Room implements Description {
      * @return a szobába való lépés sikerességét adja vissza
      */
     public boolean addCharacter(Character anotherone){
-        System.out.println("Function: Room class + addCharacter func");
+        System.out.println("Function: Room class + addCharacter func"+name+" - "+anotherone.getName());
         if(capacity>characters.size()){
             for(Using aI:activatedItems){
                 aI.daze(anotherone);
@@ -163,11 +163,12 @@ public class Room implements Description {
      * @return a tárgy bekerülésének sikerességét adja vissza
      */
     public boolean addItem(Using u){
-        System.out.println("Function: Room class + addItem func");
+        System.out.println("Function: Room class + addItem func: "+name+" - "+u.getName());
         if(clear && visitor==5){
             
         }
         else if(u.isActive()){
+            System.out.println("Added to the Activated Items");
             activatedItems.add(u);
             u.setLocation(this);
             u.setOwner(null);

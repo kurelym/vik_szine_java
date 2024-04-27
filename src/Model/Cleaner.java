@@ -2,6 +2,7 @@ package Model;
 
 public class Cleaner extends Character  {
     private static int globalID = 0;
+
     public Cleaner(){
         super();
         name = "Cleaner_"+globalID;
