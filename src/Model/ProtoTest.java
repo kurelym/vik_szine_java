@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
-public class ProtoTest { 
+public class ProtoTest {
+    private static Game game;
     /**
      * A program belépési pontja. Meghívja a főmenüt.
      * 
@@ -15,8 +16,7 @@ public class ProtoTest {
      * */
     public static void main(String[] args) {
         // Létrehoz egy új Game objektumot
-        Game game = new Game();
-
+        game = new Game();
         // Az elérési út a projekt mappájában lévő map.txt fájlhoz
         String filePath = "src\\Model\\map.txt";
 
@@ -25,41 +25,20 @@ public class ProtoTest {
             game.buildGame(filePath);
 
             System.out.println("A játék sikeresen felépült a " + filePath + " fájlból.");
+            mainMenu();
         } catch (IOException e) {
             System.err.println("Hiba történt a játék építésekor: " + e.getMessage());
         }
     }
 
-    /**
-     * Főmenü megjelenítése és vezérlése.
-     *
-    static void mainMenu(String[] args) {
+    static void mainMenu(){
         int input = -1;
         Scanner scanner = new Scanner(System.in);
-
-        if (args.length > 0) {
-            String filePath = args[0];
-
-            try {
-                File file = new File(filePath);
-                scanner = new Scanner(file);
-
-                while (scanner.hasNextLine()) {
-                    String line = scanner.nextLine();
-                    System.out.println(line);
-                    // TODO: File kezelés
-                }
-            } catch (FileNotFoundException e) {
-                System.err.println("A fájl nem található: " + filePath);
-                e.printStackTrace();
-            }
-        }
-
-        while (input != 0) {
+        System.out.println("Menu");
+        while (!game.win()) {
+            
             System.out.println("      vik_szine_java\n");
             System.out.println("Hallgató mód       1");
-            System.out.println("Oktató mód         2");
-            System.out.println("Pályamanipuláció   3");
             System.out.println("Kilépés            0");
 
             input = scanner.nextInt();
@@ -67,12 +46,12 @@ public class ProtoTest {
                 case 1:
                     studentMenu(scanner);
                     break;
-                case 2:
+                /*case 2:
                     teacherMenu(scanner);
                     break;
                 case 3:
                     roomMenu(scanner);
-                    break;
+                    break;*/
                 case 0:
                     break;
                 default:
@@ -88,7 +67,7 @@ public class ProtoTest {
      * Hallgatói menü megjelenítése és vezérlése.
      * 
      * @param scanner a bemeneti adatok beolvasásához használt Scanner objektum
-     *
+     */
     static void studentMenu(Scanner scanner) {
         int input = -1;
         while (input != 0) {
@@ -100,7 +79,7 @@ public class ProtoTest {
 
             input = scanner.nextInt();
             switch (input) {
-                case 1:
+                /*case 1:
                     studentGoToRoomTest(scanner);
                     break;
                 case 2:
@@ -110,7 +89,7 @@ public class ProtoTest {
                     pickUpItem(scanner);
                     break;
                 case 0:
-                    break;
+                    break;*/
                 default:
                     System.out.println("Hibás bemenet: " + input);
                     break;
