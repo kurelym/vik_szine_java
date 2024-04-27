@@ -187,12 +187,14 @@ public class Room implements Description {
     public void removeItem(Using u){
         System.out.println("Function: Room class + removeItem func");
         
-        //TO DO
-
-        if(items.contains(u)){
-            
+        for(int i=0;i<items.size();i++){
+            if(items.get(i).equals(u)){
+                items.get(i).setLocation(null);
+                items.remove(items.get(i));
+                break;
+            }
         }
-        items.remove(u);
+        System.out.println(this.getDescription());
     }
     /**
      * Visszaadja az ID-t.

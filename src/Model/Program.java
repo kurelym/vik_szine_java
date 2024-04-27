@@ -23,10 +23,10 @@ public class Program {
             game.buildGame(filePath);
 
             System.out.println("A játék sikeresen felépült a " + filePath + " fájlból.");
-            mainMenu();
         } catch (IOException e) {
             System.err.println("Hiba történt a játék építésekor: " + e.getMessage());
         }
+        mainMenu();
     }
 
     /**
@@ -106,15 +106,20 @@ public class Program {
     static void pickUpItem(Scanner scanner, Student student) {
         int input = -1;
         while (input != 0) {
-            System.out.println("Felvehető tárgyak:");
+            /*System.out.println("Felvehető tárgyak:");
             System.out.println(student.getRoom().getDescription());
             for(int j=0; j<student.getRoom().getItems().size();j++){
-                
+                System.out.println(j+1+". "+student.getRoom().getItems().get(j).getName());
+            }*/
+            System.out.println(student.getDescription());
+            System.out.println(student.getRoom().getDescription());
+            for(int j=0;j<student.getRoom().getItems().size();j++){
                 System.out.println(j+1+". "+student.getRoom().getItems().get(j).getName());
             }
 
             input = scanner.nextInt();
             if (input==0) break;
+            //System.out.println(student.getRoom().getDescription());
             if(input<=student.getRoom().getItems().size()){
                 if(student.pickUpItem(student.getRoom().getItems().get(input-1))){
                     System.out.println("Sikeresen felvetted a tárgyat");
