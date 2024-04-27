@@ -2,44 +2,32 @@ package Model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
-public class ProtoTest {
-/* 
-    private static Game game = new Game();
-
-    private static Teacher teacher = new Teacher();
-    private static Student student = new Student();
-
-    private static List<Character> list = new ArrayList<>();
-
-    private static Room room1 = new Room();
-    private static Room room2 = new Room();
-    private static Room room3 = new Room();
-    private static Room room4 = new Room();
-    private static Room room5 = new Room();
-    private static CursedRoom cursedroom = new CursedRoom();
-
-    private static TVSZ tvsz = new TVSZ();
-    private static SlideRule sliderule = new SlideRule();
-    private static HolyBeer holybeer = new HolyBeer();
-    private static FFP2 ffp2 = new FFP2();
-    private static CamembertCheese camembertcheese = new CamembertCheese();
-    private static Transistor transistor1 = new Transistor();
-    private static Transistor transistor2 = new Transistor();
-    private static DirtyRag dirtyrag = new DirtyRag();
-
+public class ProtoTest { 
     /**
      * A program belépési pontja. Meghívja a főmenüt.
      * 
      * @param args parancssori argumentumok, amikben teszteseteket lehet megadni
      *
+     * */
     public static void main(String[] args) {
-        mainMenu(args);
-        list.add(teacher);
-        list.add(student);
+        // Létrehoz egy új Game objektumot
+        Game game = new Game();
 
+        // Az elérési út a projekt mappájában lévő map.txt fájlhoz
+        String filePath = "src\\Model\\map.txt";
+
+        try {
+            // Meghívja a buildGame függvényt a map.txt fájlon
+            game.buildGame(filePath);
+
+            System.out.println("A játék sikeresen felépült a " + filePath + " fájlból.");
+        } catch (IOException e) {
+            System.err.println("Hiba történt a játék építésekor: " + e.getMessage());
+        }
     }
 
     /**

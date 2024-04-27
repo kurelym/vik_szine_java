@@ -5,7 +5,7 @@ package Model;
 public class CamembertCheese extends Item{
     private static int globalID = 0;
     public CamembertCheese(){
-        name = "CamembertCheese_"+globalID;
+        name = "CamambertCheese_"+globalID;
         globalID++;
         durability = 1;
         activated =false;

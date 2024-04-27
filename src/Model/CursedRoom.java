@@ -15,8 +15,7 @@ public class CursedRoom extends Room{
      * Létrehozza az osztályt
      */
     public CursedRoom(){
-        name="CursedRoom_"+globalID;
-        globalID++;
+        super();
         hiddenNeighbours=new ArrayList<>(); 
         directionOfConnecntion = new ArrayList<>();
         System.out.println("Function: CursedRoom class + constructor func");
