@@ -37,10 +37,13 @@ public class Program {
         List<Student> students = game.getStudents();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Menu");
+        System.out.println("\n\n" + game.getDescription());
         game.startGame();
         while (!game.win()) {
             for(int i=0;i<students.size();i++){
-                System.out.println(students.get(i).getDescription());
+                System.out.println("Student: " + students.get(i).getDescription());
+                System.out.println("Room: " + students.get(i).getRoom().getDescription());
+
                 System.out.println("Lehetséges műveletek:");
                 System.out.println("Mozgás másik szobába   1");
                 System.out.println("Tárgy használata       2");
@@ -111,8 +114,6 @@ public class Program {
             for(int j=0; j<student.getRoom().getItems().size();j++){
                 System.out.println(j+1+". "+student.getRoom().getItems().get(j).getName());
             }*/
-            System.out.println(student.getDescription());
-            System.out.println(student.getRoom().getDescription());
             for(int j=0;j<student.getRoom().getItems().size();j++){
                 System.out.println(j+1+". "+student.getRoom().getItems().get(j).getName());
             }
@@ -123,8 +124,9 @@ public class Program {
             if(input<=student.getRoom().getItems().size()){
                 if(student.pickUpItem(student.getRoom().getItems().get(input-1))){
                     System.out.println("Sikeresen felvetted a tárgyat");
+                    System.out.println(game.getDescription());
                     System.out.println(student.getDescription());
-
+                    System.out.println(student.getRoom().getDescription());
                     input=0;
                 }
                 else {

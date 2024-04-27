@@ -186,22 +186,14 @@ public class Room implements Description {
      */
     public void removeItem(Using u){
         System.out.println("Function: Room class + removeItem func");
-        
-        for(int i=0;i<items.size();i++){
-            if(items.get(i).equals(u)){
-                items.get(i).setLocation(null);
-                items.remove(items.get(i));
-                break;
-            }
-        }
-        System.out.println(this.getDescription());
+            items.remove(u);
     }
     /**
      * Visszaadja az ID-t.
      * @return A szoba ID-ját adja vissza
      */
     public String getID(){
-        System.out.println("Function: Room getID");
+        //System.out.println("Function: Room getID");
         return name;
     }
     /**
@@ -209,7 +201,7 @@ public class Room implements Description {
      * @return A szoba kapacitását adja vissza
      */
     public int getCapacity(){
-        System.out.println("Function: Room getCapacity");
+        //System.out.println("Function: Room getCapacity");
         return capacity;
     }
     /**
@@ -262,7 +254,7 @@ public class Room implements Description {
      * @return Egy stringbe adja vissza a Room objektumról a leíást
      */
     public String getDescription() {
-        System.out.println("Function: Room class + getDescription Func");
+        //System.out.println("Function: Room class + getDescription Func");
         String members ="Characters:";
         String stuff ="Items:";
         String stuffA ="Activated Items:";

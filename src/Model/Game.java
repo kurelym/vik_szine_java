@@ -559,7 +559,7 @@ public class Game implements Description {
         for(Character cC: cleaners){
             membersC = membersC + " " +cC.getName();
         }
-        return "Round:  "+round +"GameState:\n"+room+" "+roomC+" "+stuff+" "+membersS+" "+membersT+" "+membersC;
+        return "Round:  "+round +"\nGameState:\n"+room+" "+roomC+" "+stuff+" "+membersS+" "+membersT+" "+membersC;
        
     }
 }
