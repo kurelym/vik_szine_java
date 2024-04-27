@@ -153,19 +153,19 @@ public class Game implements Description {
 
                     switch (characterType) {
                         case "S":
-                            Student student = new Student();
+                            Student student = new Student(room);
                             students.add(student);
                             room.addCharacter(student);
                             characterMap.put(student.getName(), student);
                             break;
                         case "T":
-                            Teacher teacher = new Teacher();
+                            Teacher teacher = new Teacher(room);
                             teachers.add(teacher);
                             room.addCharacter(teacher);
                             characterMap.put(teacher.getName(), teacher);
                             break;
                         case "C":
-                            Cleaner cleaner = new Cleaner();
+                            Cleaner cleaner = new Cleaner(room);
                             cleaners.add(cleaner);
                             room.addCharacter(cleaner);
                             characterMap.put(cleaner.getName(), cleaner);
