@@ -381,13 +381,14 @@ public class Game implements Description {
                 character.teacherAttack();
             }
             if(!teacher.location.items.isEmpty()) {
-                Using randomItem = teacher.location.items.get(random.nextInt(0, teacher.location.items.size() - 1));
-                teacher.pickUpItem(randomItem);    
+            
+                Using randomItem = teacher.location.items.get(random.nextInt(0, teacher.location.items.size()));
+                teacher.pickUpItem(randomItem, teacher.location);    
             }
          }
 
          for(Cleaner cleaner : cleaners) {
-            cleaner.goToRoom(cleaner.location.neighbours.get(random.nextInt(0, cleaner.location.neighbours.size() - 1)));
+            cleaner.goToRoom(cleaner.location.neighbours.get(random.nextInt(0, cleaner.location.neighbours.size())));
          }
 
          for(Using item : items) {

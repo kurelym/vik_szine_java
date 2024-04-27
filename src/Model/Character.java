@@ -57,13 +57,13 @@ public abstract class Character implements Description {
      * @param item A felvenni kívánt tárgy.
      * @return true, ha a tárgy sikeresen fel lett véve, egyébként false.
      */
-    public boolean pickUpItem(Using item){
+    public boolean pickUpItem(Using item, Room room){
         System.out.println("Function: Character class + pickUpItem Func "+name+" - " +item.getName());
         if(inventory.size()==5){
             return false;
         }
         else{
-            item.getLocation().removeItem(item);
+            room.removeItem(item);
             item.setLocation(null);
             inventory.add(item);
             item.setOwner(this);
