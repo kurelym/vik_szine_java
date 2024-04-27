@@ -482,6 +482,16 @@ public class Game implements Description {
             }
         }
     }
+
+    /**
+     * A játékban lévő játékosokat adja vissza
+     * @return játékban lévő játékosokat listája
+     */
+    public  List<Student> getStudents(){
+        System.out.println("Function: Game class + getStudents Func");
+        return students;
+    }
+
     /**
      * A Game objektum állapotáról ad leírást
      * @return Egy stringbe adja vissza a Game objektumról a leíást
