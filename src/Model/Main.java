@@ -49,6 +49,7 @@ public class Main {
 
         int roomCnt = game.getRooms().size();
 
+        game.buildGame("map.txt");
 
         System.out.println("Játékosok száma: ");
         while(!scanner.hasNextInt()) {
@@ -85,8 +86,6 @@ public class Main {
             Cleaner cleaner = new Cleaner(game.getRooms().get(game.getRooms().size() / 2));
             game.addCleaner(cleaner);
         }
-
-        game.buildGame("map.txt");
 
         Program program = new Program(game);
 

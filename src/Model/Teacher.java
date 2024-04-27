@@ -33,10 +33,10 @@ public class Teacher extends Character {
     public void tryToKill(){
         System.out.println("Function: Teacher class + tryToKill Func");
         if(!dazed){
-        List<Character> characters = location.getCharacters();
-        for(Character c: characters){
-            c.teacherAttack();
-        }
+            List<Character> characters = location.getCharacters();
+            for(Character c: characters){
+                c.teacherAttack();
+            }
         }
     }
 
