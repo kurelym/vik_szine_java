@@ -20,6 +20,7 @@ public abstract class Character implements Description {
         name ="Character";
         inventory = new ArrayList<>();
         location = startingRoom;
+        startingRoom.addCharacter(this);
         alive = false;
         dazed = false;
         System.out.println("Function: Character class + Konstruktor Func");
@@ -30,7 +31,7 @@ public abstract class Character implements Description {
      * @return true, ha a karakter sikeresen átmegy a szobába, egyébként false.
      */
     public boolean goToRoom(Room destination){
-        System.out.println("Function: Character class + goToRoom Func");
+        System.out.println("Function: Character class + goToRoom Func: "+name+" - "+destination.name);
         if(destination.addCharacter(this)){
             location.removeCharacter(this);
             location = destination;
@@ -57,7 +58,7 @@ public abstract class Character implements Description {
      * @return true, ha a tárgy sikeresen fel lett véve, egyébként false.
      */
     public boolean pickUpItem(Using item){
-        System.out.println("Function: Character class + pickUpItem Func");
+        System.out.println("Function: Character class + pickUpItem Func "+name+" - " +item.getName());
         if(inventory.size()==5){
             return false;
         }

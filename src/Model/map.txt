@@ -6,15 +6,10 @@ Room_3 0
 Room_4 1
 -- Room Connections --
 Room_0 Room_1 2
-Room_1 Room_2 1
+Room_1 Room_2 2
 Room_2 Room_3 2
-Room_3 Room_4 1
+Room_3 Room_4 2
 -- Characters --
-Student_0 S Room_0
-Student_1 S Room_1
-Teacher_0 T Room_2
-Teacher_1 T Room_3
-Cleaner_0 C Room_0
 -- Objects --
 FFP2_0 F 0
 FFP2_1 F 1
@@ -34,7 +29,3 @@ Room_2 Transistor_0 CamambertCheese_0
 Room_3 DirtyRag_0 SlideRule_1
 Room_4 Transistor_1
 -- Objects Carried by Characters --
-Student_0 TVSZ_1
-Student_1 Transistor_1
-Teacher_0 CamambertCheese_0 DirtyRag_1
-Teacher_1 DirtyRag_0

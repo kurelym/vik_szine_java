@@ -67,8 +67,9 @@ public class Program {
                         System.out.println("Hibás bemenet: " + input);
                         break;
                 }
-                game.incrementRound();
+                
             }
+            game.incrementRound();
         }
         scanner.close();
         return;
@@ -105,8 +106,10 @@ public class Program {
     static void pickUpItem(Scanner scanner, Student student) {
         int input = -1;
         while (input != 0) {
+            System.out.println("Felvehető tárgyak:");
+            System.out.println(student.getRoom().getDescription());
             for(int j=0; j<student.getRoom().getItems().size();j++){
-                System.out.println("Felvehető tárgyak:");
+                
                 System.out.println(j+1+". "+student.getRoom().getItems().get(j).getName());
             }
 
@@ -115,6 +118,8 @@ public class Program {
             if(input<=student.getRoom().getItems().size()){
                 if(student.pickUpItem(student.getRoom().getItems().get(input-1))){
                     System.out.println("Sikeresen felvetted a tárgyat");
+                    System.out.println(student.getDescription());
+
                     input=0;
                 }
                 else {

@@ -186,9 +186,13 @@ public class Room implements Description {
      */
     public void removeItem(Using u){
         System.out.println("Function: Room class + removeItem func");
+        
+        //TO DO
+
         if(items.contains(u)){
-            items.remove(u);
+            
         }
+        items.remove(u);
     }
     /**
      * Visszaadja az ID-t.
