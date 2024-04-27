@@ -10,8 +10,8 @@ public class Teacher extends Character {
     /**
      * Konstruktor a Teacher osztályhoz.
      */
-    public Teacher(){
-        super();
+    public Teacher(Room r){
+        super(r);
         name = "Teacher_"+globalID;
         globalID++;
         System.out.println("Function: Teacher class + Konstruktor Func");

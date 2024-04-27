@@ -8,8 +8,8 @@ public class Student extends Character {
     /**
      * Konstruktor a Student osztályhoz.
      */
-    public Student(){
-        super();
+    public Student(Room r){
+        super(r);
         name = "Student_"+globalID;
         globalID++;
         System.out.println("Function: Student osztály + Konstruktor Func");

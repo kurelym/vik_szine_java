@@ -2,8 +2,8 @@ package Model;
 
 public class Cleaner extends Character  {
     private static int globalID = 0;
-    public Cleaner(){
-        super();
+    public Cleaner(Room r){
+        super(r);
         name = "Cleaner_"+globalID;
         globalID++;
         System.out.println("Function: Cleaner class + Konstruktor Func");

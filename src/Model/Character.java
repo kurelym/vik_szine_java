@@ -16,10 +16,10 @@ public abstract class Character implements Description {
     /**
      * Konstruktor a Character osztályhoz.
      */
-    protected Character(){
+    protected Character(Room startingRoom){
         name ="Character";
         inventory = new ArrayList<>();
-        location = new Room();
+        location = startingRoom;
         alive = false;
         dazed = false;
         System.out.println("Function: Character class + Konstruktor Func");
