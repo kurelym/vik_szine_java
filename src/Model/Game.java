@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.Map;
 
 /**
@@ -362,9 +363,7 @@ public class Game implements Description {
      */
     public void incrementRound() {
         System.out.println("Function: Game class + incrementRound() Func");
-
-        
-        
+        Random random = new Random();
         //TODO: Mivel komplexebb lesz az algoritmus, így összecsapni nem akartam, szóval adok egy pongyolább leírást:
         //tanárokat/takarítókat léptetünk, (ciklusban goToRoom,TryToKill, pickupItem)
         //szobákat manipulálunk, (manipulateRooms())
@@ -373,6 +372,42 @@ public class Game implements Description {
         //Nyertes hallgatót keresünk a win-el(win())
          // nőveljük a kör értékét, (round++)
 
+         for(Teacher teacher : teachers) {  //Végigmegyünk a játékban lévő tanárok listáján
+            //Minden tanár véletlenszerűen választ szobát a tartózkodási szobájának szomszédai közül (neighbours(0, size-1))
+            teacher.goToRoom(teacher.location.neighbours.get(random.nextInt(0, teacher.location.neighbours.size() - 1)));
+            for(Character character : teacher.location.characters) {    //Amikor egy tanár belépett egy szobába végigmegyünk a szobában tartózkodó karakterek listáján
+                //Megvizsgáljuk hogy túléli-e a tanárral való találkozást
+                character.teacherAttack();
+            }
+            if(!teacher.location.items.isEmpty()) {
+                Using randomItem = teacher.location.items.get(random.nextInt(0, teacher.location.items.size() - 1));
+                teacher.pickUpItem(randomItem);    
+            }
+         }
+
+         for(Cleaner cleaner : cleaners) {
+            cleaner.goToRoom(cleaner.location.neighbours.get(random.nextInt(0, cleaner.location.neighbours.size() - 1)));
+         }
+
+         for(Using item : items) {
+            if(item.getDurability() == 0) {
+                item.decreaseDurability();  //Durability -1 == Item nem működik tovább
+                item.getOwner().dropItem(item); //Automatikusan eldobja az elhasznált tárgyat
+            }
+         }
+
+         for(Student student : students) {
+            if(!student.isAlive()) {
+                student = null;
+            }
+         }
+
+         win(); //Nem tudom innen hogyan tovább, majd megbeszéljük
+         
+         round++;
+         if(round > maxRounds) {
+            //TODO tanárok nyertek
+         }
     }
 
 
@@ -483,6 +518,7 @@ public class Game implements Description {
         }
     }
 
+    public List<Room> getRooms() { return rooms; }
     /**
      * A játékban lévő játékosokat adja vissza
      * @return játékban lévő játékosok listája
