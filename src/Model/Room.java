@@ -275,9 +275,33 @@ public class Room implements Description {
         }
         return name+": "+members+", "+stuff+", "+stuffA+", "+neighB;
     }
+
+    /**
+     * A szoba szomszédait adja vissza
+     * @return a szoba szomszédainak listája
+     */
+    public List<Room> getNeighbours(){
+        return neighbours;
+    }
+
+    /**
+     * A szobában levő tárgyakat adja vissza
+     * @return a szoba tárgyainak listája
+     */
+    public List<Using> getItems(){
+        return items;
+    }
+
+    /**
+     * A szoba nevét adja vissza
+     * @return a szoba neve
+     */
+    public String getName(){
+        return name;
+    }
     /**
      * A szobában lévő karaktereket adja vissza
-     * @return szobában lévő karaktereket listája
+     * @return szobában lévő karakterek listája
      */
     public  List<Character> getCharacters(){
         System.out.println("Function: Room class + getCharacters Func");
