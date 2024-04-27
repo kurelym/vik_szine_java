@@ -1,7 +1,7 @@
 package Model;
 
 import java.util.Scanner;
-
+import java.io.IOException;
 public class Main {
     
     public static void main(String[] args) {
@@ -43,13 +43,23 @@ public class Main {
         int studentCnt = 0;
         int teacherCnt = 0;
         int cleanerCnt = 0;
-
+        String filePath = "src\\Model\\map.txt";
         Game game = new Game();
-        game.buildGame("map.txt");
+        try {
+            
+            game.buildGame(filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         int roomCnt = game.getRooms().size();
 
-        game.buildGame("map.txt");
+        try {
+            game.buildGame(filePath);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         System.out.println("Játékosok száma: ");
         while(!scanner.hasNextInt()) {

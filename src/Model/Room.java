@@ -186,9 +186,15 @@ public class Room implements Description {
      */
     public void removeItem(Using u){
         System.out.println("Function: Room class + removeItem func");
-        if(items.contains(u)){
-            items.remove(u);
+        
+        for(int i=0;i<items.size();i++){
+            if(items.get(i).equals(u)){
+                items.get(i).setLocation(null);
+                items.remove(items.get(i));
+                break;
+            }
         }
+        System.out.println(this.getDescription());
     }
     /**
      * Visszaadja az ID-t.

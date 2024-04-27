@@ -153,19 +153,19 @@ public class Game implements Description {
 
                     switch (characterType) {
                         case "S":
-                            Student student = new Student();
+                            Student student = new Student(room);
                             students.add(student);
                             room.addCharacter(student);
                             characterMap.put(student.getName(), student);
                             break;
                         case "T":
-                            Teacher teacher = new Teacher();
+                            Teacher teacher = new Teacher(room);
                             teachers.add(teacher);
                             room.addCharacter(teacher);
                             characterMap.put(teacher.getName(), teacher);
                             break;
                         case "C":
-                            Cleaner cleaner = new Cleaner();
+                            Cleaner cleaner = new Cleaner(room);
                             cleaners.add(cleaner);
                             room.addCharacter(cleaner);
                             characterMap.put(cleaner.getName(), cleaner);
@@ -341,14 +341,13 @@ public class Game implements Description {
      */
     public void startGame() {
         System.out.println("Function: Game class + startGame() Func");
-        incrementRound();
     }
 
     /**
      * Ellenorzi, hogy valamely hallgato felvette-e a logarlecet
      */
     public boolean win() {
-        System.out.println("Function: Game class + win() Func");
+        //System.out.println("Function: Game class + win() Func");
         for(Student s: students){
             if(s.hasTheSlideRule()){
                 System.out.println("Winner: "+s.getName());
@@ -374,7 +373,9 @@ public class Game implements Description {
 
          for(Teacher teacher : teachers) {  //Végigmegyünk a játékban lévő tanárok listáján
             //Minden tanár véletlenszerűen választ szobát a tartózkodási szobájának szomszédai közül (neighbours(0, size-1))
-            teacher.goToRoom(teacher.location.neighbours.get(random.nextInt(0, teacher.location.neighbours.size() - 1)));
+            
+            int i = random.nextInt(teacher.location.getNeighbours().size());
+            teacher.goToRoom(teacher.location.getNeighbours().get(i));
             for(Character character : teacher.location.characters) {    //Amikor egy tanár belépett egy szobába végigmegyünk a szobában tartózkodó karakterek listáján
                 //Megvizsgáljuk hogy túléli-e a tanárral való találkozást
                 character.teacherAttack();
