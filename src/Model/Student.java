@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.List;
+
 /**
  * Az osztály egy hallgatót reprezentál a játékban.
  */
@@ -49,13 +51,17 @@ public class Student extends Character {
         return false;
     }
 
+    public List<Using> getInventory(){
+        return inventory;
+    }
+
     /**
      * Az adott hallgató állapotáról ad leírást
      * @return Egy stringbe adja vissza a halggatóról a leíást
      */
     public String getDescription() {
         System.out.println("Function: Student osztály + getDescription Func");
-        String itemnames = "Items:";
+        String itemnames = " Items:";
         for(Using u:inventory){
             itemnames = itemnames + " "+u.getName();
         }

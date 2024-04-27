@@ -42,6 +42,16 @@ public abstract class Character implements Description {
         
     }
     /**
+    * Metódus a karakter inventoryjához hozzáad egy tárgyat
+    * A pálya txt-ből való betöltéséhez kell
+    * @param item A tárgy
+    */
+    public void add(Using item){
+        System.out.println("Function: Character class + add Func "+name+" - "+item.getName());
+        this.inventory.add(item);
+    }
+
+    /**
      * Metódus egy tárgy felvételére.
      * @param item A felvenni kívánt tárgy.
      * @return true, ha a tárgy sikeresen fel lett véve, egyébként false.

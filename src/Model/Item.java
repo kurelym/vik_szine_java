@@ -11,8 +11,11 @@ abstract class Item implements Using,Description {
     protected boolean fake;
 
     public String getName(){
-        System.out.println("Function: Item class + getName func");
+        //System.out.println("Function: Item class + getName func");
         return name;
+    }
+    public void setType(boolean _fake){
+        fake = _fake;
     }
     public int getDurability(){
         System.out.println("Function: Item class + getDurability func");
