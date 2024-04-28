@@ -18,13 +18,13 @@ public class CursedRoom extends Room{
         super();
         hiddenNeighbours=new ArrayList<>(); 
         directionOfConnecntion = new ArrayList<>();
-        System.out.println("Function: CursedRoom class + constructor func");
+        //System.out.println("Function: CursedRoom class + constructor func");
     }
     /**
      * Amennyiben a hiddenNeighbours lista üres, eltüntet ajtókat, amennyiben nem üres, előhoz ajtókat
      */
     public void doorManipulation(){
-        System.out.println("Function: CursedRoom class + doorManipulation func");
+        //System.out.println("Function: CursedRoom class + doorManipulation func");
         if(characters.isEmpty()){
             if(hiddenNeighbours.isEmpty()){
                 Random r = new Random();
@@ -62,7 +62,7 @@ public class CursedRoom extends Room{
      */
     @Override
     public String getDescription() {
-        System.out.println("Function: CursedRoom class + getDescription Func");
+        //System.out.println("Function: CursedRoom class + getDescription Func");
         String members ="Characters:";
         String stuff ="Items:";
         String stuffA ="Activated Items:";

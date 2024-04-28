@@ -32,16 +32,9 @@ public class Game implements Description {
         rooms  = new ArrayList<>();
         cursedRooms  = new ArrayList<>();
         items  = new ArrayList<>();
-        System.out.println("Function: Game class consturctor Func");
+        //System.out.println("Function: Game class consturctor Func");
     }
 
-    /**
-     * @return az aktualis kor szama
-     */
-    public int getRound() {
-        System.out.println("Function: Game class + getRound() Func");
-        return round;
-    }
     /**
      * Egy fájlból generál egy pályát, amit paraméterként kap
      * @param fileName a paraméterként átadott fájl elérési útja
@@ -65,38 +58,38 @@ public class Game implements Description {
             switch (line) {
                 case "-- Rooms --":
                     currentSection = "Rooms";
-                    System.out.println("");
-                    System.out.println("-- Rooms --");
+                    //System.out.println("");
+                    //System.out.println("-- Rooms --");
                     continue;
                 case "-- Room Connections --":
                     currentSection = "Connections";
-                    System.out.println("");
-                    System.out.println("-- Room Connections --");
+                    //System.out.println("");
+                    //System.out.println("-- Room Connections --");
                     continue;
                 case "-- Characters --":
                     currentSection = "Characters";
-                    System.out.println("");
-                    System.out.println("-- Characters --");
+                    //System.out.println("");
+                    //System.out.println("-- Characters --");
                     continue;
                 case "-- Objects --":
                     currentSection = "Objects";
-                    System.out.println("");
-                    System.out.println("-- Objects --");
+                    //System.out.println("");
+                    //System.out.println("-- Objects --");
                     continue;
                 case "-- Objects in Rooms --":
                     currentSection = "ObjectsInRooms";
-                    System.out.println("");
-                    System.out.println("-- Objects in Rooms --");
+                    //System.out.println("");
+                    //System.out.println("-- Objects in Rooms --");
                     continue;
                 case "-- Activated Objects in Rooms --":
                     currentSection = "ActivatedObjectsInRooms";
-                    System.out.println("");
-                    System.out.println("-- Activated Objects in Rooms --");
+                    //System.out.println("");
+                    //System.out.println("-- Activated Objects in Rooms --");
                     continue;
                 case "-- Objects Carried by Characters --":
                     currentSection = "ObjectsCarriedByCharacters";
-                    System.out.println("");
-                    System.out.println("-- Objects Carried by Characters --");
+                    //System.out.println("");
+                    //System.out.println("-- Objects Carried by Characters --");
                     continue;
                 default:
                     break;
@@ -185,7 +178,6 @@ public class Game implements Description {
 
                 Item newItem;
                 
-
                 switch (objectType) {
                     case "F":
                         newItem = new FFP2();
@@ -336,86 +328,97 @@ public class Game implements Description {
             }
         }
     }
-    /**
-     * Elinditja a játékot 
-     */
-    //public void startGame() {
-    //    System.out.println("Function: Game class + startGame() Func");
-    //}
 
     /**
      * Ellenorzi, hogy valamely hallgato felvette-e a logarlecet
      */
-    public boolean win() {
-        //System.out.println("Function: Game class + win() Func");
-        for(Student s: students){
-            if(s.hasTheSlideRule()){
-                System.out.println("Winner: "+s.getName());
-                return true;
+    public boolean studentsWon() {
+        for(Student student: students){
+            if(student.isAlive()) {
+                for(Using item : student.getInventory()) {
+                    if(item.isRealSlideRule()) {
+                        System.out.println("Hallgatók győztek, " + student.getName() + " megtalálta a Logarlécet!");
+                        return true;    
+                    }
+                }
             }
         }
         return false;
     }
 
+    public boolean teachersWon() {
+        if(round > maxRounds) {
+            return true;
+        }
+        for(Student s: students){
+            if(s.isAlive()){
+                return false;
+            }
+        }
+        System.out.println("Oktatók győztek, minden hallgató kibukott az egyetemről!");
+        return true;
+    }
+
+
     /**
      * Noveli a kor szamat
      */
-    public void incrementRound() {
-        System.out.println("Function: Game class + incrementRound() Func");
-        round++;
-        if(round > maxRounds) {
-           //TODO tanárok nyertek
+    public boolean incrementRound(boolean gameOver) {
+        //System.out.println("Function: Game class + incrementRound() Func\n");
+        if(teachersWon() || studentsWon()){
+            gameOver = true;
+            return gameOver;
         }
         Random random = new Random();
-        //TODO: Mivel komplexebb lesz az algoritmus, így összecsapni nem akartam, szóval adok egy pongyolább leírást:
-        //tanárokat/takarítókat léptetünk, (ciklusban goToRoom,TryToKill, pickupItem)
-        //szobákat manipulálunk, (manipulateRooms())
-        //az elhasználódott tárgyakat kiszedjük (ciklusban a 0 durability-t null-ozuk)
-        //a meghalt hallgatókat is takarítjuk(isAlive false hallgatól nullázása ciklusban)
-        //Nyertes hallgatót keresünk a win-el(win())
-         // nőveljük a kör értékét, (round++)
 
-         for(Teacher teacher : teachers) {  //Végigmegyünk a játékban lévő tanárok listáján
+        for(Teacher teacher : teachers) {  //Végigmegyünk a játékban lévő tanárok listáján
             //Minden tanár véletlenszerűen választ szobát a tartózkodási szobájának szomszédai közül (neighbours(0, size-1))
-            
-            int i = random.nextInt(teacher.location.getNeighbours().size());
-            teacher.goToRoom(teacher.location.getNeighbours().get(i));
-            for(Character character : teacher.location.characters) {    //Amikor egy tanár belépett egy szobába végigmegyünk a szobában tartózkodó karakterek listáján
-                //Megvizsgáljuk hogy túléli-e a tanárral való találkozást
-                character.teacherAttack();
+            int i = random.nextInt(teacher.getRoom().getNeighbours().size());
+            teacher.goToRoom(teacher.getRoom().getNeighbours().get(i));
+            if(teacher.dazed) {
+                System.out.println(teacher.getName() + " elkábult, kimarad egy körből!");
+                teacher.dazed = false;
+                continue;
             }
+            System.out.println(teacher.getName() + " átment " + teacher.getRoom().getName() + "-ba");
+            teacher.tryToKill();
             if(teacher.getRoom().getItems().size() > 1) {
                 Using randomItem = teacher.getRoom().getItems().get(random.nextInt(0, teacher.getRoom().getItems().size() - 1));
-                teacher.pickUpItem(randomItem);    
+                teacher.pickUpItem(randomItem);
+                System.out.println(teacher.getName() + " felvette a " + randomItem.getName() + "-t");
             } else if(teacher.getRoom().getItems().size() == 1) {
                 Using item = teacher.getRoom().getItems().get(0);
                 teacher.pickUpItem(item);
+                System.out.println(teacher.getName() + " felvette a " + item.getName() + "-t");
             }
-         }
+        }
 
-         //TODO ha csak 1 szomszéd van elszáll a határok miatt
-         for(Cleaner cleaner : cleaners) {
+        for(Cleaner cleaner : cleaners) {
             if(cleaner.getRoom().getNeighbours().size() == 1) {
                 cleaner.goToRoom(cleaner.getRoom().getNeighbours().get(0));
+            } else {
+                cleaner.goToRoom(cleaner.getRoom().getNeighbours().get(random.nextInt(0, cleaner.getRoom().getNeighbours().size() - 1)));                
             }
-            cleaner.goToRoom(cleaner.getRoom().getNeighbours().get(random.nextInt(0, cleaner.getRoom().getNeighbours().size() - 1)));
-         }
+            System.out.println(cleaner.getName() + " átment " + cleaner.getRoom().getName() + "-ba");
+        }
 
-         for(Using item : items) {
+        for(Using item : items) {
             if(item.getDurability() == 0) {
                 item.decreaseDurability();  //Durability -1 == Item nem működik tovább
-                item.getOwner().dropItem(item); //Automatikusan eldobja az elhasznált tárgyat
-            }
-         }
+                if(item.getOwner() != null) {
+                    item.getOwner().dropItem(item); //Automatikusan eldobja az elhasznált tárgyat
+                } else {
 
-         for(Student student : students) {
-            if(!student.isAlive()) {
-                student = null;
+                }
             }
-         }
-
-         win(); //Nem tudom innen hogyan tovább, majd megbeszéljük
-         
+        }
+        if(teachersWon() || studentsWon()){
+            gameOver = true;
+            return gameOver;
+        }
+        round++;
+        System.out.println("Kör: " + round);
+        return gameOver;
     }
 
 
@@ -425,7 +428,7 @@ public class Game implements Description {
      * @param s hallgató
      */
     public void addStudent(Student s) {
-        System.out.println("Function: Game class + addStudent() Func");
+        //System.out.println("Function: Game class + addStudent() Func");
         if(!students.contains(s)){
             students.add(s);
         }
@@ -437,7 +440,7 @@ public class Game implements Description {
      * @param t oktató
      */
     public void addTeacher(Teacher t) {
-        System.out.println("Function: Game class + addTeacher() Func");
+        //System.out.println("Function: Game class + addTeacher() Func");
         if(!teachers.contains(t)){
             teachers.add(t);
         }
@@ -447,7 +450,7 @@ public class Game implements Description {
      * @param c takarító
      */
     public void addCleaner(Cleaner c){
-        System.out.println("Function: Game class + addCleaner() Func");
+        //System.out.println("Function: Game class + addCleaner() Func");
         if(!cleaners.contains(c)){
             cleaners.add(c);
         }
@@ -458,7 +461,7 @@ public class Game implements Description {
      * @param s törölt hallgató
      */
     public void removeStudent(Student s) {
-        System.out.println("Function: Game class + removeStudent() Func");
+        //System.out.println("Function: Game class + removeStudent() Func");
         if(students.contains(s)){
             students.remove(s);
         }
@@ -470,7 +473,7 @@ public class Game implements Description {
      * @param t törölt oktató
      */
     public void removeTeacher(Teacher t) {
-        System.out.println("Function: Game class + removeTeacher() Func");
+        //System.out.println("Function: Game class + removeTeacher() Func");
         if(teachers.contains(t)){
             teachers.remove(t);
         }
@@ -481,7 +484,7 @@ public class Game implements Description {
      * @param c törölt takarító
      */
     public void removeCleaner(Cleaner c){
-        System.out.println("Function: Game class + removeCleaner() Func");
+        //System.out.println("Function: Game class + removeCleaner() Func");
         if(cleaners.contains(c)){
             cleaners.remove(c);
         }
@@ -490,7 +493,7 @@ public class Game implements Description {
      * A játék elejen a labirintust epiti fel
      */
     public void initConnectRooms(Room r1, Room r2, boolean duplex) {
-        System.out.println("Function: Game class + initConnectRooms() Func");
+        //System.out.println("Function: Game class + initConnectRooms() Func");
         if(duplex && r1 != null && r2!=null){
             r1.addNeighbour(r2);
             r2.addNeighbour(r1);
@@ -504,7 +507,7 @@ public class Game implements Description {
      * A korok vegen modositja a labirintust
      */
     public void manipulateRooms() {
-        System.out.println("Function: Game class + manipulateRooms() Func");
+        //System.out.println("Function: Game class + manipulateRooms() Func");
         for(CursedRoom cR:cursedRooms){
             cR.doorManipulation();
         }
@@ -532,7 +535,7 @@ public class Game implements Description {
      * @return játékban lévő játékosok listája
      */
     public List<Student> getStudents(){
-        System.out.println("Function: Game class + getStudents Func");
+        //System.out.println("Function: Game class + getStudents Func");
         return students;
     }
 

@@ -1,6 +1,5 @@
 package Model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public abstract class Character implements Description {
         startingRoom.addCharacter(this);
         alive = true;
         dazed = false;
-        System.out.println("Function: Character class + Konstruktor Func");
+        //System.out.println("Function: Character class + Konstruktor Func");
     }
     /**
      * Metódus a karakter átmegy egy másik szobába.
@@ -31,7 +30,7 @@ public abstract class Character implements Description {
      * @return true, ha a karakter sikeresen átmegy a szobába, egyébként false.
      */
     public boolean goToRoom(Room destination){
-        System.out.println("Function: Character class + goToRoom Func: "+name+" - "+destination.name);
+        //System.out.println("Function: Character class + goToRoom Func: "+name+" - "+destination.name);
         if(destination.addCharacter(this)){
             location.removeCharacter(this);
             location = destination;
@@ -48,7 +47,7 @@ public abstract class Character implements Description {
     * @param item A tárgy
     */
     public void add(Using item){
-        System.out.println("Function: Character class + add Func "+name+" - "+item.getName());
+        //System.out.println("Function: Character class + add Func "+name+" - "+item.getName());
         this.inventory.add(item);
     }
 
@@ -58,7 +57,7 @@ public abstract class Character implements Description {
      * @return true, ha a tárgy sikeresen fel lett véve, egyébként false.
      */
     public boolean pickUpItem(Using item){
-        System.out.println("Function: Character class + pickUpItem Func "+name+" - " +item.getName());
+        //System.out.println("Function: Character class + pickUpItem Func "+name+" - " +item.getName());
         if(inventory.size()==5){
             return false;
         }
@@ -76,7 +75,7 @@ public abstract class Character implements Description {
      * @return true, ha a karakter életben van, egyébként false.
      */
     public boolean isAlive(){
-        System.out.println("Function: Character class + isAlive Func");
+        //System.out.println("Function: Character class + isAlive Func");
         return alive;
     }
     /**
@@ -84,7 +83,7 @@ public abstract class Character implements Description {
      * @param item Az eldobni kívánt tárgy.
      */
     public void dropItem(Using item){
-        System.out.println("Function: Character class + dropItem Func");
+        //System.out.println("Function: Character class + dropItem Func");
         if(!inventory.isEmpty()){
             location.addItem(item);
             inventory.remove(item);
@@ -94,7 +93,7 @@ public abstract class Character implements Description {
      * Metódus egy tárgy eldobására, akkor mikor egy sörökorsót vettünk fel/a tanárnál ha tele van a Bag FIFO módon
      */
     public void dropItem(){
-        System.out.println("Function: Character class + dropItem Func");
+        //System.out.println("Function: Character class + dropItem Func");
         if(!inventory.isEmpty()){
             location.addItem(inventory.get(0));
             inventory.remove(0);
@@ -121,7 +120,7 @@ public abstract class Character implements Description {
      * Metódus az összes tárgy eldobására a karakter zsebéből.
      */
     public void dropAllItem(){
-        System.out.println("Function: Character class + dropAllItem Func");
+        //System.out.println("Function: Character class + dropAllItem Func");
         for(Using u:inventory){
             location.addItem(u);
         }
@@ -133,17 +132,20 @@ public abstract class Character implements Description {
      * @return true, ha a karakter meg tudja magát védeni a gáz támadás ellen, egyébként false.
      */
     public boolean gasAttack(){
-        System.out.println("Function: Character class + gasAttack Func");
-        for(Using u :  inventory){
-            if(u.useAgainstGas()){
-                dazed = false;
-                return false;
-            }
-            else{
-                dazed = true;
+        //System.out.println("Function: Character class + gasAttack Func");
+        if(!this.inventory.isEmpty()) {
+            for(Using u :  inventory){
+                if(u.useAgainstGas()){
+                    System.out.println("Gáz támadás ért, de meg tudtad védeni magad!");
+                    dazed = false;
+                    return true;
+                }
             }
         }
-        return true;
+        System.out.println("Gáz támadás ért, sajnos nem volt módod védekezni ellene");
+        dazed = true;
+        dropAllItem();
+        return false;
     }
     /**
      * Miután a takarító kisegíti az adott karaktert a szobából, a dazed változó értét visszaállítja false-re
@@ -156,9 +158,9 @@ public abstract class Character implements Description {
      * @return true, ha a karakternek van, egyébként false.
      */
     public boolean hasTheSlideRule(){
-        System.out.println("Function: Character class + hasTheSlideRule Func");
+        //System.out.println("Function: Character class + hasTheSlideRule Func");
         for(Using u : inventory){
-            if(u.finishGame()){
+            if(u.isRealSlideRule()){
                 return true;
             }
         }
@@ -170,7 +172,7 @@ public abstract class Character implements Description {
      * @return igaz, ha az adott karakter le van-e bénúlva
      */
     public boolean isDazed(){
-        System.out.println("Function: Character class + isDazed Func");
+        //System.out.println("Function: Character class + isDazed Func");
         return dazed;
     }
     /**
@@ -184,4 +186,6 @@ public abstract class Character implements Description {
      * @return true, ha a karakterre hatással van a táblatörlő rongy, egyébként false.
      */
     abstract boolean ragAttack();
+
+    abstract boolean isTeacher();
 }

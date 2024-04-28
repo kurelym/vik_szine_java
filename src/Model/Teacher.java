@@ -14,7 +14,7 @@ public class Teacher extends Character {
         super(r);
         name = "Teacher_"+globalID;
         globalID++;
-        System.out.println("Function: Teacher class + Konstruktor Func");
+        //System.out.println("Function: Teacher class + Konstruktor Func");
     }
     @Override
     public boolean pickUpItem(Using item){
@@ -31,11 +31,20 @@ public class Teacher extends Character {
      * Metódus amely levezérli az oktató támadási próbálkozását abban a szobában ahol tartózkodik
      */
     public void tryToKill(){
-        System.out.println("Function: Teacher class + tryToKill Func");
+        //System.out.println("Function: Teacher class + tryToKill Func");
         if(!dazed){
             List<Character> characters = location.getCharacters();
             for(Character c: characters){
+                if(c.equals(this)) {
+                    continue;
+                }
                 c.teacherAttack();
+                System.out.println(this.getName() + " megtámadta " + c.getName() + "-t");
+                if(!c.isAlive()) {
+                    System.out.println(c.getName() + " kiesett a játékból");
+                    this.getRoom().getCharacters().remove(c);
+                    c = null;
+                }
             }
         }
     }
@@ -45,7 +54,7 @@ public class Teacher extends Character {
      * @return Mindig false, mivel az oktatók támadása nincs hatással egy másik oktatóra
      */
     public boolean teacherAttack(){
-        System.out.println("Function: Teacher class + teacherAttack Func");
+        //System.out.println("Function: Teacher class + teacherAttack Func");
         return false;
     }
 
@@ -54,7 +63,7 @@ public class Teacher extends Character {
      * @return Mindig true, mivel a nedves táblatörlő mindig hatásos az oktatók ellen.
      */
     public boolean ragAttack(){
-        System.out.println("Function: Teacher class + ragAttack Func");
+        //System.out.println("Function: Teacher class + ragAttack Func");
         dazed = true;
         return true;
     }
@@ -63,11 +72,15 @@ public class Teacher extends Character {
      * @return Egy stringbe adja vissza a tanárról a leíást
      */
     public String getDescription() {
-        System.out.println("Function: Teacher class + getDescription Func");
+        //System.out.println("Function: Teacher class + getDescription Func");
         String itemnames = "Items:";
         for(Using u:inventory){
             itemnames = itemnames + " "+u.getName();
         }
         return "Name: "+name+" Location: "+location.getID()+" isAlive: "+alive+" isDazed: "+dazed+itemnames;
+    }
+    @Override
+    public boolean isTeacher() {
+        return true;
     }
 }

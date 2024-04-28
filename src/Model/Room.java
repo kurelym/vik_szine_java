@@ -25,7 +25,7 @@ public class Room implements Description {
         name = "Room_"+globalID;
         globalID++;
         Random rand = new Random();
-        capacity = rand.nextInt(10, 30);
+        capacity = rand.nextInt(5, 10);
         neighbours = new ArrayList<>();
         items = new ArrayList<>();
         characters = new ArrayList<>();
@@ -33,7 +33,7 @@ public class Room implements Description {
         stickyItems = new ArrayList<>();
         clear = false;
         visitor = 0;
-        System.out.println("Function: Room class + constructor func: " + name);
+        //System.out.println("Function: Room class + constructor func: " + name);
     }
     /**
      * Az osztódó szoba két olyan szobára válik szét, amelyek egymás szomszédai lesznek, és megosztoznak a korábbi szoba képességein és szomszédain (a korábbi szomszédok vagy csak az egyik, vagy csak a
@@ -42,7 +42,7 @@ public class Room implements Description {
      */
     public Room Split(){
         Room newroom = new Room();
-        System.out.println("Function: Room class + Split func");
+        //System.out.println("Function: Room class + Split func");
         if(characters.isEmpty()){
             this.addNeighbour(newroom);
             newroom.addNeighbour(this);
@@ -66,7 +66,7 @@ public class Room implements Description {
      * @param r az a szoba amivel egyesül ez a helyiség
      */
     public void Merge(Room r){
-        System.out.println("Function: Room class + Merge func");
+        //System.out.println("Function: Room class + Merge func");
         if(characters.isEmpty()&&r.characters.isEmpty()&&r!=null){
             if(this.capacity>=r.capacity){
                 for(Using uR: r.items){
@@ -105,7 +105,7 @@ public class Room implements Description {
      * @param anotherone az a szoba, ami ennek az adott szobának az új szomszédja lesz
      */
     public void addNeighbour(Room anotherone){
-        System.out.println("Function: Room class + addNeighbour func"+ name+" - " +anotherone.name);
+        //System.out.println("Function: Room class + addNeighbour func"+ name+" - " +anotherone.name);
         if(this!=anotherone){
             neighbours.add(anotherone);
         }
@@ -115,7 +115,7 @@ public class Room implements Description {
      * @param delete az a szoba, ami ennek az adott szobának kikerül a szomszédai közül
      */
     public void removeNeighbour(Room delete){
-        System.out.println("Function: Room class + removeNeighbour func");
+        //System.out.println("Function: Room class + removeNeighbour func");
         if(neighbours.contains(delete)){
             neighbours.remove(delete);
         }
@@ -125,11 +125,15 @@ public class Room implements Description {
      * @param anotherone az a karakter, ami belép a szobába
      * @return a szobába való lépés sikerességét adja vissza
      */
-    public boolean addCharacter(Character anotherone){
-        System.out.println("Function: Room class + addCharacter func"+name+" - "+anotherone.getName());
+    public boolean addCharacter(Character character){
+        //System.out.println("Function: Room class + addCharacter func"+name+" - "+anotherone.getName());
         if(capacity>characters.size()){
             for(Using aI:activatedItems){
-                aI.daze(anotherone);
+                aI.daze(character);
+                if(character.dazed) {
+                    System.out.println(character.getName() + " elkábult " + aI.getName() + "-től");
+                    break;
+                }
             }
             if(clear) visitor++;
             if(visitor>=5){
@@ -140,7 +144,7 @@ public class Room implements Description {
                     stickyItems.add(ua);
                 }
             }
-            characters.add(anotherone);
+            characters.add(character);
             return true;
         }
         else{
@@ -152,7 +156,7 @@ public class Room implements Description {
      * @param left az a karakter, aki elhagyta a szobát
      */
     public void removeCharacter(Character left){
-        System.out.println("Function: Room class + removeCharacter func");
+        //System.out.println("Function: Room class + removeCharacter func");
         if(characters.contains(left)){
             characters.remove(left);
         }
@@ -163,15 +167,18 @@ public class Room implements Description {
      * @return a tárgy bekerülésének sikerességét adja vissza
      */
     public boolean addItem(Using u){
-        System.out.println("Function: Room class + addItem func: "+name+" - "+u.getName());
+        //System.out.println("Function: Room class + addItem func: "+name+" - "+u.getName());
         if(clear && visitor==5){
             
         }
         else if(u.isActive()){
-            System.out.println("Added to the Activated Items");
+            System.out.println("Sikeresen aktiváltad a tárgyat a szobában");
             activatedItems.add(u);
             u.setLocation(this);
             u.setOwner(null);
+            for(Character character : this.getCharacters()) {
+                u.daze(character);
+            }
         }
         else{
             items.add(u);
@@ -185,8 +192,13 @@ public class Room implements Description {
      * @param u a tárgy, ami kikerül a szobából
      */
     public void removeItem(Using u){
-        System.out.println("Function: Room class + removeItem func");
+        //System.out.println("Function: Room class + removeItem func");
+        if(items.contains(u)) {
             items.remove(u);
+        } else if(activatedItems.contains(u)) {
+            activatedItems.remove(u);
+        }
+        u.setLocation(null);
     }
     /**
      * Visszaadja az ID-t.
@@ -208,7 +220,7 @@ public class Room implements Description {
      * Légfrissítő használatakor hívódik meg
      */
     public void Clean(){
-        System.out.println("Function: Room class + Clean Func");
+        //System.out.println("Function: Room class + Clean Func");
         for(Using u: activatedItems){
             u.removeGas();
         }
@@ -217,36 +229,30 @@ public class Room implements Description {
      * Takarító használatakor hívódik meg
      */
     public void Clean(Character cleaner){
-        System.out.println("Function: Room class + Clean(Character cleaner) Func");
+        //System.out.println("Function: Room class + Clean(Character cleaner) Func");
         boolean hasGas = false;
-        for(Using u: activatedItems){
-            if(u.removeGas()){
-                hasGas = true;
-            }
-        }
-        if(hasGas){
-        List<Character> temp = new ArrayList<>();
-        int i = 0;
-        for(Character c : characters){
-            if(!c.isDazed()&&c!=cleaner){
-                temp.add(c);
-            }
-        }
-        for(Room n: neighbours){
-            for(Character c: temp){
-                boolean stayAtCurrentNeighbour = n.addCharacter(c);
-                if(stayAtCurrentNeighbour){
-                    temp.remove(c);
-                }
-                else{
-                    break;
+        ArrayList<Using> removed = new ArrayList<>();
+        if(!activatedItems.isEmpty()) {
+            for(Using u: activatedItems){
+                if(u.removeGas()){
+                    System.out.println(cleaner.getName() + " kitakarított " + this.getName() + "-ben");
+                    hasGas = true;
+                    removed.add(u);
                 }
             }
-            if(temp.isEmpty()){
-                break;
+            for(Using item : removed) {
+                activatedItems.remove(item);
             }
-        }
-        clear= true;
+    
+            if(hasGas) {
+                clear = true;
+                Random random = new Random();
+                for(Character character : characters){
+                    if(!character.isDazed() && character != cleaner) {
+                        character.goToRoom(this.getNeighbours().get(random.nextInt(0, getNeighbours().size())));
+                    }
+                }
+            }    
         }
     }
     /**
@@ -254,7 +260,7 @@ public class Room implements Description {
      * @return Egy stringbe adja vissza a Room objektumról a leíást
      */
     public String getDescription() {
-        //System.out.println("Function: Room class + getDescription Func");
+        System.out.println("\nFunction: Room class + getDescription Func:\n");
         String members ="Characters:";
         String stuff ="Items:";
         String stuffA ="Activated Items:";
@@ -302,7 +308,6 @@ public class Room implements Description {
      * @return szobában lévő karakterek listája
      */
     public  List<Character> getCharacters(){
-        System.out.println("Function: Room class + getCharacters Func");
         return characters;
     }
     public boolean isNeighbours(Room r)

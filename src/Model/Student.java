@@ -14,7 +14,7 @@ public class Student extends Character {
         super(r);
         name = "Student_"+globalID;
         globalID++;
-        System.out.println("Function: Student osztály + Konstruktor Func");
+        //System.out.println("Function: Student osztály + Konstruktor Func");
         
     }
 
@@ -23,7 +23,7 @@ public class Student extends Character {
      * @param item A használni kívánt tárgy indexe a táskában.
      */
     public void useItem(int idx, Transistor anotherItem){
-        System.out.println("Function: Student osztály + useItem Func");
+        //System.out.println("Function: Student osztály + useItem Func");
         inventory.get(idx).useSelectedItem(anotherItem);
     }
 
@@ -32,7 +32,7 @@ public class Student extends Character {
      * @return true, ha a hallgató meg tudja védeni magát az oktatóval szemben, egyébként false.
      */
     public boolean teacherAttack(){
-        System.out.println("Function: Student osztály + teacherAttack Func");
+        //System.out.println("Function: Student osztály + teacherAttack Func");
         for(Using u: inventory){
             if(u.useAgainstTeacher()){
                 return alive;
@@ -47,7 +47,7 @@ public class Student extends Character {
      * @return Mindig false, mivel a táblatörlő rongy a hallgatókra nincs hatással.
      */
     public boolean ragAttack(){
-        System.out.println("Function: Student osztály + ragAttack Func");
+        //System.out.println("Function: Student osztály + ragAttack Func");
         return false;
     }
 
@@ -60,13 +60,18 @@ public class Student extends Character {
      * @return Egy stringbe adja vissza a halggatóról a leíást
      */
     public String getDescription() {
-        System.out.println("Function: Student osztály + getDescription Func");
+        //System.out.println("Function: Student osztály + getDescription Func");
         String itemnames = " Items:";
         for(Using u:inventory){
             itemnames = itemnames + " "+u.getName();
         }
         boolean winner = hasTheSlideRule();
         return "Name: "+name+" Location: "+location.getID()+" isAlive: "+alive+" isDazed: "+dazed+itemnames+" Has the SlideRule: "+winner;
+    }
+
+    @Override
+    public boolean isTeacher() {
+        return false;
     }
 }
 
