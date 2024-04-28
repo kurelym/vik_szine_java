@@ -16,16 +16,6 @@ public class Program {
         // Létrehoz egy új Game objektumot
         game = jatek;
         // Az elérési út a projekt mappájában lévő map.txt fájlhoz
-        String filePath = "src\\Model\\map.txt";
-
-        try {
-            // Meghívja a buildGame függvényt a map.txt fájlon
-            game.buildGame(filePath);
-
-            System.out.println("A játék sikeresen felépült a " + filePath + " fájlból.");
-        } catch (IOException e) {
-            System.err.println("Hiba történt a játék építésekor: " + e.getMessage());
-        }
         mainMenu();
     }
 
@@ -38,12 +28,10 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Menu");
         System.out.println("\n\n" + game.getDescription());
-        game.startGame();
         while (!game.win()) {
             for(int i=0;i<students.size();i++){
-                System.out.println("Student: " + students.get(i).getDescription());
-                System.out.println("Room: " + students.get(i).getRoom().getDescription());
 
+                System.out.println();
                 System.out.println("Lehetséges műveletek:");
                 System.out.println("Mozgás másik szobába   1");
                 System.out.println("Tárgy használata       2");

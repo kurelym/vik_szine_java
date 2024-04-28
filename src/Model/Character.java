@@ -21,7 +21,7 @@ public abstract class Character implements Description {
         inventory = new ArrayList<>();
         location = startingRoom;
         startingRoom.addCharacter(this);
-        alive = false;
+        alive = true;
         dazed = false;
         System.out.println("Function: Character class + Konstruktor Func");
     }
