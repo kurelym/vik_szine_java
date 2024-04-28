@@ -339,9 +339,9 @@ public class Game implements Description {
     /**
      * Elinditja a játékot 
      */
-    public void startGame() {
-        System.out.println("Function: Game class + startGame() Func");
-    }
+    //public void startGame() {
+    //    System.out.println("Function: Game class + startGame() Func");
+    //}
 
     /**
      * Ellenorzi, hogy valamely hallgato felvette-e a logarlecet
@@ -362,6 +362,10 @@ public class Game implements Description {
      */
     public void incrementRound() {
         System.out.println("Function: Game class + incrementRound() Func");
+        round++;
+        if(round > maxRounds) {
+           //TODO tanárok nyertek
+        }
         Random random = new Random();
         //TODO: Mivel komplexebb lesz az algoritmus, így összecsapni nem akartam, szóval adok egy pongyolább leírást:
         //tanárokat/takarítókat léptetünk, (ciklusban goToRoom,TryToKill, pickupItem)
@@ -380,15 +384,21 @@ public class Game implements Description {
                 //Megvizsgáljuk hogy túléli-e a tanárral való találkozást
                 character.teacherAttack();
             }
-            if(!teacher.location.items.isEmpty()) {
-            
-                Using randomItem = teacher.location.items.get(random.nextInt(0, teacher.location.items.size()));
-                teacher.pickUpItem(randomItem, teacher.location);    
+            if(teacher.getRoom().getItems().size() > 1) {
+                Using randomItem = teacher.getRoom().getItems().get(random.nextInt(0, teacher.getRoom().getItems().size() - 1));
+                teacher.pickUpItem(randomItem);    
+            } else if(teacher.getRoom().getItems().size() == 1) {
+                Using item = teacher.getRoom().getItems().get(0);
+                teacher.pickUpItem(item);
             }
          }
 
+         //TODO ha csak 1 szomszéd van elszáll a határok miatt
          for(Cleaner cleaner : cleaners) {
-            cleaner.goToRoom(cleaner.location.neighbours.get(random.nextInt(0, cleaner.location.neighbours.size())));
+            if(cleaner.getRoom().getNeighbours().size() == 1) {
+                cleaner.goToRoom(cleaner.getRoom().getNeighbours().get(0));
+            }
+            cleaner.goToRoom(cleaner.getRoom().getNeighbours().get(random.nextInt(0, cleaner.getRoom().getNeighbours().size() - 1)));
          }
 
          for(Using item : items) {
@@ -406,10 +416,6 @@ public class Game implements Description {
 
          win(); //Nem tudom innen hogyan tovább, majd megbeszéljük
          
-         round++;
-         if(round > maxRounds) {
-            //TODO tanárok nyertek
-         }
     }
 
 

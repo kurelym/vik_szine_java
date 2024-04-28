@@ -21,7 +21,7 @@ public abstract class Character implements Description {
         inventory = new ArrayList<>();
         location = startingRoom;
         startingRoom.addCharacter(this);
-        alive = false;
+        alive = true;
         dazed = false;
         System.out.println("Function: Character class + Konstruktor Func");
     }
@@ -57,13 +57,13 @@ public abstract class Character implements Description {
      * @param item A felvenni kívánt tárgy.
      * @return true, ha a tárgy sikeresen fel lett véve, egyébként false.
      */
-    public boolean pickUpItem(Using item, Room room){
+    public boolean pickUpItem(Using item){
         System.out.println("Function: Character class + pickUpItem Func "+name+" - " +item.getName());
         if(inventory.size()==5){
             return false;
         }
         else{
-            room.removeItem(item);
+            item.getLocation().removeItem(item);
             item.setLocation(null);
             inventory.add(item);
             item.setOwner(this);

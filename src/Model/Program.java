@@ -15,17 +15,6 @@ public class Program {
     public Program(Game jatek) {
         // Létrehoz egy új Game objektumot
         game = jatek;
-        // Az elérési út a projekt mappájában lévő map.txt fájlhoz
-        String filePath = "src\\Model\\map.txt";
-
-        try {
-            // Meghívja a buildGame függvényt a map.txt fájlon
-            game.buildGame(filePath);
-
-            System.out.println("A játék sikeresen felépült a " + filePath + " fájlból.");
-        } catch (IOException e) {
-            System.err.println("Hiba történt a játék építésekor: " + e.getMessage());
-        }
         mainMenu();
     }
 
@@ -38,10 +27,11 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Menu");
         System.out.println("\n\n" + game.getDescription());
-        game.startGame();
+        int x=0;
+        boolean success = true;
         while (!game.win()) {
-            boolean success = true;
-            for(int i=0;i<students.size();i++){
+            if(success) x=0;
+            for(int i=x;i<students.size();i++){
                 System.out.println("\nAz aktív játékos: "+students.get(i).getName());
                 System.out.println("Lehetséges műveletek:");
                 System.out.println("Mozgás másik szobába   1");
@@ -49,7 +39,7 @@ public class Program {
                 System.out.println("Tárgy felvétele        3");
                 System.out.println("Tárgy eldobása         4");
                 
-                
+                x=i;
                 input = scanner.nextInt();
                 switch (input) {
                     case 1:
@@ -89,8 +79,8 @@ public class Program {
 
         while (input != 0) {
             if (student.getInventory().size()!=0){
+                System.out.println("Inventory:");
                 for(int j=0; j<student.getInventory().size();j++){
-                    System.out.println("Inventory:");
                     System.out.println(j+1+". "+student.getInventory().get(j).getName());
                 }
 
@@ -117,6 +107,7 @@ public class Program {
     static boolean pickUpItem(Scanner scanner, Student student) {
         int input = -1;
         while (input != 0) {
+            if (student.getRoom().getItems().size()!=0){
             System.out.println("Felvehető tárgyak:");
             System.out.println(student.getRoom().getDescription());
             for(int j=0; j<student.getRoom().getItems().size();j++){
@@ -126,13 +117,18 @@ public class Program {
             input = scanner.nextInt();
             if (input==0) break;
             if(input<=student.getRoom().getItems().size()){
-                if(student.pickUpItem(student.getRoom().getItems().get(input-1), student.getRoom())){
+                if(student.pickUpItem(student.getRoom().getItems().get(input-1))){
                     System.out.println("Sikeresen felvetted a tárgyat");
                     return true;
                 }
                 else {
                     System.out.println("Tele van az inventory-d, dobj el egy tárgyat ahhoz, hogy újat tudj felvenni!");
                 }
+            }
+        }
+        else {
+                System.out.println("Nincs a szobában egy tárgy sem!");
+                break;
             }
         }
         return false;
@@ -146,8 +142,9 @@ public class Program {
     static boolean dropItem(Scanner scanner, Student student){
         int input = -1;
         while (input != 0){
+            if (student.getInventory().size()!=0){
+            System.out.println("Inventory:");
             for(int j=0; j<student.getInventory().size();j++){
-                System.out.println("Inventory:");
                 System.out.println(j+1+". "+student.getInventory().get(j).getName());
             }
             
@@ -159,6 +156,11 @@ public class Program {
                 return true;
             }
         }
+        else {
+            System.out.println("Nincs nálad egy tárgy sem!");
+            break;
+        }
+    }
         return false;
     }
 

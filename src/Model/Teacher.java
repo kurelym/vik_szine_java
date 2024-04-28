@@ -17,11 +17,11 @@ public class Teacher extends Character {
         System.out.println("Function: Teacher class + Konstruktor Func");
     }
     @Override
-    public boolean pickUpItem(Using item, Room room){
+    public boolean pickUpItem(Using item){
         if(inventory.size()==5){
             dropItem();
         }
-        room.removeItem(item);
+        item.getLocation().removeItem(item);
         item.setLocation(null);
         item.setOwner(this);
         inventory.add(item);
