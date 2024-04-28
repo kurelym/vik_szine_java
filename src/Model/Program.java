@@ -76,7 +76,7 @@ public class Program {
                         }   
                     }
                 } else {
-                    System.out.println("El vagy kábulva, kimaradsz egy körből");
+                    System.out.println(students.get(i).getName() + " el vagy kábulva, kimaradsz egy körből");
                     students.get(i).dazed = false;
                 }
                 
