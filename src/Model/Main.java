@@ -4,10 +4,9 @@ import java.util.Scanner;
 import java.io.IOException;
 public class Main {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Scanner scanner = new Scanner(System.in);
-
 
         int mode;
         while (true) {
@@ -38,28 +37,14 @@ public class Main {
         scanner.close();
     }
 
-    public static void startGame(Scanner scanner) {
+    public static void startGame(Scanner scanner) throws IOException {
         
         int studentCnt = 0;
         int teacherCnt = 0;
         int cleanerCnt = 0;
         String filePath = "src\\Model\\map.txt";
         Game game = new Game();
-        try {
-            
-            game.buildGame(filePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        int roomCnt = game.getRooms().size();
-
-        try {
-            game.buildGame(filePath);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        game.buildGame(filePath);
 
         System.out.println("Játékosok száma: ");
         while(!scanner.hasNextInt()) {
@@ -69,7 +54,7 @@ public class Main {
 
         studentCnt = scanner.nextInt();
         for(int i = 0; i < studentCnt; i++) {
-            Student student = new Student(game.getRooms().get(0));  //A 0 indexű szoba mérete nagyobb kell legyen mint a játékosok max száma
+            Student student = new Student(game.getRooms().get(0));
             game.addStudent(student);
         }
 

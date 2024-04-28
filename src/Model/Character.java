@@ -21,7 +21,7 @@ public abstract class Character implements Description {
         inventory = new ArrayList<>();
         location = startingRoom;
         startingRoom.addCharacter(this);
-        alive = false;
+        alive = true;
         dazed = false;
         System.out.println("Function: Character class + Konstruktor Func");
     }
@@ -64,11 +64,10 @@ public abstract class Character implements Description {
         }
         else{
             item.getLocation().removeItem(item);
-            //item.setLocation(null);
-            item.setOwner(this);
+            item.setLocation(null);
             inventory.add(item);
+            item.setOwner(this);
             item.useAtPickUp();
-            System.out.println(this.getDescription());
             return true;
         }
     }
@@ -106,7 +105,7 @@ public abstract class Character implements Description {
      * @return A szoba, ahol a karakter tartózkodik.
      */
     public Room getRoom(){
-        System.out.println("Function: Character class + getRoom Func");
+        //System.out.println("Function: Character class + getRoom Func");
         return location;
     }
     /**
@@ -114,7 +113,7 @@ public abstract class Character implements Description {
      * @return A karakter neve.
      */
     public String getName(){
-        System.out.println("Function: Character class + getName Func");
+        //System.out.println("Function: Character class + getName Func");
         return name;
     }
 
