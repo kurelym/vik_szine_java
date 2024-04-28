@@ -56,7 +56,7 @@ public abstract class Character implements Description {
      * @param item A felvenni kívánt tárgy.
      * @return true, ha a tárgy sikeresen fel lett véve, egyébként false.
      */
-    public boolean pickUpItem(Using item){
+    public boolean pickUpItem(Using item) {
         //System.out.println("Function: Character class + pickUpItem Func "+name+" - " +item.getName());
         if(inventory.size()==5){
             return false;
@@ -136,13 +136,13 @@ public abstract class Character implements Description {
         if(!this.inventory.isEmpty()) {
             for(Using u :  inventory){
                 if(u.useAgainstGas()){
-                    System.out.println("Gáz támadás ért, de meg tudtad védeni magad!");
+                    System.out.println(getName() + " gáz támadás ért, de meg tudtad védeni magad!");
                     dazed = false;
                     return true;
                 }
             }
         }
-        System.out.println("Gáz támadás ért, sajnos nem volt módod védekezni ellene");
+        System.out.println(getName() + " gáz támadás ért, sajnos nem volt módod védekezni ellene");
         dazed = true;
         dropAllItem();
         return false;

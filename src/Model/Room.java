@@ -247,9 +247,10 @@ public class Room implements Description {
             if(hasGas) {
                 clear = true;
                 Random random = new Random();
-                for(Character character : characters){
+                for(Character character : characters) {
                     if(!character.isDazed() && character != cleaner) {
                         character.goToRoom(this.getNeighbours().get(random.nextInt(0, getNeighbours().size())));
+                        System.out.println(character.getName() + " ki lettél rakva a szobából " + character.getRoom().getName() + "-be");
                     }
                 }
             }    

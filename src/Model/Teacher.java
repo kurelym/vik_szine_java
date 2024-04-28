@@ -38,9 +38,9 @@ public class Teacher extends Character {
                 if(c.equals(this)) {
                     continue;
                 }
-                c.teacherAttack();
+                boolean survive = c.teacherAttack();
                 System.out.println(this.getName() + " megtámadta " + c.getName() + "-t");
-                if(!c.isAlive()) {
+                if(!survive) {
                     System.out.println(c.getName() + " kiesett a játékból");
                     this.getRoom().getCharacters().remove(c);
                     c = null;

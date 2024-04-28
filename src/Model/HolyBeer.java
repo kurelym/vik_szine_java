@@ -8,7 +8,7 @@ public class HolyBeer extends Item{
     public HolyBeer(){
         name = "HolyBeer_"+globalID;
         globalID++;
-        durability = 3;
+        durability = 5;
         activated =false;
         owner = null;
         location = null;
@@ -28,9 +28,6 @@ public class HolyBeer extends Item{
     public void useAtPickUp(){
         //System.out.println("Function: HolyBeer class + useAtPickUp func");
         activated=true;
-        if(owner!=null){
-            owner.dropItem();
-        }
     }
     public boolean useAgainstTeacher(){
         //System.out.println("Function: HolyBeer class + useAgainstTeacher func");
@@ -44,6 +41,7 @@ public class HolyBeer extends Item{
                 activated=false;
             }
         }
+        System.out.println(getName() + " még " + durability + " körig hat!");
     }
 
     public boolean useable() {

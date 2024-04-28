@@ -179,10 +179,13 @@ public class Game implements Description {
                 Item newItem;
                 
                 switch (objectType) {
+                    case "H":
+                        newItem = new HolyBeer();
+                        newItem.setType(isFake);
+                        break;
                     case "F":
                         newItem = new FFP2();
                         newItem.setType(isFake);
-                        
                         break;
                     case "SR":
                         newItem = new SlideRule();
@@ -382,6 +385,15 @@ public class Game implements Description {
             }
             System.out.println(teacher.getName() + " átment " + teacher.getRoom().getName() + "-ba");
             teacher.tryToKill();
+            ArrayList<Student> removeable = new ArrayList<>();
+            for(Student student : students) {
+                if(!student.isAlive()) {
+                    removeable.add(student);
+                }
+            }
+            for(Student student : removeable) {
+                students.remove(student);
+            }
             if(teacher.getRoom().getItems().size() > 1) {
                 Using randomItem = teacher.getRoom().getItems().get(random.nextInt(0, teacher.getRoom().getItems().size() - 1));
                 teacher.pickUpItem(randomItem);
@@ -407,9 +419,16 @@ public class Game implements Description {
                 item.decreaseDurability();  //Durability -1 == Item nem működik tovább
                 if(item.getOwner() != null) {
                     item.getOwner().dropItem(item); //Automatikusan eldobja az elhasznált tárgyat
+                    item.getLocation().removeItem(item);
+                    items.remove(item);
+                    item = null;
                 } else {
-
+                    item.getLocation().removeItem(item);
+                    items.remove(item);
+                    item = null;
                 }
+            } else {
+                item.roundPassed();
             }
         }
         if(teachersWon() || studentsWon()){

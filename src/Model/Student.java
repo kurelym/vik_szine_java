@@ -35,6 +35,7 @@ public class Student extends Character {
         //System.out.println("Function: Student osztály + teacherAttack Func");
         for(Using u: inventory){
             if(u.useAgainstTeacher()){
+                System.out.println(getName() + " megvédte magát " + u.getName() + "-t használva");
                 return alive;
             }
         }

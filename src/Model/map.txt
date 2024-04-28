@@ -11,6 +11,7 @@ Room_2 Room_3 2
 Room_3 Room_4 2
 -- Characters --
 -- Objects --
+HolyBeer_0 H 0
 FFP2_0 F 0
 FFP2_1 F 1
 TVSZ_0 TVSZ 0
@@ -24,7 +25,7 @@ Transistor_1 T 1 Transistor_0
 DirtyRag_0 DR 0
 DirtyRag_1 DR 1
 -- Objects in Rooms --
-Room_0 FFP2_0 CamambertCheese_0 CamambertCheese_1 DirtyRag_0
+Room_0 FFP2_0 HolyBeer_0 CamambertCheese_0 CamambertCheese_1 DirtyRag_0
 Room_1 FFP2_1 SlideRule_0
 Room_2 Transistor_0 TVSZ_0
 Room_3 SlideRule_1 FFP2_0
