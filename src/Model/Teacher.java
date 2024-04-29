@@ -21,11 +21,14 @@ public class Teacher extends Character {
         if(inventory.size()==5){
             dropItem();
         }
-        item.getLocation().removeItem(item);
-        item.setLocation(null);
-        item.setOwner(this);
-        inventory.add(item);
-        return true;
+        if(item.getLocation()!=null){
+            item.getLocation().removeItem(item);
+            item.setLocation(null);
+            item.setOwner(this);
+            inventory.add(item);
+            return true;
+        }
+        return false;
     }
     /**
      * Metódus amely levezérli az oktató támadási próbálkozását abban a szobában ahol tartózkodik

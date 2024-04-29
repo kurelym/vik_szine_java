@@ -85,10 +85,13 @@ public class Room implements Description {
                         int delete=0;
                         for(int j=0;j<nR.getNeighbours().size();j++){
                             if(nR.getNeighbours().get(j).getName().equals(this.getName())){
-                                delete=0;
+                                delete=j;
                             }
                         }
-                        nR.removeNeighbour(nR.getNeighbours().get(delete));
+
+                        if(delete!=0){
+                            nR.removeNeighbour(nR.getNeighbours().get(delete));
+                        }
                         
                         nR.addNeighbour(this);
                     }

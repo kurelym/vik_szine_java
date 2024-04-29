@@ -554,7 +554,6 @@ public class Game implements Description {
                 if(rooms.get(i).getNeighbours().size() == 1) {
                     Room newRoom = rooms.get(i).getNeighbours().get(0);
                     if (newRoom.characters.size()==0 && rooms.get(i).characters.size()==0){
-                        System.out.println("Meghívjuk a merge-t "+rooms.get(i).getName()+"-n");
                         rooms.get(i).Merge(newRoom);
                         System.out.println(rooms.get(i).getName() + " és " + newRoom.getName() + " összeolvadtak, a szoba új tulajdonságai:\n" + rooms.get(i).getDescription());
                         rooms.remove(newRoom);
