@@ -10,7 +10,7 @@ import java.util.Random;
 public class CursedRoom extends Room{
     private List<Room> hiddenNeighbours;
     private List<Integer> directionOfConnecntion;
-    private static int globalID = 0;
+    //private static int globalID = 0;
     /**
      * Létrehozza az osztályt
      */
