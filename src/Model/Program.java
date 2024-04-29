@@ -85,7 +85,6 @@ public class Program {
             gameOver = game.incrementRound(gameOver);
         }
         scanner.close();
-        System.out.println("Győztetek!");
         return;
     }
 
@@ -132,35 +131,36 @@ public class Program {
         boolean roundOver = false;
         int input = -1;
         while (input != 0) {
-            if (student.getRoom().getItems().size()!=0){
-                System.out.println("Felvehető tárgyak:");
-                System.out.println(student.getRoom().getDescription());
-                for(int j=0; j<student.getRoom().getItems().size();j++){
-                    System.out.println(j+1+". "+student.getRoom().getItems().get(j).getName());
-                }
+            /*System.out.println("Felvehető tárgyak:");
+            System.out.println(student.getRoom().getDescription());
+            for(int j=0; j<student.getRoom().getItems().size();j++){
+                System.out.println(j+1+". "+student.getRoom().getItems().get(j).getName());
+            }*/
+            for(int j=0;j<student.getRoom().getItems().size();j++){
+                System.out.println(j+1+". "+student.getRoom().getItems().get(j).getName());
+            }
 
-                System.out.println("0. Mégse");
-                input = scanner.nextInt();
-                if (input==0) {
+            System.out.println("0. Mégse");
+            input = scanner.nextInt();
+            if (input==0) {
+                roundOver = false;
+                return roundOver;
+            }
+            //System.out.println(student.getRoom().getDescription());
+            if(input<=student.getRoom().getItems().size()){
+                if(student.pickUpItem(student.getRoom().getItems().get(input-1))){
+                    System.out.println("\nSikeresen felvetted a tárgyat\n");
+                    roundOver = true;
+                    input=0;
+                }
+                else {
+                    System.out.println("Tele van az inventory-d, dobj el egy tárgyat ahhoz, hogy újat tudj felvenni!");
                     roundOver = false;
                     return roundOver;
                 }
-                //System.out.println(student.getRoom().getDescription());
-                if(input<=student.getRoom().getItems().size()){
-                    if(student.pickUpItem(student.getRoom().getItems().get(input-1))){
-                        System.out.println("\nSikeresen felvetted a tárgyat\n");
-                        roundOver = true;
-                        input=0;
-                    }
-                    else {
-                        System.out.println("Tele van az inventory-d, dobj el egy tárgyat ahhoz, hogy újat tudj felvenni!");
-                        roundOver = false;
-                        return roundOver;
-                    }
-                }
             }
+        }
         return roundOver;
-    }
     }
 
     /**
