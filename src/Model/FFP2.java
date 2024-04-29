@@ -66,7 +66,7 @@ public class FFP2 extends Item {
         //System.out.println("Function: FFP2 class + finishGame func");
         return false;
     }
-    public boolean pairing(Transistor pair){
+    public boolean pairing(Using pair){
         //System.out.println("Function: FFP2 class + pairing func");
         return false;
     }

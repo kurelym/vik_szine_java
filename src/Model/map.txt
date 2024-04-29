@@ -20,8 +20,8 @@ SlideRule_0 SR 0
 SlideRule_1 SR 1
 CamambertCheese_0 CC 0
 CamambertCheese_1 CC 0
-Transistor_0 T 0 Transistor_1
-Transistor_1 T 1 Transistor_0
+Transistor_0 T 0
+Transistor_1 T 0
 DirtyRag_0 DR 0
 DirtyRag_1 DR 1
 -- Objects in Rooms --

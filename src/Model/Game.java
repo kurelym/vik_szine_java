@@ -438,7 +438,7 @@ public class Game implements Description {
             return gameOver;
         }
 
-        manipulateRooms();
+        //manipulateRooms();
 
         round++;
         System.out.println("Kör: " + round);
