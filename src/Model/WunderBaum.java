@@ -62,7 +62,7 @@ public class WunderBaum extends Item{
         //System.out.println("Function: WunderBaum class + finishGame func");
         return false;
     }
-    public boolean pairing(Transistor pair){
+    public boolean pairing(Using pair){
         //System.out.println("Function: WunderBaum class + pairing func");
         return false;
     }

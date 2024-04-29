@@ -69,7 +69,7 @@ public class DirtyRag extends Item{
         //System.out.println("Function: DirtyRag class + finishGame func");
         return false;
     }
-    public boolean pairing(Transistor pair){
+    public boolean pairing(Using pair){
         //System.out.println("Function: DirtyRag class + pairing func");
         return false;
     }

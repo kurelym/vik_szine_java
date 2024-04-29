@@ -1,4 +1,9 @@
 package Model;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 /**
  * A Tranzisztor tárgy működéséért felel. Kezeli a tranzisztorok összekapcsolását, 
  * illetve ennek a kapcsolatnak a bontását.
@@ -28,25 +33,82 @@ public class Transistor extends Item{
     }
     public boolean removePair(){
         //System.out.println("Function: Transistor class + removePair func");
-        this.pair.removePair();
-        this.pair = null;
+        if(this.pair!=null){
+            this.pair.activated=false;
+            this.pair.location.removeItem(this.pair);
+            owner.location.addItem(this.pair);
+            this.pair.pair=null;
+
+            pair = null;
+            activated = false;
+        }
         return true;
     }
-    public boolean pairing(Transistor pair){
+    public boolean pairing(Using _pair){
         //System.out.println("Function: Transistor class + pairing func");
         if(this.pair!=null){
-            return false;
+            Room tmp=owner.location;
+            owner.goToRoom(this.pair.location);
+            removePair();
+            tmp.addItem(this);
+            tmp=null;
         }
+
         else{
-            this.pair = pair;
+            Transistor _new = (Transistor)_pair;
+            this.pair = _new;
             activated = true;
-            pair.pairing(this);
-            return true;
+            _new.pair = this;
+            _new.activated = true;
+            owner.inventory.remove(this);
+            owner.location.addItem(this);
         }
+        return true;
     }
+
     public boolean useSelectedItem(Transistor anotherItem){
         //System.out.println("Function: SlideRule class + useSelectedItem func");
-        return pairing(anotherItem);
+        if(pair!=null){
+            pairing(null);
+        }
+        else{
+            Scanner scanner=new Scanner(System.in);
+            int input=-1;
+            List<Using> useableItems=new ArrayList<>();
+
+            while (input != 0) {
+                System.out.println("Inventory:");
+                for(int j=0; j<owner.inventory.size();j++){
+                    if(owner.inventory.get(j).useable() && !owner.inventory.get(j).equals(this)) {
+                        useableItems.add(owner.inventory.get(j));
+                        System.out.println(useableItems.size()+". "+owner.inventory.get(j).getName());
+                    }
+                }
+
+                System.out.println("0. Mégse");
+                input = scanner.nextInt();
+                if (input==0) {
+                    return false;
+                }
+
+                if(input<=useableItems.size()){
+                    /*for(int i=0;i<owner.inventory.size();i++){
+                        if(owner.inventory.get(i).equals(useableItems.get(input-1))){
+                            
+                            input=0;
+                            break;
+                        }
+                    }*/
+                    if(this.pairing(useableItems.get(input-1))){
+                        return true;
+                    }
+                    else{
+                        System.out.println("Ezt a két tárgyat nem lehet párosítani");
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public boolean useable() {

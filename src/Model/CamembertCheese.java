@@ -67,7 +67,7 @@ public class CamembertCheese extends Item{
         //System.out.println("Function: CamembertCheese class + finishGame func");
         return false;
     }
-    public boolean pairing(Transistor pair){
+    public boolean pairing(Using pair){
         //System.out.println("Function: CamembertCheese class + pairing func");
         return false;
     }

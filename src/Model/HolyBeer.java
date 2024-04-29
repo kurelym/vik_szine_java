@@ -67,7 +67,7 @@ public class HolyBeer extends Item{
         //System.out.println("Function: HolyBeer class + finishGame func");
         return false;
     }
-    public boolean pairing(Transistor pair){
+    public boolean pairing(Using pair){
         //System.out.println("Function: HolyBeer class + pairing func");
         return false;
     }
