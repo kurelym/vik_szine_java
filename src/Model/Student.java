@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.PrintStream;
 import java.util.List;
 
 /**
@@ -7,11 +8,13 @@ import java.util.List;
  */
 public class Student extends Character {
     private static int globalID = 0;
+    private PrintStream output;
     /**
      * Konstruktor a Student osztályhoz.
      */
-    public Student(Room r){
+    public Student(Room r, PrintStream _output){
         super(r);
+        output = _output;
         name = "Student_"+globalID;
         globalID++;
         //System.out.println("Function: Student osztály + Konstruktor Func");
@@ -25,6 +28,9 @@ public class Student extends Character {
     public void useItem(int idx){
         //System.out.println("Function: Student osztály + useItem Func");
         inventory.get(idx).useSelectedItem();
+        if(output!=null){
+            output.println(this.name+" USING "+inventory.get(idx).getName());
+        }
     }
 
     /**
@@ -42,6 +48,9 @@ public class Student extends Character {
         alive = false;
         System.out.println(getName() + " kiesett a játékból");
         this.getRoom().removeCharacter(this);
+        if(output!=null){
+            output.println(" TEACHER_ATTACKED "+this.name);
+        }
         return alive;
     }
 

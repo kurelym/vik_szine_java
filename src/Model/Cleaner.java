@@ -1,9 +1,13 @@
 package Model;
 
+import java.io.PrintStream;
+
 public class Cleaner extends Character  {
     private static int globalID = 0;
-    public Cleaner(Room r){
+    private PrintStream output;
+    public Cleaner(Room r, PrintStream _output){
         super(r);
+        output = _output;
         name = "Cleaner_"+globalID;
         globalID++;
         //System.out.println("Function: Cleaner class + Konstruktor Func");
@@ -20,6 +24,9 @@ public class Cleaner extends Character  {
             location.removeCharacter(this);
             location = destination;
             destination.Clean(this);
+            if(output!=null){
+                output.println(this.name+" MOVED "+destination.name);
+            }
             return true;
         }
         else{

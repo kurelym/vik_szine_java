@@ -1,11 +1,15 @@
 package Model;
 
+import java.io.PrintStream;
+
 /**
  * A WunderBaum tárgy működéséért felel. Kezeli a WunderBaum használatát és megszűnését.
  */
 public class WunderBaum extends Item{
     private static int globalID = 0;
-    public WunderBaum(){
+    private PrintStream output;
+    public WunderBaum(PrintStream _output){
+        output = _output;
         name = "WunderBaum_"+globalID;
         globalID++;
         durability = 1;
@@ -27,6 +31,9 @@ public class WunderBaum extends Item{
     public boolean useIt(){
         //System.out.println("Function: DirtyRag class + useIt func");
         activated = true;
+        if(output!=null){
+            output.println(this.name+" USED_BY "+owner.name);
+        }
         return owner.getRoom().addItem(this);
     }
     public boolean cleanTheRoom(Room r){

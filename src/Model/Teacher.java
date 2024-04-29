@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,11 +9,13 @@ import java.util.List;
  */
 public class Teacher extends Character {
     private static int globalID = 0;
+    private PrintStream output;
     /**
      * Konstruktor a Teacher osztályhoz.
      */
-    public Teacher(Room r){
+    public Teacher(Room r, PrintStream _output){
         super(r);
+        output = _output;
         name = "Teacher_"+globalID;
         globalID++;
         //System.out.println("Function: Teacher class + Konstruktor Func");
@@ -27,6 +30,9 @@ public class Teacher extends Character {
             item.setLocation(null);
             item.setOwner(this);
             inventory.add(item);
+            if(output!=null){
+                output.println(this.name+" PICKED_UP "+item.getName());
+            }
             return true;
         }
         return false;
@@ -51,6 +57,9 @@ public class Teacher extends Character {
                 }
             }
             originalCharacters.removeAll(toRemove);
+            if(output!=null){
+                output.println(this.name+" KILLING_IN "+location.name);
+            }
         }
     }
     /**

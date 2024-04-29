@@ -1,4 +1,7 @@
 package Model;
+
+import java.io.PrintStream;
+
 /**
  * A Logarléc tárgy működéséért felel. Ebből a tárgyból egy darab eredeti van van a pályán,
  * és ha egy hallgató felveszi vége a játéknak és a hallgatók nyertek, de az oktatók 
@@ -6,9 +9,11 @@ package Model;
  */
 public class SlideRule extends Item{
     private static int globalID = 0;
+    private PrintStream output;
     
-    public SlideRule(){
+    public SlideRule(PrintStream _output){
         //System.out.println("Function: SlideRule class + Constructor func");
+        output = _output;
         name = "SlideRule_"+globalID;
         globalID++;
         durability = 1;
