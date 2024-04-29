@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,23 +34,25 @@ public class Teacher extends Character {
     /**
      * Metódus amely levezérli az oktató támadási próbálkozását abban a szobában ahol tartózkodik
      */
-    public void tryToKill(){
-        //System.out.println("Function: Teacher class + tryToKill Func");
-        if(!dazed){
-            List<Character> characters = location.getCharacters();
-            for(Character c: characters) {
-                if(c.isTeacher() || c.isCleaner()) {
+    public void tryToKill() {
+        if (!dazed) {
+            List<Character> originalCharacters = location.getCharacters();
+            List<Character> characters = new ArrayList<>(originalCharacters);
+            List<Character> toRemove = new ArrayList<>();
+    
+            for (Character c : characters) {
+                if (c.isTeacher() || c.isCleaner()) {
                     continue;
                 }
                 System.out.println(this.getName() + " megtámadta " + c.getName() + "-t");
                 boolean survived = c.teacherAttack();
-                if(!survived) {
-                    c = null;
-                }    
+                if (!survived) {
+                    toRemove.add(c);
+                }
             }
+            originalCharacters.removeAll(toRemove);
         }
     }
-
     /**
      * Metódus a tanár támadás kezelésére a karakteren.
      * @return Mindig false, mivel az oktatók támadása nincs hatással egy másik oktatóra
