@@ -36,7 +36,7 @@ public class WunderBaum extends Item{
         r.Clean();
         return true;
     }
-    public boolean useSelectedItem(Transistor anotherItem){
+    public boolean useSelectedItem(){
         //System.out.println("Function: WunderBaum class + useSelectedItem func");
         boolean success = useIt();
         cleanTheRoom(location);

@@ -66,7 +66,7 @@ public class Transistor extends Item{
         return true;
     }
 
-    public boolean useSelectedItem(Transistor anotherItem){
+    public boolean useSelectedItem(){
         //System.out.println("Function: SlideRule class + useSelectedItem func");
         if(pair!=null){
             pairing(null);
@@ -92,13 +92,6 @@ public class Transistor extends Item{
                 }
 
                 if(input<=useableItems.size()){
-                    /*for(int i=0;i<owner.inventory.size();i++){
-                        if(owner.inventory.get(i).equals(useableItems.get(input-1))){
-                            
-                            input=0;
-                            break;
-                        }
-                    }*/
                     if(this.pairing(useableItems.get(input-1))){
                         return true;
                     }

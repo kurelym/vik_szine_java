@@ -108,7 +108,7 @@ public interface Using {
      * interaktivitás van a használatukban (WunderBaum,Transistor,CamembertCheese,DirtyRag)
      * @return az adott tárgy használtának eredménye
      */
-    public boolean useSelectedItem(Transistor anotherItem);
+    public boolean useSelectedItem();
 
     public boolean useable();
 } 

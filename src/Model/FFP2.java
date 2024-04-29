@@ -11,12 +11,7 @@ public class FFP2 extends Item {
         activated =false;
         owner = null;
         location = null;
-        if(globalID%3==0){
-            fake = true;
-        }
-        else{
-            fake = false;
-        }
+        fake = false;
         //System.out.println("Function: FFP2 class + Constructor func");
     }
     public String getDescription(){
@@ -44,7 +39,7 @@ public class FFP2 extends Item {
     }
 
     //Érdemi működsét nem valósítanak meg
-    public boolean useSelectedItem(Transistor anotherItem){
+    public boolean useSelectedItem(){
         //System.out.println("Function: FFP2 class + useSelectedItem func");
         return false;
     }

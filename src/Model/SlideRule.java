@@ -41,7 +41,7 @@ public class SlideRule extends Item{
     }
 
     //Érdemi működést megvalósító függvénye
-    public boolean useSelectedItem(Transistor anotherItem){
+    public boolean useSelectedItem(){
         //System.out.println("Function: SlideRule class + useSelectedItem func");
         return false;
     }
