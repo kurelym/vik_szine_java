@@ -556,7 +556,7 @@ public class Game implements Description {
                     if (newRoom.characters.size()==0 && rooms.get(i).characters.size()==0){
                         System.out.println("Meghívjuk a merge-t "+rooms.get(i).getName()+"-n");
                         rooms.get(i).Merge(newRoom);
-                        System.out.println(rooms.get(i).getName() + " és " + newRoom.getName() + " összeolvadtak, a szoba új tulajdonságai: " + rooms.get(i).getDescription());
+                        System.out.println(rooms.get(i).getName() + " és " + newRoom.getName() + " összeolvadtak, a szoba új tulajdonságai:\n" + rooms.get(i).getDescription());
                         rooms.remove(newRoom);
                         newRoom = null;
                     }
@@ -568,7 +568,7 @@ public class Game implements Description {
                     if (newRoom.characters.size()==0 && rooms.get(i).characters.size()==0){
                         System.out.println("Meghívjuk a merge-t "+rooms.get(i).getName()+"-n");
                         rooms.get(i).Merge(newRoom);
-                        System.out.println(rooms.get(i).getName() + " és " + newRoom.getName() + " összeolvadtak, a szoba új tulajdonságai: " + rooms.get(i).getDescription());
+                        System.out.println(rooms.get(i).getName() + " és " + newRoom.getName() + " összeolvadtak, a szoba új tulajdonságai:\n" + rooms.get(i).getDescription());
                         rooms.remove(newRoom);
                         newRoom = null;   
                     } 

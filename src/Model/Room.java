@@ -249,11 +249,32 @@ public class Room implements Description {
             if(hasGas) {
                 clear = true;
                 Random random = new Random();
-                for(Character character : characters) {
-                    if(!character.isDazed() && character != cleaner) {
-                        character.goToRoom(this.getNeighbours().get(random.nextInt(0, getNeighbours().size())));
-                        System.out.println(character.getName() + " ki lettél rakva a szobából " + character.getRoom().getName() + "-be");
+                List<Integer> escape = new ArrayList<>();
+                for(int i=0;i<characters.size();i++){
+                    if(!characters.get(i).isCleaner()){
+                        if(!characters.get(i).isDazed()){
+                            escape.add(i);
+                        }
                     }
+                }
+                int run=0;
+                for(int i=0;i<escape.size();i++){
+                    String name, room;
+
+                    if(this.getNeighbours().size()==1){
+                        name=characters.get(escape.get(i)-run).getName();
+                        room=this.getNeighbours().get(0).getName();
+                        characters.get(escape.get(i)-run).goToRoom(this.getNeighbours().get(0));
+                    }
+
+                    else{
+                        name=characters.get(escape.get(i)-run).getName();
+                        room=this.getNeighbours().get(random.nextInt(0, getNeighbours().size())).getName();
+                        characters.get(escape.get(i)-run).goToRoom(this.getNeighbours().get(random.nextInt(0, getNeighbours().size())));
+                    }
+
+                    run++;
+                    System.out.println(name + " ki lettél rakva a szobából, a"+room+" szobába!");
                 }
             }    
         }
