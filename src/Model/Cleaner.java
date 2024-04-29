@@ -6,7 +6,7 @@ public class Cleaner extends Character  {
         super(r);
         name = "Cleaner_"+globalID;
         globalID++;
-        System.out.println("Function: Cleaner class + Konstruktor Func");
+        //System.out.println("Function: Cleaner class + Konstruktor Func");
     }
     /**
      * A goToRoom metódus felüldefiniálása.
@@ -15,7 +15,7 @@ public class Cleaner extends Character  {
      */
     @Override
     public boolean goToRoom(Room destination){
-        System.out.println("Function: Cleaner class + goToRoom Func");
+        //System.out.println("Function: Cleaner class + goToRoom Func");
         if(destination.addCharacter(this)){
             location.removeCharacter(this);
             location = destination;
@@ -32,7 +32,7 @@ public class Cleaner extends Character  {
      */
     @Override
     public boolean gasAttack(){
-        System.out.println("Function: Cleaner class + gasAttack Func");
+        //System.out.println("Function: Cleaner class + gasAttack Func");
         return false;
     }
     /**
@@ -40,7 +40,7 @@ public class Cleaner extends Character  {
      * @return mindig false-al tér vissza a takarító esetén
      */
     public boolean teacherAttack(){
-        System.out.println("Function: Cleaner class + teacherAttack Func");
+        //System.out.println("Function: Cleaner class + teacherAttack Func");
         return false;
     }
 
@@ -49,7 +49,7 @@ public class Cleaner extends Character  {
      * @return mindig false-al tér vissza a takarító esetén
      */
     public boolean ragAttack(){
-        System.out.println("Function: Cleaner class + ragAttack Func");
+        //System.out.println("Function: Cleaner class + ragAttack Func");
         return false;
     }
 
@@ -58,7 +58,17 @@ public class Cleaner extends Character  {
      * @return Egy stringbe adja vissza a takarítóról a leíást
      */
     public String getDescription() {
-        System.out.println("Function: Cleaner class + getDescription Func");
+        //System.out.println("Function: Cleaner class + getDescription Func");
         return "Name: "+name+" Location: "+location.getID()+" isAlive: "+alive+" isDazed: "+dazed;
     }
+    @Override
+    public boolean isTeacher() {
+        return false;
+    }
+
+    @Override
+    public boolean isCleaner() {
+        return true;
+    }
+
 }

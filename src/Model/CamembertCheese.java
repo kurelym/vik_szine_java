@@ -12,10 +12,10 @@ public class CamembertCheese extends Item{
         owner = null;
         location = null;
         fake = false;
-        System.out.println("Function: CamembertCheese class + Constructor func");
+        //System.out.println("Function: CamembertCheese class + Constructor func");
     }
     public String getDescription(){
-        System.out.println("Function: CamembertCheese class + getDescription func");
+        //System.out.println("Function: CamembertCheese class + getDescription func");
         if(owner ==null){
             return "Name: " +name+" Durability: "+durability+" isActive: "+activated+"Room: "+location.getID()+" isFake: "+fake;
         }
@@ -24,53 +24,59 @@ public class CamembertCheese extends Item{
         }
     }
     public boolean daze(Character target){
-        System.out.println("Function: CamembertCheese class + daze func");
+        //System.out.println("Function: CamembertCheese class + daze func");
         return target.gasAttack();
     }
     public boolean useIt(){
-        System.out.println("Function: CamembertCheese class + useIt func");
+        //System.out.println("Function: CamembertCheese class + useIt func");
         activated = true;
+        owner.inventory.remove(this);
         return owner.getRoom().addItem(this);
     }
     public boolean removeGas(){
-        System.out.println("Function: CamembertCheese class + removeGas func");
+        //System.out.println("Function: CamembertCheese class + removeGas func");
         activated=false;
         this.decreaseDurability();
         return true;
     }
     public boolean useSelectedItem(Transistor anotherItem){
-        System.out.println("Function: CamembertCheese class + useSelectedItem func");
+        //System.out.println("Function: CamembertCheese class + useSelectedItem func");
         return useIt();
     }
+
+    public boolean useable() {
+        return true;
+    }
+
     //Érdemi műküdést nem megvalósító függvények
     public void roundPassed(){
-        System.out.println("Function: CamembertCheese class + roundPassed func");
+        //System.out.println("Function: CamembertCheese class + roundPassed func");
     }
     public void useAtPickUp(){
-        System.out.println("Function: CamembertCheese class + useAtPickUp func");
+        //System.out.println("Function: CamembertCheese class + useAtPickUp func");
     }
     public boolean cleanTheRoom(Room r){
-        System.out.println("Function: CamembertCheese class + cleanTheRoom func");
+        //System.out.println("Function: CamembertCheese class + cleanTheRoom func");
         return false;
     }
     public boolean useAgainstTeacher(){
-        System.out.println("Function: CamembertCheese class + useAgainstTeacher func");
+        //System.out.println("Function: CamembertCheese class + useAgainstTeacher func");
         return false;
     }
-    public boolean finishGame(){
-        System.out.println("Function: CamembertCheese class + finishGame func");
+    public boolean isRealSlideRule(){
+        //System.out.println("Function: CamembertCheese class + finishGame func");
         return false;
     }
     public boolean pairing(Transistor pair){
-        System.out.println("Function: CamembertCheese class + pairing func");
+        //System.out.println("Function: CamembertCheese class + pairing func");
         return false;
     }
     public boolean removePair(){
-        System.out.println("Function: CamambertCheese class + removePair func");
+        //System.out.println("Function: CamambertCheese class + removePair func");
         return false;
     }
     public boolean useAgainstGas(){
-        System.out.println("Function: CamembertCheese class + useAgainstGas func");
+        //System.out.println("Function: CamembertCheese class + useAgainstGas func");
         return false;
     }
 }
