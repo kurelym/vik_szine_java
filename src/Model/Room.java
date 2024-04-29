@@ -67,22 +67,23 @@ public class Room implements Description {
      */
     public void Merge(Room r){
         //System.out.println("Function: Room class + Merge func");
-        if(characters.isEmpty() && r.characters.isEmpty() && r!=null) {
+        if(characters.size()==0 && r.characters.size()==0 && r!=null) {
             if(this.capacity>=r.capacity){
                 for(Using uR: r.items){
                     this.addItem(uR);
-                    r.removeItem(uR);
                 }
                 for(Using uaR: r.activatedItems){
                     this.addItem(uaR);
-                    r.removeItem(uaR);
                 }
                 for(Room nR: r.neighbours){
-                    this.addNeighbour(nR);
-                    nR.addNeighbour(this);
                     nR.removeNeighbour(r);
+                    if (!this.neighbours.contains(nR)){
+                        this.addNeighbour(nR);
+                        nR.addNeighbour(this);
+                    }
                     this.removeNeighbour(r);
                 }
+                
                 r = null;
             }
             //Mivel a merge végén ki kell nullázni a kisebb szobát, így ha r a nagyobb,
@@ -165,7 +166,7 @@ public class Room implements Description {
             
         }
         else if(u.isActive()){
-            System.out.println("Sikeresen aktiváltad a tárgyat a szobában");
+            System.out.println("Sikeresen aktiváltad a "+u.getName()+" tárgyat a szobában");
             activatedItems.add(u);
             u.setLocation(this);
             u.setOwner(null);
