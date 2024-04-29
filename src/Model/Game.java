@@ -414,22 +414,24 @@ public class Game implements Description {
             System.out.println(cleaner.getName() + " átment " + cleaner.getRoom().getName() + "-ba");
         }
 
+        ArrayList<Using> removeable = new ArrayList<>();
         for(Using item : items) {
             if(item.getDurability() == 0) {
                 item.decreaseDurability();  //Durability -1 == Item nem működik tovább
                 if(item.getOwner() != null) {
                     item.getOwner().dropItem(item); //Automatikusan eldobja az elhasznált tárgyat
                     item.getLocation().removeItem(item);
-                    items.remove(item);
-                    item = null;
-                } else {
+                    removeable.add(item);
+                } else if(item.getLocation() != null) {
                     item.getLocation().removeItem(item);
-                    items.remove(item);
-                    item = null;
-                }
-            } else {
+                    removeable.add(item);
+                } else removeable.add(item);
+            } else if(item.isActive()) {
                 item.roundPassed();
             }
+        }
+        for(Using item : removeable) {
+            items.remove(item);       
         }
         if(teachersWon() || studentsWon()){
             gameOver = true;

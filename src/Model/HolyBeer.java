@@ -8,7 +8,7 @@ public class HolyBeer extends Item{
     public HolyBeer(){
         name = "HolyBeer_"+globalID;
         globalID++;
-        durability = 5;
+        durability = 3;
         activated =false;
         owner = null;
         location = null;

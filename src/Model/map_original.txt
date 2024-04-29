@@ -26,8 +26,8 @@ DirtyRag_0 DR 0
 DirtyRag_1 DR 1
 -- Objects in Rooms --
 Room_0 HolyBeer_0 CamambertCheese_0 CamambertCheese_1 DirtyRag_0
-Room_1 SlideRule_0
+Room_1 FFP2_1 SlideRule_0
 Room_2 Transistor_0 TVSZ_0
 Room_3 SlideRule_1 FFP2_0
-Room_4 Transistor_1 FFP2_1
+Room_4 Transistor_1 FFP2_0
 -- Objects Carried by Characters --
