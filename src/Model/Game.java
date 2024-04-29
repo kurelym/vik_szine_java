@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,6 +24,18 @@ public class Game implements Description {
     private List<Room> rooms;
     private List<CursedRoom> cursedRooms;
     private List<Using> items;
+    private PrintStream output = null;
+
+    public Game(PrintStream _output) {
+        round = 0;
+        teachers = new ArrayList<>();
+        students  = new ArrayList<>();
+        cleaners  = new ArrayList<>();
+        rooms  = new ArrayList<>();
+        cursedRooms  = new ArrayList<>();
+        items  = new ArrayList<>();
+        output = _output;
+    }
 
     public Game() {
         round = 0;
@@ -32,6 +45,7 @@ public class Game implements Description {
         rooms  = new ArrayList<>();
         cursedRooms  = new ArrayList<>();
         items  = new ArrayList<>();
+        output = null;
         //System.out.println("Function: Game class consturctor Func");
     }
 
@@ -469,6 +483,18 @@ public class Game implements Description {
             teachers.add(t);
         }
     }
+
+        /**
+     * Oktato hozzaadasa a jatekhoz
+     * 
+     * @param t oktató
+     */
+    public void addRoom(Room t) {
+        //System.out.println("Function: Game class + addTeacher() Func");
+        if(!rooms.contains(t)){
+            rooms.add(t);
+        }
+    }
     /**
      * Takarító hozzáadása a játékhoz
      * @param c takarító
@@ -623,5 +649,75 @@ public class Game implements Description {
         }
         return "Round:  "+round +"\nGameState:\n"+room+" "+roomC+" "+stuff+" "+membersS+" "+membersT+" "+membersC;
        
+    }
+
+    public Room findRoomByName(String roomName) {
+        for (Room room : rooms) {
+            if (room.getName().equals(roomName)) {
+                return room;
+            }
+        }
+        return null;
+    }
+    
+    public Character findCharacterByName(String characterName) {
+        // Keresd a karaktert a tanárok, diákok és takarítók listájában
+        for (Teacher teacher : teachers) {
+            if (teacher.getName().equals(characterName)) {
+                return teacher;
+            }
+        }
+    
+        for (Student student : students) {
+            if (student.getName().equals(characterName)) {
+                return student;
+            }
+        }
+    
+        for (Cleaner cleaner : cleaners) {
+            if (cleaner.getName().equals(characterName)) {
+                return cleaner;
+            }
+        }
+    
+        return null; // Ha a karaktert nem találtuk meg
+    }
+
+    public int findItemIndexByNameAtStudent(String itemName,Student s) {
+        int i= 0;
+        for (Using item : s.inventory) {
+            if (item.getName().equals(itemName)) {
+                return i; // Ha megtaláltuk a tárgyat
+            }
+            i++;
+        }
+        return -1;
+    }
+
+    public Using findItemByName(String itemName) {
+        for (Using item : items) {
+            if (item.getName().equals(itemName)) {
+                return item; // Ha megtaláltuk a tárgyat
+            }
+        }
+        return null; // Ha nem találtunk ilyen nevű tárgyat
+    }
+
+    public Student findStudentByName(String characterName) {
+        for (Student student : students) {
+            if (student.getName().equals(characterName)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public Using findItemByNameAtRoom(String itemName, Room location) {
+        for (Using item : location.items) {
+            if (item.getName().equals(itemName)) {
+                return item; // Ha megtaláltuk a tárgyat
+            }
+        }
+        return null; // Ha nem találtunk ilyen nevű tárgyat
     }
 }
