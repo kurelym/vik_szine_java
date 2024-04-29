@@ -217,8 +217,12 @@ public class Program {
                     if(!student.getRoom().getCharacters().isEmpty()) {
                         for(Character character : student.getRoom().getCharacters()) {
                             if(character.isTeacher()) {
-                                student.teacherAttack();
-                                System.out.println(character.getName() + " megtámadta " + student.getName() + "-t");
+                                for(Teacher teacher : game.getTeachers()) {
+                                    if(character == teacher) {
+                                        teacher.tryToKill();
+                                        break;
+                                    }
+                                }
                             }
                         }
                     }

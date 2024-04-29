@@ -35,16 +35,14 @@ public class Teacher extends Character {
         if(!dazed){
             List<Character> characters = location.getCharacters();
             for(Character c: characters){
-                if(c.equals(this)) {
+                if(c.isTeacher()) {
                     continue;
                 }
-                boolean survive = c.teacherAttack();
                 System.out.println(this.getName() + " megtámadta " + c.getName() + "-t");
-                if(!survive) {
-                    System.out.println(c.getName() + " kiesett a játékból");
-                    this.getRoom().getCharacters().remove(c);
+                boolean survived = c.teacherAttack();
+                if(!survived) {
                     c = null;
-                }
+                }    
             }
         }
     }
@@ -83,4 +81,10 @@ public class Teacher extends Character {
     public boolean isTeacher() {
         return true;
     }
+
+    @Override
+    public boolean isCleaner() {
+        return false;
+    }
+
 }

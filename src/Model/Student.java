@@ -40,6 +40,8 @@ public class Student extends Character {
             }
         }
         alive = false;
+        System.out.println(getName() + " kiesett a játékból");
+        this.getRoom().removeCharacter(this);
         return alive;
     }
 
@@ -74,5 +76,11 @@ public class Student extends Character {
     public boolean isTeacher() {
         return false;
     }
+
+    @Override
+    public boolean isCleaner() {
+        return false;
+    }
+
 }
 

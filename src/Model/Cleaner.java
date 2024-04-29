@@ -65,4 +65,10 @@ public class Cleaner extends Character  {
     public boolean isTeacher() {
         return false;
     }
+
+    @Override
+    public boolean isCleaner() {
+        return true;
+    }
+
 }

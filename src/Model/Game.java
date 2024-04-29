@@ -435,6 +435,9 @@ public class Game implements Description {
             gameOver = true;
             return gameOver;
         }
+
+        //manipulateRooms();
+
         round++;
         System.out.println("Kör: " + round);
         return gameOver;
@@ -536,14 +539,30 @@ public class Game implements Description {
         //hogy az első szomszédra, aztán majd ennél egy valamivel okosabb algoritmust kitalálunk mert ez ilyen ping pongos szar
         //SPLIT-NÉL KELL, hogy a GAME IS ÉRTESÜLJÖN RÓLA
         if(round%2==1){
-            for(int i =0; i<rooms.size();i+=2){
-                rooms.get(i).Split();
+            for(int i = 0; i < rooms.size() - 1; i += 2) {
+                Room newRoom = rooms.get(i).Split();
+                rooms.add(newRoom);
+                System.out.println(rooms.get(i) + " osztódott, az új szoba: " + newRoom.getName() + " az alábbi tulajdonságokkal rendelkezik:\n" + newRoom.getDescription());
             }
         }
         else{
-            for(int i =0; i<rooms.size();i+=2){
-                //TODO
-                rooms.get(i).Merge(null);
+            for(int i = 0; i < rooms.size() - 1; i += 2) {
+                if(rooms.get(i).getNeighbours().size() == 1) {
+                    Room newRoom = rooms.get(i).getNeighbours().get(0);
+                    rooms.get(i).Merge(newRoom);
+                    System.out.println(rooms.get(i).getName() + " összeolvadt " + newRoom.getName() + "-el, a szoba új tulajdonságai: " + rooms.get(i).getDescription());
+                    rooms.remove(newRoom);
+                    newRoom = null;    
+                } else if(rooms.get(i).getNeighbours().size() == 0) {
+                    continue;
+                } else {
+                    Random random = new Random();
+                    Room newRoom = rooms.get(i).getNeighbours().get(random.nextInt(0, rooms.get(i).getNeighbours().size()));
+                    rooms.get(i).Merge(newRoom);
+                    rooms.remove(newRoom);
+                    System.out.println(rooms.get(i).getName() + " összeolvadt " + newRoom.getName() + "-el, a szoba új tulajdonságai: " + rooms.get(i).getDescription());
+                    newRoom = null;    
+                }
             }
         }
     }
@@ -556,6 +575,11 @@ public class Game implements Description {
     public List<Student> getStudents(){
         //System.out.println("Function: Game class + getStudents Func");
         return students;
+    }
+
+    public List<Teacher> getTeachers(){
+        //System.out.println("Function: Game class + getStudents Func");
+        return teachers;
     }
 
     /**

@@ -28,7 +28,7 @@ public class CursedRoom extends Room{
         if(characters.isEmpty()){
             if(hiddenNeighbours.isEmpty()){
                 Random r = new Random();
-                int id = r.nextInt(0, neighbours.size()-1);
+                int id = r.nextInt(0, neighbours.size());
                 if(neighbours.get(id).isNeighbours(this)){
                     neighbours.get(id).removeNeighbour(this);
                     directionOfConnecntion.add(2);

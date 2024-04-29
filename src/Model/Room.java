@@ -67,7 +67,7 @@ public class Room implements Description {
      */
     public void Merge(Room r){
         //System.out.println("Function: Room class + Merge func");
-        if(characters.isEmpty()&&r.characters.isEmpty()&&r!=null){
+        if(characters.isEmpty() && r.characters.isEmpty() && r!=null) {
             if(this.capacity>=r.capacity){
                 for(Using uR: r.items){
                     this.addItem(uR);

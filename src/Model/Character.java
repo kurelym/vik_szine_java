@@ -188,4 +188,6 @@ public abstract class Character implements Description {
     abstract boolean ragAttack();
 
     abstract boolean isTeacher();
+
+    abstract boolean isCleaner();
 }
