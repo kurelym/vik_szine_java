@@ -133,7 +133,7 @@ public class Game implements Description {
                 case "Characters":
                     // Karakterek létrehozása és szobákhoz való hozzárendelés
                     parts = line.split(" ");
-                    String characterName = parts[0];
+                    //String characterName = parts[0];
                     String characterType = parts[1];
                     roomName = parts[2];
 
@@ -172,7 +172,7 @@ public class Game implements Description {
                 case "Objects":
                 // Tárgyak létrehozása és szobákhoz való hozzárendelés
                 String[] objectParts = line.split(" ");
-                String objectName = objectParts[0];
+                //String objectName = objectParts[0];
                 String objectType = objectParts[1];
                 boolean isFake =  objectParts[2].equals("1");
 

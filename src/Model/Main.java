@@ -83,6 +83,7 @@ public class Main {
         }
 
         Program program = new Program(game);
+        program.mainMenu();
 
     }
 

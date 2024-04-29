@@ -15,14 +15,12 @@ public class Program {
     public Program(Game _game) {
         // Átadja a kapott game objektumot a sajátjának
         game = _game;
-        // A mainMenu vezérli a játékot
-        mainMenu();
     }
 
     /**
      * Főmenü
      */
-    private static void mainMenu() {
+    public void mainMenu() {
         int input = -1;
         boolean gameOver = false;
         boolean roundOver = false;
