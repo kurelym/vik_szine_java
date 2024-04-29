@@ -38,7 +38,9 @@ public class WunderBaum extends Item{
     }
     public boolean useSelectedItem(Transistor anotherItem){
         //System.out.println("Function: WunderBaum class + useSelectedItem func");
-        return useIt();
+        boolean success = useIt();
+        cleanTheRoom(location);
+        return success;
     }
 
     public boolean useable() {

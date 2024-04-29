@@ -83,7 +83,6 @@ public class Room implements Description {
                     }
                     this.removeNeighbour(r);
                 }
-                
                 r = null;
             }
             //Mivel a merge végén ki kell nullázni a kisebb szobát, így ha r a nagyobb,
@@ -216,7 +215,9 @@ public class Room implements Description {
     public void Clean(){
         //System.out.println("Function: Room class + Clean Func");
         for(Using u: activatedItems){
-            u.removeGas();
+            if(u.removeGas()){
+                System.out.println("Kitakarítottad a szobát");
+            }
         }
     }
     /**
