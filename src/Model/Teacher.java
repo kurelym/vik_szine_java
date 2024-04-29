@@ -38,7 +38,7 @@ public class Teacher extends Character {
         if(!dazed){
             List<Character> characters = location.getCharacters();
             for(Character c: characters){
-                if(c.isTeacher()) {
+                if(c.isTeacher() || c.isCleaner()) {
                     continue;
                 }
                 System.out.println(this.getName() + " megtámadta " + c.getName() + "-t");

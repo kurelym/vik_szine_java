@@ -368,7 +368,7 @@ public class Game implements Description {
      */
     public boolean incrementRound(boolean gameOver) {
         //System.out.println("Function: Game class + incrementRound() Func\n");
-        if(teachersWon() || studentsWon()){
+        if(teachersWon() || studentsWon()) {
             gameOver = true;
             return gameOver;
         }
