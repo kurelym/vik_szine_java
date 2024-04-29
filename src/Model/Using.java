@@ -62,7 +62,7 @@ public interface Using {
      * Játék végét kezeli le(Leszármazottakban felüldefiniált)
      * @return A sikerességét adja meg az adott függvénynek
      */
-    public boolean finishGame();
+    public boolean isRealSlideRule();
     /**
      * Tranzisztorok párosításához szükséges(Leszármazottakban felüldefiniált)
      * @return A sikerességét adja meg az adott függvénynek
@@ -109,4 +109,6 @@ public interface Using {
      * @return az adott tárgy használtának eredménye
      */
     public boolean useSelectedItem(Transistor anotherItem);
+
+    public boolean useable();
 } 
