@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,10 +19,12 @@ public class Room implements Description {
     protected List<Using> stickyItems;
     protected boolean clear;
     protected int visitor;
+    private PrintStream output;
     /**
      * Létrehozza az osztályt
      */
-    public Room(){
+    public Room(PrintStream _output){
+        output = _output;
         name = "Room_"+globalID;
         globalID++;
         Random rand = new Random();
@@ -41,7 +44,7 @@ public class Room implements Description {
      * AKTIVÁLT ITEM_EK MARADNAK
      */
     public Room Split(){
-        Room newroom = new Room();
+        Room newroom = new Room(output);
         //System.out.println("Function: Room class + Split func");
         if(characters.size()==0){
             this.addNeighbour(newroom);
@@ -57,6 +60,9 @@ public class Room implements Description {
                 neighbours.get(f).addNeighbour(newroom);
                 this.removeNeighbour(neighbours.get(f));
             }
+        }
+        if(output!=null){
+            output.println(this.name+" SPLITTED_INTO "+newroom.name);
         }
         return newroom;
     }
@@ -101,6 +107,9 @@ public class Room implements Description {
             else{
                 r.Merge(this);
             }
+            if(output!=null){
+                output.println(r.name+" MERGED_INTO "+this.name);
+            }
         }
     }
     /**
@@ -111,6 +120,9 @@ public class Room implements Description {
         //System.out.println("Function: Room class + addNeighbour func"+ name+" - " +anotherone.name);
         if(this!=anotherone){
             neighbours.add(anotherone);
+            if(output!=null){
+                output.println(anotherone.name+" CONNECTED_TO "+this.name);
+            }
         }
     }
     /**
@@ -121,6 +133,7 @@ public class Room implements Description {
         //System.out.println("Function: Room class + removeNeighbour func");
         if(neighbours.contains(delete)){
             neighbours.remove(delete);
+            output.println(delete.name+" DECONNECTED_TO "+this.name);
         }
     }
     /**
@@ -182,11 +195,17 @@ public class Room implements Description {
             for(Character character : this.getCharacters()) {
                 u.daze(character);
             }
+            if(output!=null){
+                output.println(u.getName()+" ACTIVATED_IN "+this.name);
+            }
         }
         else{
             items.add(u);
             u.setLocation(this);
             u.setOwner(null);
+            if(output!=null){
+                output.println(u.getName()+" ADDED_TO "+this.name);
+            }
         }
         return true;
     }
@@ -202,6 +221,9 @@ public class Room implements Description {
             activatedItems.remove(u);
         }
         u.setLocation(null);
+        if(output!=null){
+            output.println(u.getName()+" REMOVED_FROM "+this.name);
+        }
     }
     /**
      * Visszaadja az ID-t.

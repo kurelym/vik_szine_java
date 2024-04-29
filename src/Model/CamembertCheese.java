@@ -1,10 +1,15 @@
 package Model;
+
+import java.io.PrintStream;
+
 /**
  * A Dobozolt káposztás camembert tárgy működéséért felel. Kezeli a sajt használatát és megszűnését.
  */
 public class CamembertCheese extends Item{
     private static int globalID = 0;
-    public CamembertCheese(){
+    private PrintStream output;
+    public CamembertCheese(PrintStream _output){
+        output = _output;
         name = "CamambertCheese_"+globalID;
         globalID++;
         durability = 1;
@@ -12,10 +17,8 @@ public class CamembertCheese extends Item{
         owner = null;
         location = null;
         fake = false;
-        //System.out.println("Function: CamembertCheese class + Constructor func");
     }
     public String getDescription(){
-        //System.out.println("Function: CamembertCheese class + getDescription func");
         if(owner ==null){
             return "Name: " +name+" Durability: "+durability+" isActive: "+activated+"Room: "+location.getID()+" isFake: "+fake;
         }
@@ -24,13 +27,18 @@ public class CamembertCheese extends Item{
         }
     }
     public boolean daze(Character target){
-        //System.out.println("Function: CamembertCheese class + daze func");
+        if(output!=null){
+            output.println("GAS_ATTACK");
+        }
         return target.gasAttack();
     }
     public boolean useIt(){
         //System.out.println("Function: CamembertCheese class + useIt func");
         if(!isFake()) {
             activated = true;
+            if(output!=null){
+                output.println(this.name+" USED_BY "+owner.name);
+            }
             owner.inventory.remove(this);
             return owner.getRoom().addItem(this);    
         } else {
