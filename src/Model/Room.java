@@ -78,17 +78,10 @@ public class Room implements Description {
                     r.removeItem(uaR);
                 }
                 for(Room nR: r.neighbours){
-                    //Két irányú a kapcsolat
-                    if(nR.isNeighbours(r)){
                     this.addNeighbour(nR);
                     nR.addNeighbour(this);
                     nR.removeNeighbour(r);
-                    r.removeNeighbour(nR);
-                    }
-                    else{
-                        this.addNeighbour(nR);
-                        r.removeNeighbour(nR);
-                    }
+                    this.removeNeighbour(r);
                 }
                 r = null;
             }
@@ -261,7 +254,7 @@ public class Room implements Description {
      * @return Egy stringbe adja vissza a Room objektumról a leíást
      */
     public String getDescription() {
-        System.out.println("\nFunction: Room class + getDescription Func:\n");
+        //System.out.println("\nFunction: Room class + getDescription Func:\n");
         String members ="Characters:";
         String stuff ="Items:";
         String stuffA ="Activated Items:";

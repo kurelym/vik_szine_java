@@ -25,7 +25,13 @@ public class CursedRoom extends Room{
      */
     public void doorManipulation(){
         //System.out.println("Function: CursedRoom class + doorManipulation func");
-        if(characters.isEmpty()){
+        boolean neighbours_are_empty = false;
+        for(Room n: this.neighbours){
+            if(n.characters.isEmpty()){
+                neighbours_are_empty = true;
+            }
+        }
+        if(characters.isEmpty() && neighbours_are_empty){
             if(hiddenNeighbours.isEmpty()){
                 Random r = new Random();
                 int id = r.nextInt(0, neighbours.size());

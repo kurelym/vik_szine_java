@@ -32,7 +32,7 @@ public class Program {
             for(int i=0;i<students.size();i++){
                 if(!students.get(i).dazed) {
                     while(!roundOver) {
-
+                        System.out.println(game.getDescription());
                         System.out.println();
                         System.out.println(students.get(i).getName() + " jön");
                         System.out.println("Lehetséges műveletek:");
