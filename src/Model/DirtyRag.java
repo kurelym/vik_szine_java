@@ -48,7 +48,7 @@ public class DirtyRag extends Item{
         }
         }
     }
-    public boolean useSelectedItem(Transistor anotherItem){
+    public boolean useSelectedItem(){
         //System.out.println("Function: DirtyRag class + useSelectedItem func");
         return useIt();
     }

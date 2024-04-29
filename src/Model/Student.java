@@ -22,9 +22,9 @@ public class Student extends Character {
      * Metódus egy tárgy használatára (aktiválására) a hallgató által.
      * @param item A használni kívánt tárgy indexe a táskában.
      */
-    public void useItem(int idx, Transistor anotherItem){
+    public void useItem(int idx){
         //System.out.println("Function: Student osztály + useItem Func");
-        inventory.get(idx).useSelectedItem(anotherItem);
+        inventory.get(idx).useSelectedItem();
     }
 
     /**

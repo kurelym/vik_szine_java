@@ -51,7 +51,7 @@ public class HolyBeer extends Item{
     }
 
     //Érdemi működést nem valósít meg
-    public boolean useSelectedItem(Transistor anotherItem){
+    public boolean useSelectedItem(){
         //System.out.println("Function: HolyBeer class + useSelectedItem func");
         return false;
     }

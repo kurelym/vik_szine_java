@@ -44,7 +44,7 @@ public class FFP2 extends Item {
     }
 
     //Érdemi működsét nem valósítanak meg
-    public boolean useSelectedItem(Transistor anotherItem){
+    public boolean useSelectedItem(){
         //System.out.println("Function: FFP2 class + useSelectedItem func");
         return false;
     }

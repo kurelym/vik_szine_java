@@ -116,7 +116,7 @@ public class Program {
             if(input<=useableItems.size()){
                 for(int i=0;i<student.getInventory().size();i++){
                     if(student.getInventory().get(i).equals(useableItems.get(input-1))){
-                        student.useItem(i, null);
+                        student.useItem(i);
                         roundOver = true;
                         input=0;
                         break;

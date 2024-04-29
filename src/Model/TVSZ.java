@@ -45,7 +45,7 @@ public class TVSZ extends Item{
     }
 
     //Érdemi működsét nem megvalósító függvények
-    public boolean useSelectedItem(Transistor anotherItem){
+    public boolean useSelectedItem(){
         //System.out.println("Function: TVSZ class + useSelectedItem func");
         return false;
     }

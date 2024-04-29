@@ -39,7 +39,7 @@ public class CamembertCheese extends Item{
         this.decreaseDurability();
         return true;
     }
-    public boolean useSelectedItem(Transistor anotherItem){
+    public boolean useSelectedItem(){
         //System.out.println("Function: CamembertCheese class + useSelectedItem func");
         return useIt();
     }
