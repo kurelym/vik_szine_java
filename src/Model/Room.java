@@ -43,7 +43,7 @@ public class Room implements Description {
     public Room Split(){
         Room newroom = new Room();
         //System.out.println("Function: Room class + Split func");
-        if(characters.isEmpty()){
+        if(characters.size()==0){
             this.addNeighbour(newroom);
             newroom.addNeighbour(this);
             int sizeOfItems = items.size()/2;
@@ -54,6 +54,7 @@ public class Room implements Description {
             }
             for(int f=0;f<sizeOfNeighbours;f++){
                 newroom.addNeighbour(neighbours.get(f));
+                neighbours.get(f).addNeighbour(newroom);
                 this.removeNeighbour(neighbours.get(f));
             }
         }
@@ -75,19 +76,25 @@ public class Room implements Description {
                 for(Using uaR: r.activatedItems){
                     this.addItem(uaR);
                 }
+                
                 for(Room nR: r.neighbours){
                     nR.removeNeighbour(r);
-                    if (!this.neighbours.contains(nR)){
+                    if (!this.neighbours.contains(nR) && !nR.equals(this)){
                         this.addNeighbour(nR);
+
+                        int delete=0;
+                        for(int j=0;j<nR.getNeighbours().size();j++){
+                            if(nR.getNeighbours().get(j).getName().equals(this.getName())){
+                                delete=0;
+                            }
+                        }
+                        nR.removeNeighbour(nR.getNeighbours().get(delete));
+                        
                         nR.addNeighbour(this);
                     }
-                    this.removeNeighbour(r);
                 }
                 r = null;
             }
-            //Mivel a merge végén ki kell nullázni a kisebb szobát, így ha r a nagyobb,
-            //akkor "átkellmenni" az őr merge-be, és onnan kinullázni ezt a szobát, mert
-            // this = null nem lehetéséges
             else{
                 r.Merge(this);
             }

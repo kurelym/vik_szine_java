@@ -550,12 +550,13 @@ public class Game implements Description {
             }
         }
         else{
-            for(int i = 0; i < rooms.size() - 1; i += 2) {
+            for(int i = 0; i < rooms.size(); i += 2) {
                 if(rooms.get(i).getNeighbours().size() == 1) {
                     Room newRoom = rooms.get(i).getNeighbours().get(0);
                     if (newRoom.characters.size()==0 && rooms.get(i).characters.size()==0){
+                        System.out.println("Meghívjuk a merge-t "+rooms.get(i).getName()+"-n");
                         rooms.get(i).Merge(newRoom);
-                        System.out.println(rooms.get(i).getName() + " összeolvadt " + newRoom.getName() + "-el, a szoba új tulajdonságai: " + rooms.get(i).getDescription());
+                        System.out.println(rooms.get(i).getName() + " és " + newRoom.getName() + " összeolvadtak, a szoba új tulajdonságai: " + rooms.get(i).getDescription());
                         rooms.remove(newRoom);
                         newRoom = null;
                     }
@@ -565,9 +566,10 @@ public class Game implements Description {
                     Random random = new Random();
                     Room newRoom = rooms.get(i).getNeighbours().get(random.nextInt(0, rooms.get(i).getNeighbours().size()));
                     if (newRoom.characters.size()==0 && rooms.get(i).characters.size()==0){
+                        System.out.println("Meghívjuk a merge-t "+rooms.get(i).getName()+"-n");
                         rooms.get(i).Merge(newRoom);
+                        System.out.println(rooms.get(i).getName() + " és " + newRoom.getName() + " összeolvadtak, a szoba új tulajdonságai: " + rooms.get(i).getDescription());
                         rooms.remove(newRoom);
-                        System.out.println(rooms.get(i).getName() + " összeolvadt " + newRoom.getName() + "-el, a szoba új tulajdonságai: " + rooms.get(i).getDescription());
                         newRoom = null;   
                     } 
                 }
