@@ -368,7 +368,7 @@ public class Game implements Description {
      */
     public boolean incrementRound(boolean gameOver) {
         //System.out.println("Function: Game class + incrementRound() Func\n");
-        if(teachersWon() || studentsWon()){
+        if(teachersWon() || studentsWon()) {
             gameOver = true;
             return gameOver;
         }
@@ -409,7 +409,7 @@ public class Game implements Description {
             if(cleaner.getRoom().getNeighbours().size() == 1) {
                 cleaner.goToRoom(cleaner.getRoom().getNeighbours().get(0));
             } else {
-                cleaner.goToRoom(cleaner.getRoom().getNeighbours().get(random.nextInt(0, cleaner.getRoom().getNeighbours().size() - 1)));                
+                cleaner.goToRoom(cleaner.getRoom().getNeighbours().get(random.nextInt(0, cleaner.getRoom().getNeighbours().size())));                
             }
             System.out.println(cleaner.getName() + " átment " + cleaner.getRoom().getName() + "-ba");
         }
@@ -438,7 +438,7 @@ public class Game implements Description {
             return gameOver;
         }
 
-        //manipulateRooms();
+        manipulateRooms();
 
         round++;
         System.out.println("Kör: " + round);
@@ -542,28 +542,35 @@ public class Game implements Description {
         //SPLIT-NÉL KELL, hogy a GAME IS ÉRTESÜLJÖN RÓLA
         if(round%2==1){
             for(int i = 0; i < rooms.size() - 1; i += 2) {
-                Room newRoom = rooms.get(i).Split();
-                rooms.add(newRoom);
-                System.out.println(rooms.get(i) + " osztódott, az új szoba: " + newRoom.getName() + " az alábbi tulajdonságokkal rendelkezik:\n" + newRoom.getDescription());
+                if(rooms.get(i).characters.size()==0){
+                    Room newRoom = rooms.get(i).Split();
+                    rooms.add(newRoom);
+                    System.out.println(rooms.get(i).getName() + " osztódott, az új szoba: " + newRoom.getName() + " az alábbi tulajdonságokkal rendelkezik:\n" + newRoom.getDescription());
+                }
             }
         }
         else{
-            for(int i = 0; i < rooms.size() - 1; i += 2) {
+            for(int i = 0; i < rooms.size(); i += 2) {
                 if(rooms.get(i).getNeighbours().size() == 1) {
                     Room newRoom = rooms.get(i).getNeighbours().get(0);
-                    rooms.get(i).Merge(newRoom);
-                    System.out.println(rooms.get(i).getName() + " összeolvadt " + newRoom.getName() + "-el, a szoba új tulajdonságai: " + rooms.get(i).getDescription());
-                    rooms.remove(newRoom);
-                    newRoom = null;    
+                    if (newRoom.characters.size()==0 && rooms.get(i).characters.size()==0){
+                        rooms.get(i).Merge(newRoom);
+                        System.out.println(rooms.get(i).getName() + " és " + newRoom.getName() + " összeolvadtak, a szoba új tulajdonságai:\n" + rooms.get(i).getDescription());
+                        rooms.remove(newRoom);
+                        newRoom = null;
+                    }
                 } else if(rooms.get(i).getNeighbours().size() == 0) {
                     continue;
                 } else {
                     Random random = new Random();
                     Room newRoom = rooms.get(i).getNeighbours().get(random.nextInt(0, rooms.get(i).getNeighbours().size()));
-                    rooms.get(i).Merge(newRoom);
-                    rooms.remove(newRoom);
-                    System.out.println(rooms.get(i).getName() + " összeolvadt " + newRoom.getName() + "-el, a szoba új tulajdonságai: " + rooms.get(i).getDescription());
-                    newRoom = null;    
+                    if (newRoom.characters.size()==0 && rooms.get(i).characters.size()==0){
+                        System.out.println("Meghívjuk a merge-t "+rooms.get(i).getName()+"-n");
+                        rooms.get(i).Merge(newRoom);
+                        System.out.println(rooms.get(i).getName() + " és " + newRoom.getName() + " összeolvadtak, a szoba új tulajdonságai:\n" + rooms.get(i).getDescription());
+                        rooms.remove(newRoom);
+                        newRoom = null;   
+                    } 
                 }
             }
         }

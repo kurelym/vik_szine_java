@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -32,7 +33,7 @@ public class Program {
             for(int i=0;i<students.size();i++){
                 if(!students.get(i).dazed) {
                     while(!roundOver) {
-
+                        //System.out.println(game.getDescription());
                         System.out.println();
                         System.out.println(students.get(i).getName() + " jön");
                         System.out.println("Lehetséges műveletek:");
@@ -95,15 +96,15 @@ public class Program {
      */
     static boolean useItem(Scanner scanner, Student student) {
         boolean roundOver = false;
-        int useableCnt = 0;
+        List<Using> useableItems=new ArrayList<>();
         int input = -1;
 
         while (input != 0) {
             System.out.println("Inventory:");
             for(int j=0; j<student.getInventory().size();j++){
                 if(student.getInventory().get(j).useable()) {
-                    System.out.println(j+1+". "+student.getInventory().get(j).getName());
-                    useableCnt++;
+                    useableItems.add(student.getInventory().get(j));
+                    System.out.println(useableItems.size()+". "+student.getInventory().get(j).getName());
                 }
             }
 
@@ -113,10 +114,16 @@ public class Program {
                 roundOver = false;
                 return roundOver;
             }
-            if(input<=useableCnt){
-                student.useItem(input-1, null);
-                roundOver = true;
-                input=0;
+
+            if(input<=useableItems.size()){
+                for(int i=0;i<student.getInventory().size();i++){
+                    if(student.getInventory().get(i).equals(useableItems.get(input-1))){
+                        student.useItem(i, null);
+                        roundOver = true;
+                        input=0;
+                        break;
+                    }
+                }
             }
         }
         return roundOver;

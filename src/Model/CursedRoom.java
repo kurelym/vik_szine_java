@@ -25,7 +25,13 @@ public class CursedRoom extends Room{
      */
     public void doorManipulation(){
         //System.out.println("Function: CursedRoom class + doorManipulation func");
-        if(characters.isEmpty()){
+        int non_empty_neighbours = 0;
+        for(Room n: this.neighbours){
+            if(n.characters.size()!=0){
+                non_empty_neighbours++;
+            }
+        }
+        if(characters.isEmpty() && non_empty_neighbours==0){
             if(hiddenNeighbours.isEmpty()){
                 Random r = new Random();
                 int id = r.nextInt(0, neighbours.size());
@@ -40,6 +46,7 @@ public class CursedRoom extends Room{
                     hiddenNeighbours.add(neighbours.get(id));
                     this.removeNeighbour(neighbours.get(id));
                 }
+                System.out.println(this.getName()+" ajtajai eltűntek!");
             }
             else{
                 for(int i=0;i<hiddenNeighbours.size();i++){
@@ -53,6 +60,7 @@ public class CursedRoom extends Room{
                 }
                 hiddenNeighbours.clear();
                 directionOfConnecntion.clear();
+                System.out.println(this.getName()+" ajtajai megjelentek!");
             }
         }
     }

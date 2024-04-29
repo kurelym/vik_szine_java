@@ -37,8 +37,10 @@ public class HolyBeer extends Item{
         //System.out.println("Function: HolyBeer class + roundPassed func");
         if(durability>0){
             durability--;
+            if(durability!=0) System.out.println(getName() + " még " + durability + " körig hat!");
             if(durability==0){
                 activated=false;
+                System.out.println(getName() + " nem hat tovább!");
             }
         }
         System.out.println(getName() + " még " + durability + " körig hat!");
