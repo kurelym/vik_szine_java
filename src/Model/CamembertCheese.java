@@ -29,9 +29,14 @@ public class CamembertCheese extends Item{
     }
     public boolean useIt(){
         //System.out.println("Function: CamembertCheese class + useIt func");
-        activated = true;
-        owner.inventory.remove(this);
-        return owner.getRoom().addItem(this);
+        if(!isFake()) {
+            activated = true;
+            owner.inventory.remove(this);
+            return owner.getRoom().addItem(this);    
+        } else {
+            System.out.println("Ez egy hamis tárgy, nem tudod használni");
+            return false;
+        }
     }
     public boolean removeGas(){
         //System.out.println("Function: CamembertCheese class + removeGas func");

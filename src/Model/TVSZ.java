@@ -12,12 +12,7 @@ public class TVSZ extends Item{
         activated =false;
         owner = null;
         location = null;
-        if(globalID%3==0){
-            fake = true;
-        }
-        else{
-            fake = false;
-        }
+        fake = false;
         //System.out.println("Function: TVSZ class + Constructor func");
     }
     public String getDescription(){

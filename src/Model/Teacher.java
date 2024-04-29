@@ -37,7 +37,7 @@ public class Teacher extends Character {
         //System.out.println("Function: Teacher class + tryToKill Func");
         if(!dazed){
             List<Character> characters = location.getCharacters();
-            for(Character c: characters){
+            for(Character c: characters) {
                 if(c.isTeacher() || c.isCleaner()) {
                     continue;
                 }
