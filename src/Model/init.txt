@@ -1,0 +1,15 @@
+-- Rooms --
+Room_0 0
+Room_1 0
+-- Room Connections --
+Room_0 Room_0 2
+-- Characters --
+Student_0 S Room_0
+-- Objects --
+CamambertCheese_0 CC 1
+TVSZ_0 TVSZ 1
+-- Objects in Rooms --
+-- Activated Objects in Rooms --
+Room_0 CamambertCheese_0
+-- Objects Carried by Characters –
+Student_0 TVSZ_0
