@@ -8,12 +8,12 @@ Student_1 S Room_1
 Student_2 S Room_1
 
 -- Objects --
-Transistor_1 T 1 Transistor_2
-Transitor_2 T 1 Transistor_1
+Transistor_1 T 0 Transistor_2
+Transistor_2 T 0 Transistor_1
 
--- Objects in Rooms –-
+-- Objects in Rooms --
 
 -- Activated Objects in Rooms --
 
--- Objects Carried by Characters –-
+-- Objects Carried by Characters --
 Student_1 Transistor_1 Transistor_2
