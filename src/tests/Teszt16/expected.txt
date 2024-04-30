@@ -1,2 +1,3 @@
+
 Teacher_1 MOVED Room_1
 HolyBeer_1 USED_AGAINST_TEACHER

@@ -28,9 +28,6 @@ public class Student extends Character {
     public void useItem(int idx){
         //System.out.println("Function: Student osztály + useItem Func");
         inventory.get(idx).useSelectedItem();
-        if(output!=null){
-            output.println(this.name+" USING "+inventory.get(idx).getName());
-        }
     }
 
     /**
