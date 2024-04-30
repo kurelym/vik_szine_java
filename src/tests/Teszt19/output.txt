@@ -1,0 +1,2 @@
+MAP BUILT
+Teacher_1 DROPPED TVSZ_1 IN Room_1

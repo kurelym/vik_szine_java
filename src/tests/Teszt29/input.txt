@@ -1,0 +1,2 @@
+BUILDMAP map.txt
+MOVE Cleaner_1 Room_1

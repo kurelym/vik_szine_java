@@ -1,0 +1,16 @@
+-- Rooms –-
+Room_1 1
+Room_2 0
+
+-- Room Connections –-
+Room_1 Room_2 2
+
+-- Characters –-
+
+-- Objects –-
+
+-- Objects in Room –-
+
+-- Activated Objects in Rooms –-
+
+-- Objects Carried by Characters --

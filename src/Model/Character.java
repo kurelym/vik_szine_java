@@ -124,10 +124,10 @@ public abstract class Character implements Description {
      */
     public void dropAllItem(){
         for(Using u:inventory){
-            location.addItem(u);
             if(output != null) {
-                output.println(this.name + " DROPPED " + u.getName() + " IN " + this.location);
+                output.println(this.name + " DROPPED " + u.getName() + " IN " + this.location.getName());
             }
+            location.addItem(u);
         }
         inventory.clear();
     }

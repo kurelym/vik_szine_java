@@ -1,0 +1,5 @@
+BUILDMAP map.txt
+USE Student_1 Transistor_2
+PICKUP Studnet_2 Transistor_1
+MOVE Studnet_2 Room_2
+PICKUP Studnet_2 Transistor_2

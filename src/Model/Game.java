@@ -155,6 +155,7 @@ public class Game implements Description {
 
                     if (room == null) {
                         System.err.println("Error: Room " + roomName + " not found.");
+                        System.err.println(parts[0]+" "+ parts[1]+" "+parts[2]);
                         continue;
                     }
 

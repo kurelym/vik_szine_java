@@ -1,0 +1,3 @@
+MAP BUILT
+Student_1 PICKED_UP HolyBeer _1
+Student_1 DROPPED TVSZ_1 IN Room_1

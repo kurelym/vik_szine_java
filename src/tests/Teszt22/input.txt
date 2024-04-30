@@ -1,0 +1,2 @@
+BUILDMAP map.txt
+MERGE Room_1 Room_2

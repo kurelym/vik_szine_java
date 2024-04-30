@@ -1,0 +1,14 @@
+BUILDMAP map.txt
+MOVE Cleaner_1 Room_1
+MOVE Cleaner_1 Room_3
+MOVE Student_1 Room_1
+MOVE Student_1 Room_2
+MOVE Student_2 Room_1
+MOVE Student_2 Room_2
+MOVE Student_3 Room_1
+MOVE Student_3 Room_2
+MOVE Student_4 Room_1
+MOVE Student_4 Room_3
+MOVE Student_5 Room_1
+PICKUP Student_5 Transistor_1
+MOVE Student_5 Room_3

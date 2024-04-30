@@ -1,10 +1,12 @@
 package Model;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
@@ -22,6 +24,7 @@ public class Main {
         }
 
         scanner.close();
+
     }
 
     public static void startGame(Scanner scanner) throws IOException {
@@ -83,10 +86,18 @@ public class Main {
             Game game = new Game(fileOutput);
             try {
                 game.buildGame(initFilePath);
+                try {
+                    FileWriter writer = new FileWriter(outputFilePath, false); // false esetén felülírja a tartalmat
+                    writer.close();  // Csak megnyitja és bezárja a fájlt, ezáltal törli a tartalmat
+                    System.out.println("Fájl tartalma sikeresen törölve.");
+                } catch (IOException e) {
+                    System.out.println("Hiba történt a fájl törlése közben: " + e.getMessage());
+                }
+
             } catch (IOException e) {
                 fileOutput.println("Hiba történt az init.txt beolvasása közben: " + e.getMessage());
             }
-
+            fileOutput.println("");
             try {
                 List<String> linesList = Files.readAllLines(Path.of(inputFilePath));
                 for (String line : linesList) {
@@ -265,7 +276,34 @@ public class Main {
         } catch (FileNotFoundException e) {
             System.err.println("Nem sikerült létrehozni az output.txt fájlt: " + e.getMessage());
         }
+        /*try {
+            reverseOutputFile(outputFilePath);
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }*/
 
+    }
+
+    public static void reverseOutputFile(String filePath) throws IOException {
+    Path path = Path.of(filePath);
+
+    if (!Files.exists(path)) {
+        System.err.println("A megadott fájl nem létezik: " + filePath);
+        return;
+    }
+
+    // Beolvassuk a fájlt soronként
+    List<String> lines = Files.readAllLines(path);
+
+    // Megfordítjuk a sorok sorrendjét
+    Collections.reverse(lines);
+
+    // Opció a megfordított sorok visszaírására az eredeti fájlba
+    Files.write(path, lines);
+
+    // Vagy írhatjuk másik fájlba is
+    // Files.write(Path.of("reversed_output.txt"), lines);
     }
     
 }

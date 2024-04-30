@@ -1,0 +1,6 @@
+MAP BUILT
+Student_1 MOVED_TO Room_2
+GAS_ATTACKED Student_1
+FFP2_1 USED_AGAINST_GAS
+WunderBaum_1 USED_BY Student_1
+CamembertCheese_1 REMOVED_FROM Room_1

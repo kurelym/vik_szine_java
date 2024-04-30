@@ -20,7 +20,7 @@ public interface Using {
      */
     public boolean isActive();
     /**
-     * Átállítható, hogy az adott tárgyak helyileg hol van, még ha egy karakter zsebében van, akkor is.
+     * Atállítható, hogy az adott tárgyak helyileg hol van, még ha egy karakter zsebében van, akkor is.
      * @param newLocation az új lokáció
      */
     public void setLocation(Room newLocation);
@@ -35,7 +35,7 @@ public interface Using {
      */
     public void setOwner(Character newOwner);
     /**
-     * Átállítható vele a tárgy birtokosa.
+     * Atállítható vele a tárgy birtokosa.
      * @return Az aktuális birtokosa a tárgynak
      */
     public Character getOwner();

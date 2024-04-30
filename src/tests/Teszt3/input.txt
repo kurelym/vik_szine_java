@@ -1,0 +1,3 @@
+BUILDMAP map.txt
+PICKUP Student_1 DirtyRag_1
+USE Student_1 DirtyRag_1

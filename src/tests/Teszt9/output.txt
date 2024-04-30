@@ -1,0 +1,3 @@
+MAP BUILT
+Student_1  PICKED_UP SliderRule_1
+GAME_NOT_WON
