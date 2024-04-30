@@ -1,0 +1,4 @@
+
+Room_2 CONNECTED_TO Room_1
+Room_1 CONNECTED_TO Room_2
+Room_1 SPLITTED_INTO Room_2
