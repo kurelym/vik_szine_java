@@ -198,7 +198,7 @@ public class Game implements Description {
                 Item newItem;
                 
                 switch (objectType) {
-                    case "H":
+                    case "HB":
                         newItem = new HolyBeer(output);
                         newItem.setType(isFake);
                         break;
