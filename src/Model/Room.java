@@ -162,10 +162,14 @@ public class Room implements Description {
             if(visitor>=5){
                 for(Using u: items){
                     stickyItems.add(u);
+                    
                 }
+                items.clear();
                 for(Using ua: activatedItems){
                     stickyItems.add(ua);
+                    
                 }
+                activatedItems.clear();
             }
             return true;
         }
