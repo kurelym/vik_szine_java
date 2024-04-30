@@ -1,4 +1,3 @@
-MAP BUILT
 Cleaner_1 MOVED_TO Room_1
 CamembertCheese_1 REMOVED_FROM Room_1
 Cleaner_1 MOVED_TO Room_3

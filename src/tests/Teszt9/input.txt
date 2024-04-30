@@ -1,2 +1,1 @@
-BUILDMAP map.txt
 PICKUP Studnet_1 SliderRule_1

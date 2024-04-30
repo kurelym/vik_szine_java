@@ -9,7 +9,7 @@ import java.util.Random;
  * A labirintus menedzselése, a saját kapacitásának és szomszédainak, a benne lévő tárgyak és benne tartózkodó karakterek nyilvántartása. A szoba transzformációk végrehajtása.
  */
 public class Room implements Description {
-    private static int globalID = 0;
+    private static int globalID = 1;
     protected String name;
     protected int capacity;
     protected List<Room> neighbours;

@@ -1,2 +1,1 @@
-MAP BUILT
 Room_1 SPLIT_INTO new_room

@@ -8,7 +8,7 @@ import java.io.PrintStream;
  * is felvehetik, ezzel nehezítve a hallgatók dolgát.
  */
 public class SlideRule extends Item{
-    private static int globalID = 0;
+    private static int globalID = 1;
     private PrintStream output;
     
     public SlideRule(PrintStream _output){

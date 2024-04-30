@@ -8,7 +8,7 @@ import java.util.List;
  * Az osztály egy oktatót reprezentál a játékban.
  */
 public class Teacher extends Character {
-    private static int globalID = 0;
+    private static int globalID = 1;
     private PrintStream output;
     /**
      * Konstruktor a Teacher osztályhoz.

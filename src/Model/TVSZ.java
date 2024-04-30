@@ -7,7 +7,7 @@ import java.io.PrintStream;
  * és számon tartja hogy eddig hányszor volt használva, és kezeli a megszűnését.
  */
 public class TVSZ extends Item{
-    private static int globalID = 0;
+    private static int globalID = 1;
     private PrintStream output;
     public TVSZ(PrintStream _output){
         output = _output;

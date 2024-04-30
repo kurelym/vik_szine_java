@@ -1,2 +1,1 @@
-BUILDMAP map.txt
 PICKUP Student_1 HolyBeer _1
