@@ -29,14 +29,13 @@ public class FFP2 extends Item {
         }
     }
     public boolean useAgainstGas(){
-        if(output != null) {
-            output.println(this.name + " USED_AGAINST_GAS");
-        }
-
         if(fake){
             return false;
         }
         else{
+            if(output != null) {
+                output.println(this.name + " USED_AGAINST_GAS");
+            }
             this.decreaseDurability();
             return true;
         }

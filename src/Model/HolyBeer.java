@@ -31,8 +31,14 @@ public class HolyBeer extends Item{
     }
     public void useAtPickUp() {
         activated=true;
+        owner.dropItem();
     }
     public boolean useAgainstTeacher(){
+        if(activated){
+            if(output!=null){
+                output.println(this.name+" USED_AGAINST_TEACHER");
+            }
+        }
         return activated;
     }
     public void roundPassed(){

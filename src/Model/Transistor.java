@@ -51,6 +51,10 @@ public class Transistor extends Item{
         //System.out.println("Function: Transistor class + pairing func");
         if(this.pair!=null){
             Room tmp=owner.location;
+            if(output!=null){
+                output.println(this.name+" USED_BY "+this.owner.name);
+                output.println(this.owner.name+" DROPPED "+this.name+" IN "+tmp.name);
+            }
             owner.goToRoom(this.pair.location);
             removePair();
             tmp.addItem(this);
@@ -58,16 +62,20 @@ public class Transistor extends Item{
         }
 
         else{
-            Transistor _new = (Transistor)_pair;
-            this.pair = _new;
-            activated = true;
-            _new.pair = this;
-            _new.activated = true;
-            owner.inventory.remove(this);
-            owner.location.addItem(this);
-            if(output!=null){
-                output.println(this.name+" PAIRED_WITH "+_new.name);
+            if(_pair.getName().contains("Transistor")){
+                Transistor _new = (Transistor)_pair;
+                this.pair = _new;
+                activated = true;
+                _new.pair = this;
+                _new.activated = true;
+                owner.inventory.remove(this);
+                if(output!=null){
+                    output.println(this.name+" PAIRED_WITH "+_new.name);
+                    output.println(_new.name+" PAIRED_WITH "+this.name);
+                }
+                owner.location.addItem(this);
             }
+            else return false;
         }
         return true;
     }
@@ -99,9 +107,6 @@ public class Transistor extends Item{
 
                 if(input<=useableItems.size()){
                     if(this.pairing(useableItems.get(input-1))){
-                        if(output!=null){
-                            output.println(this.name+" USED_BY "+this.owner.name);
-                        }
                         return true;
                     }
                     else{
