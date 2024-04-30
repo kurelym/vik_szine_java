@@ -116,9 +116,9 @@ public class Game implements Description {
                     int isCursed = Integer.parseInt(parts[1]);
                     Room newRoom;
                     if (isCursed == 1) {
-                        newRoom = new CursedRoom();
+                        newRoom = new CursedRoom(output);
                     } else {
-                        newRoom = new Room();
+                        newRoom = new Room(output);
                     }
                     newRoom.name = roomName;
                     roomMap.put(roomName, newRoom);
@@ -160,19 +160,19 @@ public class Game implements Description {
 
                     switch (characterType) {
                         case "S":
-                            Student student = new Student(room);
+                            Student student = new Student(room,output);
                             students.add(student);
                             room.addCharacter(student);
                             characterMap.put(student.getName(), student);
                             break;
                         case "T":
-                            Teacher teacher = new Teacher(room);
+                            Teacher teacher = new Teacher(room,output);
                             teachers.add(teacher);
                             room.addCharacter(teacher);
                             characterMap.put(teacher.getName(), teacher);
                             break;
                         case "C":
-                            Cleaner cleaner = new Cleaner(room);
+                            Cleaner cleaner = new Cleaner(room,output);
                             cleaners.add(cleaner);
                             room.addCharacter(cleaner);
                             characterMap.put(cleaner.getName(), cleaner);
@@ -194,31 +194,31 @@ public class Game implements Description {
                 
                 switch (objectType) {
                     case "H":
-                        newItem = new HolyBeer();
+                        newItem = new HolyBeer(output);
                         newItem.setType(isFake);
                         break;
                     case "F":
-                        newItem = new FFP2();
+                        newItem = new FFP2(output);
                         newItem.setType(isFake);
                         break;
                     case "SR":
-                        newItem = new SlideRule();
+                        newItem = new SlideRule(output);
                         newItem.setType(isFake);
                         break;
                     case "WB":
-                        newItem = new WunderBaum();
+                        newItem = new WunderBaum(output);
                         newItem.setType(isFake);
                         break;
                     case "TVSZ":
-                        newItem = new TVSZ();
+                        newItem = new TVSZ(output);
                         newItem.setType(isFake);
                         break;
                     case "CC":
-                        newItem = new CamembertCheese();
+                        newItem = new CamembertCheese(output);
                         newItem.setType(isFake);
                         break;
                     case "T":
-                        newItem = new Transistor();
+                        newItem = new Transistor(output);
                         newItem.setType(isFake);
                         if (objectParts.length > 3 && !isFake) {
                             String pairTransistorName = objectParts[3];
@@ -234,7 +234,7 @@ public class Game implements Description {
 
                         break;
                     case "DR":
-                        newItem = new DirtyRag();
+                        newItem = new DirtyRag(output);
                         newItem.setType(isFake);
                         break;
                     default:

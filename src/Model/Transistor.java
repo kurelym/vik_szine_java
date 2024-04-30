@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +12,9 @@ import java.util.Scanner;
 public class Transistor extends Item{
     private static int globalID = 0;
     private Transistor pair;
-    public Transistor(){
+    private PrintStream output;
+    public Transistor(PrintStream _output){
+        output = _output;
         name = "Transistor_"+globalID;
         globalID++;
         durability = 1;
@@ -62,6 +65,9 @@ public class Transistor extends Item{
             _new.activated = true;
             owner.inventory.remove(this);
             owner.location.addItem(this);
+            if(output!=null){
+                output.println(this.name+" PAIRED_WITH "+_new.name);
+            }
         }
         return true;
     }
@@ -93,6 +99,9 @@ public class Transistor extends Item{
 
                 if(input<=useableItems.size()){
                     if(this.pairing(useableItems.get(input-1))){
+                        if(output!=null){
+                            output.println(this.name+" USED_BY "+this.owner.name);
+                        }
                         return true;
                     }
                     else{

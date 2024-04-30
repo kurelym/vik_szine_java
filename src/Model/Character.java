@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,31 +13,35 @@ public abstract class Character implements Description {
     protected Room location;
     protected boolean alive;
     protected boolean dazed;
+    private PrintStream output;
     /**
      * Konstruktor a Character osztályhoz.
      */
-    protected Character(Room startingRoom){
+    protected Character(Room startingRoom, PrintStream _output) {
+        output = _output;
         name ="Character";
         inventory = new ArrayList<>();
         location = startingRoom;
         startingRoom.addCharacter(this);
         alive = true;
         dazed = false;
-        //System.out.println("Function: Character class + Konstruktor Func");
     }
     /**
      * Metódus a karakter átmegy egy másik szobába.
      * @param destination A cél szoba.
      * @return true, ha a karakter sikeresen átmegy a szobába, egyébként false.
      */
-    public boolean goToRoom(Room destination){
-        //System.out.println("Function: Character class + goToRoom Func: "+name+" - "+destination.name);
+    public boolean goToRoom(Room destination) {
+        if(output != null) {
+            output.println(this.name + " MOVED " + destination.name);
+        }
+
         if(destination.addCharacter(this)){
             location.removeCharacter(this);
             location = destination;
             return true;
         }
-        else{
+        else {
             return false;
         }
         
@@ -47,7 +52,6 @@ public abstract class Character implements Description {
     * @param item A tárgy
     */
     public void add(Using item){
-        //System.out.println("Function: Character class + add Func "+name+" - "+item.getName());
         this.inventory.add(item);
     }
 
@@ -57,11 +61,14 @@ public abstract class Character implements Description {
      * @return true, ha a tárgy sikeresen fel lett véve, egyébként false.
      */
     public boolean pickUpItem(Using item) {
-        //System.out.println("Function: Character class + pickUpItem Func "+name+" - " +item.getName());
-        if(inventory.size()==5){
+        if(output != null) {
+            output.println(this.name + " PICKED_UP " + item.getName());
+        }
+
+        if(inventory.size()==5) {
             return false;
         }
-        else{
+        else {
             item.getLocation().removeItem(item);
             item.setLocation(null);
             inventory.add(item);
@@ -74,16 +81,18 @@ public abstract class Character implements Description {
      * Metódus ellenőrzi, hogy a karakter életben van-e.
      * @return true, ha a karakter életben van, egyébként false.
      */
-    public boolean isAlive(){
-        //System.out.println("Function: Character class + isAlive Func");
+    public boolean isAlive() {
         return alive;
     }
     /**
      * Metódus egy tárgy eldobására.
      * @param item Az eldobni kívánt tárgy.
      */
-    public void dropItem(Using item){
-        //System.out.println("Function: Character class + dropItem Func");
+    public void dropItem(Using item) {
+        if(output != null) {
+            output.println(this.name + " DROPPED " + item.getName() + " IN " + this.location);
+        }
+
         if(!inventory.isEmpty()){
             location.addItem(item);
             inventory.remove(item);
@@ -92,8 +101,7 @@ public abstract class Character implements Description {
     /**
      * Metódus egy tárgy eldobására, akkor mikor egy sörökorsót vettünk fel/a tanárnál ha tele van a Bag FIFO módon
      */
-    public void dropItem(){
-        //System.out.println("Function: Character class + dropItem Func");
+    public void dropItem() {
         if(!inventory.isEmpty()){
             location.addItem(inventory.get(0));
             inventory.remove(0);
@@ -104,15 +112,13 @@ public abstract class Character implements Description {
      * @return A szoba, ahol a karakter tartózkodik.
      */
     public Room getRoom(){
-        //System.out.println("Function: Character class + getRoom Func");
         return location;
     }
     /**
      * Metódus a karakter nevének lekérdezésére.
      * @return A karakter neve.
      */
-    public String getName(){
-        //System.out.println("Function: Character class + getName Func");
+    public String getName() {
         return name;
     }
 
@@ -120,7 +126,6 @@ public abstract class Character implements Description {
      * Metódus az összes tárgy eldobására a karakter zsebéből.
      */
     public void dropAllItem(){
-        //System.out.println("Function: Character class + dropAllItem Func");
         for(Using u:inventory){
             location.addItem(u);
         }
@@ -131,8 +136,11 @@ public abstract class Character implements Description {
      * Metódus a gáz támadás kezelésére a karakteren.
      * @return true, ha a karakter meg tudja magát védeni a gáz támadás ellen, egyébként false.
      */
-    public boolean gasAttack(){
-        //System.out.println("Function: Character class + gasAttack Func");
+    public boolean gasAttack() {
+        if(output != null) {
+            output.println("GAS_ATTACKED " + this.name);
+        }
+
         if(!this.inventory.isEmpty()) {
             for(Using u :  inventory){
                 if(u.useAgainstGas()){
@@ -150,15 +158,14 @@ public abstract class Character implements Description {
     /**
      * Miután a takarító kisegíti az adott karaktert a szobából, a dazed változó értét visszaállítja false-re
      */
-    public void clearMind(){
+    public void clearMind() {
         dazed = false;
     }
     /**
      * Metódus ellenőrzi, hogy van-e a karakternek logarléce.
      * @return true, ha a karakternek van, egyébként false.
      */
-    public boolean hasTheSlideRule(){
-        //System.out.println("Function: Character class + hasTheSlideRule Func");
+    public boolean hasTheSlideRule() {
         for(Using u : inventory){
             if(u.isRealSlideRule()){
                 return true;
@@ -171,7 +178,7 @@ public abstract class Character implements Description {
      * Lekérdezhető, hogy egy karakter le van-e bénúlva
      * @return igaz, ha az adott karakter le van-e bénúlva
      */
-    public boolean isDazed(){
+    public boolean isDazed() {
         //System.out.println("Function: Character class + isDazed Func");
         return dazed;
     }

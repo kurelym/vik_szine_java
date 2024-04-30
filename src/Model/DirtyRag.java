@@ -1,11 +1,16 @@
 
 package Model;
+
+import java.io.PrintStream;
+
 /**
  * A Nedves táblatörlő rongy tárgy működéséért felel. Kezeli a rongy használatát
  */
 public class DirtyRag extends Item{
     private static int globalID = 0;
-    public DirtyRag(){
+    private PrintStream output;
+    public DirtyRag(PrintStream _output){
+        output = _output;
         name = "DirtyRag_"+globalID;
         globalID++;
         durability = 5;
@@ -37,15 +42,21 @@ public class DirtyRag extends Item{
         //System.out.println("Function: DirtyRag class + useIt func");
         activated = true;
         owner.inventory.remove(this);
+        if(output!=null){
+            output.println(this.name+" USED_BY "+owner.name);
+        }
         return owner.getRoom().addItem(this);
     }
     public void roundPassed(){
         //System.out.println("Function: DirtyRag class + roundPassed func");
         if(durability>0){
         durability--;
-        if(durability==0){
-            activated=false;
-        }
+            if(output!=null){
+                output.println(this.name+" DURABILITY_DECRASED_TO "+this.durability);
+            }
+            if(durability==0){
+                activated=false;
+            }
         }
     }
     public boolean useSelectedItem(){
