@@ -7,7 +7,7 @@ import java.io.PrintStream;
  * A Nedves táblatörlő rongy tárgy működéséért felel. Kezeli a rongy használatát
  */
 public class DirtyRag extends Item{
-    private static int globalID = 0;
+    private static int globalID = 1;
     private PrintStream output;
     public DirtyRag(PrintStream _output){
         output = _output;

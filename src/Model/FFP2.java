@@ -6,7 +6,7 @@ import java.io.PrintStream;
  * Az FFP2-maszk tárgyak működéséért felel, kezeli a maszk használatát, és megszűnését.
  */
 public class FFP2 extends Item {
-    private static int globalID = 0;
+    private static int globalID = 1;
     private PrintStream output;
 
     public FFP2(PrintStream _output) {

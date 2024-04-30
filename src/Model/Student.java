@@ -7,7 +7,7 @@ import java.util.List;
  * Az osztály egy hallgatót reprezentál a játékban.
  */
 public class Student extends Character {
-    private static int globalID = 0;
+    private static int globalID = 1;
     private PrintStream output;
     /**
      * Konstruktor a Student osztályhoz.

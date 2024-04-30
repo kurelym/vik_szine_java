@@ -7,7 +7,7 @@ import java.io.PrintStream;
  * és számon tartja hogy hány körig tart még a hatása, és kezeli a megszűnését.
  */
 public class HolyBeer extends Item{
-    private static int globalID = 0;
+    private static int globalID = 1;
     private PrintStream output;
 
     public HolyBeer(PrintStream _output) {
