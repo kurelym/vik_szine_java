@@ -1,0 +1,2 @@
+BUILDMAP
+MERGE Room_1 Room_2

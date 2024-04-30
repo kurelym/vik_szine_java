@@ -1,0 +1,23 @@
+-- Rooms --
+Room_1 0
+
+-- Room Connections --
+
+-- Characters --
+Teacher_1 T Room_1
+
+-- Objects --
+DirtyRag_1 DR 0
+DirtyRag_2 DR 0
+DirtyRag_3 DR 0
+DirtyRag_4 DR 0
+DirtyRag_5 DR 0
+DirtyRag_6 DR 0
+
+-- Objects in Rooms --
+Room_1 DirtyRag_6
+
+-- Activated Objects in Rooms --
+
+-- Objects Carried by Characters --
+Teacher_1 DirtyRag_1 DirtyRag_2 DirtyRag_3 DirtyRag_4 DirtyRag_5

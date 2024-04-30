@@ -1,0 +1,4 @@
+MAP BUILT
+Teacher_1 MOVED Room_1
+Teacher_1 DAZED
+Teacher_1 DROPPED CamembertCheese_2

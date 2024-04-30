@@ -13,7 +13,7 @@ public class Program {
      *
      * */
     public Program(Game _game) {
-        // Átadja a kapott game objektumot a sajátjának
+        // Atadja a kapott game objektumot a sajátjának
         game = _game;
     }
 

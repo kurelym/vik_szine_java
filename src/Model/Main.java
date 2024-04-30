@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
@@ -13,42 +14,17 @@ import java.nio.file.Path;
 public class Main {
     
     public static void main(String[] args) throws IOException {
+
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Válassz módot:");
-        System.out.println("1. Játék mód");
-        System.out.println("2. Teszt mód");
-
-        int mode;
-        while (true) {
-            if (scanner.hasNextInt()) {
-                mode = scanner.nextInt();
-                if (mode == 1 || mode == 2) {
-                    break; // Elfogadható választás, lépj ki a ciklusból
-                } else {
-                    System.err.println("Nem megfelelő választás. Kérlek, válassz 1-et vagy 2-t.");
-                }
-            } else {
-                System.err.println("Kérlek, adj meg egy számot.");
-                scanner.next(); // Elutasítja az érvénytelen bemenetet
-            }
-        }
-
-        switch (mode) {
-            case 1:
-                startGame(scanner);
-                break;
-            case 2:
-                String[] testArgs = {
-                    "C:\\Users\\7480\\Documents\\BME\\Projlab\\vik_szine_java\\init.txt",
-                    "C:\\Users\\7480\\Documents\\BME\\Projlab\\vik_szine_java\\input.txt",
-                    "C:\\Users\\7480\\Documents\\BME\\Projlab\\vik_szine_java\\output.txt",
-                };
-                startTest(testArgs);
-                break;
+        if (args.length > 0) {
+            startTest(args);
+        } else {
+            startGame(scanner);
         }
 
         scanner.close();
+
     }
 
     public static void startGame(Scanner scanner) throws IOException {
@@ -110,10 +86,18 @@ public class Main {
             Game game = new Game(fileOutput);
             try {
                 game.buildGame(initFilePath);
+                try {
+                    FileWriter writer = new FileWriter(outputFilePath, false); // false esetén felülírja a tartalmat
+                    writer.close();  // Csak megnyitja és bezárja a fájlt, ezáltal törli a tartalmat
+                    System.out.println("Fájl tartalma sikeresen törölve.");
+                } catch (IOException e) {
+                    System.out.println("Hiba történt a fájl törlése közben: " + e.getMessage());
+                }
+
             } catch (IOException e) {
                 fileOutput.println("Hiba történt az init.txt beolvasása közben: " + e.getMessage());
             }
-
+            fileOutput.println("");
             try {
                 List<String> linesList = Files.readAllLines(Path.of(inputFilePath));
                 for (String line : linesList) {
@@ -292,12 +276,12 @@ public class Main {
         } catch (FileNotFoundException e) {
             System.err.println("Nem sikerült létrehozni az output.txt fájlt: " + e.getMessage());
         }
-        try {
+        /*try {
             reverseOutputFile(outputFilePath);
         } catch (IOException e) {
             
             e.printStackTrace();
-        }
+        }*/
 
     }
 

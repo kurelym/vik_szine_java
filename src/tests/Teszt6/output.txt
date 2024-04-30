@@ -1,0 +1,5 @@
+MAP BUILT
+Student_1  PICKED_UP Transistor_1
+Student_1  PICKED_UP Transistor_2
+Transistor_1 PAIRED_WITH Transistor_2
+Transistor_2 PAIRED_WITH Transistor_1

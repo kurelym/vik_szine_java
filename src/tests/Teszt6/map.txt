@@ -1,0 +1,18 @@
+-- Rooms --
+Room_1 0
+
+-- Room Connections --
+
+-- Characters --
+Student_1 S Room_1
+
+-- Objects --
+Transistor_1 T 1
+Transitor_2 T 1
+
+-- Objects in Rooms –-
+Room_1 Transistor_1 Transistor_2
+
+-- Activated Objects in Rooms --
+
+-- Objects Carried by Characters --
