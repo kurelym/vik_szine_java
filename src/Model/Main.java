@@ -129,10 +129,10 @@ public class Main {
                         }
             
                         character.goToRoom(destinationRoom);
-                        if(character.isTeacher()){
+                        /*if(character.isTeacher()){
                             Teacher t=(Teacher)character;
                             t.tryToKill();
-                        }
+                        }*/
                         break;
 
                         case "USE":

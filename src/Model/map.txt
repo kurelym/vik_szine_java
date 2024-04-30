@@ -5,13 +5,13 @@ Room_3 0
 Room_4 0
 Room_5 1
 -- Room Connections --
-Room_1 Room_1 2
-Room_2 Room_2 2
-Room_3 Room_3 2
-Room_4 Room_4 2
+Room_1 Room_2 2
+Room_2 Room_3 2
+Room_3 Room_4 2
+Room_4 Room_5 2
 -- Characters --
 -- Objects --
-HolyBeer_1 H 0
+HolyBeer_1 HB 0
 FFP2_1 F 0
 FFP2_2 F 1
 TVSZ_1 TVSZ 0

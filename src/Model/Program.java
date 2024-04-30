@@ -31,7 +31,6 @@ public class Program {
             for(int i=0;i<students.size();i++){
                 if(!students.get(i).dazed) {
                     while(!roundOver) {
-                        //System.out.println(game.getDescription());
                         System.out.println();
                         System.out.println(students.get(i).getName() + " jön");
                         System.out.println("Lehetséges műveletek:");
@@ -136,11 +135,6 @@ public class Program {
         boolean roundOver = false;
         int input = -1;
         while (input != 0) {
-            /*System.out.println("Felvehető tárgyak:");
-            System.out.println(student.getRoom().getDescription());
-            for(int j=0; j<student.getRoom().getItems().size();j++){
-                System.out.println(j+1+". "+student.getRoom().getItems().get(j).getName());
-            }*/
             for(int j=0;j<student.getRoom().getItems().size();j++){
                 System.out.println(j+1+". "+student.getRoom().getItems().get(j).getName());
             }
@@ -151,7 +145,7 @@ public class Program {
                 roundOver = false;
                 return roundOver;
             }
-            //System.out.println(student.getRoom().getDescription());
+            
             if(input<=student.getRoom().getItems().size()){
                 if(student.pickUpItem(student.getRoom().getItems().get(input-1))){
                     System.out.println("\nSikeresen felvetted a tárgyat\n");
@@ -219,18 +213,6 @@ public class Program {
             if(input<=student.getRoom().getNeighbours().size()){
                 if(student.goToRoom(student.getRoom().getNeighbours().get(input-1))){
                     System.out.println("\nSikeresen átmentél a szobába\n");
-                    if(!student.getRoom().getCharacters().isEmpty()) {
-                        for(Character character : student.getRoom().getCharacters()) {
-                            if(character.isTeacher()) {
-                                for(Teacher teacher : game.getTeachers()) {
-                                    if(character == teacher) {
-                                        teacher.tryToKill();
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
                     roundOver = true;
                     input = 0;
                     return roundOver;
@@ -244,61 +226,4 @@ public class Program {
         }
         return roundOver;
     }
-    /*
-    static void transistorTest(Scanner scanner) {
-        int next = -1;
-        int numberOfActivatedTransistors = 0;
-        while (next!=1) {
-        System.out.println("Párosítsuk a tranzisztorokat? Igen: 1, Nem: 0");
-        next = scanner.nextInt();
-        if(next==1){
-            transistor1.pairing(transistor2);
-            transistor2.pairing(transistor1);
-        }
-        else if(next==0){
-            System.out.println("Nem történt semmi");
-        }
-        else{
-            System.out.println("Hibás bemenet: "+next);
-        }
-        }
-        while(numberOfActivatedTransistors!=2){
-            System.out.println("Transzitor elhelyezése az aktuális szobában? Igen: 1, Nem: 0");
-            next = scanner.nextInt();
-            if(next==1){
-                if(numberOfActivatedTransistors ==0){
-                student.dropItem(transistor1);
-                room1.addItem(transistor1);
-                numberOfActivatedTransistors++;
-                System.out.println("Az aktivált tranzisztorok száma: "+numberOfActivatedTransistors);
-                }
-                else if( numberOfActivatedTransistors == 1){
-                    numberOfActivatedTransistors++;
-                    student.dropItem(transistor2);
-                    room2.addItem(transistor2);
-                    student.goToRoom(room1);
-                    room2.removeCharacter(student);
-                    room1.addCharacter(student);
-                    transistor1.removePair();
-                    transistor2.removePair();
-                    System.out.println("TELEPORT");
-                }
-            }
-            else if(next==0){
-                System.out.println("Az aktuális szoba elhagyása? Igen: 1, Nem: 0");
-                next = scanner.nextInt();
-                if(next==1){
-                    student.goToRoom(room2);
-                    room1.removeCharacter(student);
-                    room2.addCharacter(student);
-                }
-                else if(next==0){
-                    System.out.println("Nem történt semmi");
-                }
-            }
-            else{
-                System.out.println("Hibás bemenet: "+next);
-            }
-        }
-    }*/
 }

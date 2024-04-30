@@ -14,7 +14,7 @@ public class HolyBeer extends Item{
         output = _output;
         name = "HolyBeer_"+globalID;
         globalID++;
-        durability = 5;
+        durability = 4;
         activated =false;
         owner = null;
         location = null;
@@ -52,7 +52,6 @@ public class HolyBeer extends Item{
                 System.out.println(getName() + " nem hat tovább!");
             }
         }
-        System.out.println(getName() + " még " + durability + " körig hat!");
     }
 
     public boolean useable() {
@@ -72,7 +71,7 @@ public class HolyBeer extends Item{
     public boolean isRealSlideRule(){
         return false;
     }
-    public boolean pairing(Using pair){
+    public boolean pairing(Transistor pair){
         return false;
     }
     public boolean daze(Character target){
