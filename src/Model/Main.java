@@ -183,13 +183,13 @@ public class Main {
                                 break;
                             }
 
-                            Using item2 = game.findItemByNameAtRoom(itemName,character3.location);
-                            if(item2 == null){
+                            int idx = game.findItemIndexByNameAtStudent(itemName,(Student)character3);
+                            if(idx < 0){
                                 fileOutput.println("Hiba: Nem található item ezzel a névvel: " + itemName+", ebben a szobában: "+character3.location.getName());
                                 break;
                             }
 
-                            character3.dropItem(item2);
+                            character3.dropItem(character3.inventory.get(idx));
                             break;
 
                         case "SPLIT":

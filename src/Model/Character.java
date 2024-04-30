@@ -88,7 +88,7 @@ public abstract class Character implements Description {
             location.addItem(item);
             inventory.remove(item);
             if(output != null) {
-                output.println(this.name + " DROPPED " + item.getName() + " IN " + this.location);
+                output.println(this.name + " DROPPED " + item.getName() + " IN " + this.location.getName());
             }
         }
     }
@@ -99,7 +99,7 @@ public abstract class Character implements Description {
         if(!inventory.isEmpty()){
             location.addItem(inventory.get(0));
             if(output != null) {
-                output.println(this.name + " DROPPED " + inventory.get(0).getName() + " IN " + this.location);
+                output.println(this.name + " DROPPED " + inventory.get(0).getName() + " IN " + this.location.getName());
             }
             inventory.remove(0);
         }

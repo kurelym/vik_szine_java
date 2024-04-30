@@ -7,10 +7,10 @@ Room_1 0
 Student_1 S Room_1
 
 -- Objects --
-Transistor_1 T 1
-Transitor_2 T 1
+Transistor_1 T 0
+Transistor_2 T 0
 
--- Objects in Rooms –-
+-- Objects in Rooms --
 Room_1 Transistor_1 Transistor_2
 
 -- Activated Objects in Rooms --
