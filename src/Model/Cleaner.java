@@ -6,7 +6,7 @@ public class Cleaner extends Character  {
     private static int globalID = 0;
     private PrintStream output;
     public Cleaner(Room r, PrintStream _output){
-        super(r);
+        super(r,_output);
         output = _output;
         name = "Cleaner_"+globalID;
         globalID++;

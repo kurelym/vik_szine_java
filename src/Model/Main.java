@@ -41,7 +41,7 @@ public class Main {
 
         studentCnt = scanner.nextInt();
         for(int i = 0; i < studentCnt; i++) {
-            Student student = new Student(game.getRooms().get(0));
+            Student student = new Student(game.getRooms().get(0),null);
             game.addStudent(student);
         }
 
@@ -53,7 +53,7 @@ public class Main {
 
         teacherCnt = scanner.nextInt();
         for(int i = 0; i < teacherCnt; i++) {
-            Teacher teacher = new Teacher(game.getRooms().get(game.getRooms().size() - 1));
+            Teacher teacher = new Teacher(game.getRooms().get(game.getRooms().size() - 1),null);
             game.addTeacher(teacher);
         }
 
@@ -65,7 +65,7 @@ public class Main {
 
         cleanerCnt = scanner.nextInt();
         for(int i = 0; i < cleanerCnt; i++) {
-            Cleaner cleaner = new Cleaner(game.getRooms().get(game.getRooms().size() / 2));
+            Cleaner cleaner = new Cleaner(game.getRooms().get(game.getRooms().size() / 2),null);
             game.addCleaner(cleaner);
         }
 

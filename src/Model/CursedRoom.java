@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,12 +11,13 @@ import java.util.Random;
 public class CursedRoom extends Room{
     private List<Room> hiddenNeighbours;
     private List<Integer> directionOfConnecntion;
+    private PrintStream output;
     //private static int globalID = 0;
     /**
      * Létrehozza az osztályt
      */
-    public CursedRoom(){
-        super();
+    public CursedRoom(PrintStream _output){
+        super(_output);
         hiddenNeighbours=new ArrayList<>(); 
         directionOfConnecntion = new ArrayList<>();
         //System.out.println("Function: CursedRoom class + constructor func");
