@@ -33,6 +33,7 @@ public class Teacher extends Character {
             if(output!=null){
                 output.println(this.name+" PICKED_UP "+item.getName());
             }
+            item.useAtPickUp();
             return true;
         }
         return false;
