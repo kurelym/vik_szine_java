@@ -1,5 +1,6 @@
 
 Cleaner_1 MOVED_TO Room_1
+GAS_ATTACK
 CamembertCheese_1 REMOVED_FROM Room_1
 Cleaner_1 MOVED_TO Room_3
 Student_1 MOVED_TO Room_1
@@ -11,4 +12,5 @@ Student_3 MOVED_TO Room_2
 Student_4 MOVED_TO Room_1
 Student_4 MOVED_TO Room_3
 Student_5 MOVED_TO Room_1
+Hiba: Nem található item ezzel a névvel: Transistor_1, ebben a szobában: Room_1
 Student_5 MOVED_TO Room_3
