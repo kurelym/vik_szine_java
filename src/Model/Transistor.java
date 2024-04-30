@@ -69,11 +69,11 @@ public class Transistor extends Item{
                 _new.pair = this;
                 _new.activated = true;
                 owner.inventory.remove(this);
-                owner.location.addItem(this);
                 if(output!=null){
                     output.println(this.name+" PAIRED_WITH "+_new.name);
                     output.println(_new.name+" PAIRED_WITH "+this.name);
                 }
+                owner.location.addItem(this);
             }
             else return false;
         }
