@@ -6,8 +6,8 @@ Room_2 0
 Room_1 Room_2 2
 
 -- Characters --
-Student_1 S Room_1
 Teacher_1 T Room_2
+Student_1 S Room_1
 
 -- Objects --
 HolyBeer_1 HB 0
