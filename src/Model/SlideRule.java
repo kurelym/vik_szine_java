@@ -76,7 +76,7 @@ public class SlideRule extends Item{
         //System.out.println("Function: SlideRule class + useAgainstTeacher func");
         return false;
     }
-    public boolean pairing(Using pair){
+    public boolean pairing(Transistor pair){
         //System.out.println("Function: SlideRule class + pairing func");
         return false;
     }
