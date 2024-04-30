@@ -347,6 +347,8 @@ public class Game implements Description {
 
                         if (item != null) {
                             this_character.add(item); // Hozzáadjuk a karakterhez
+                            item.setOwner(this_character);
+                            item.useAtPickUp();
                         } else {
                             System.err.println("Error: Item " + itemName + " not found in items list.");
                             System.err.println(line);

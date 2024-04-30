@@ -48,9 +48,6 @@ public class Student extends Character {
         alive = false;
         System.out.println(getName() + " kiesett a játékból");
         this.getRoom().removeCharacter(this);
-        if(output!=null){
-            output.println(" TEACHER_ATTACKED "+this.name);
-        }
         return alive;
     }
 

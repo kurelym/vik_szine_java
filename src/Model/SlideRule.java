@@ -62,7 +62,7 @@ public class SlideRule extends Item{
     }
     public void useAtPickUp(){
         //System.out.println("Function: SlideRule class + useAtPickUp func");
-    
+        isRealSlideRule();
     }
     public boolean useAgainstGas(){
         //System.out.println("Function: SlideRule class + useAgainstGas func");
