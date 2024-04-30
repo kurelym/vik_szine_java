@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
@@ -12,13 +13,39 @@ import java.nio.file.Path;
 public class Main {
     
     public static void main(String[] args) throws IOException {
-
         Scanner scanner = new Scanner(System.in);
 
-        if (args.length > 0) {
-            startTest(args);
-        } else {
-            startGame(scanner);
+        System.out.println("Válassz módot:");
+        System.out.println("1. Játék mód");
+        System.out.println("2. Teszt mód");
+
+        int mode;
+        while (true) {
+            if (scanner.hasNextInt()) {
+                mode = scanner.nextInt();
+                if (mode == 1 || mode == 2) {
+                    break; // Elfogadható választás, lépj ki a ciklusból
+                } else {
+                    System.err.println("Nem megfelelő választás. Kérlek, válassz 1-et vagy 2-t.");
+                }
+            } else {
+                System.err.println("Kérlek, adj meg egy számot.");
+                scanner.next(); // Elutasítja az érvénytelen bemenetet
+            }
+        }
+
+        switch (mode) {
+            case 1:
+                startGame(scanner);
+                break;
+            case 2:
+                String[] testArgs = {
+                    "C:\\Users\\7480\\Documents\\BME\\Projlab\\vik_szine_java\\init.txt",
+                    "C:\\Users\\7480\\Documents\\BME\\Projlab\\vik_szine_java\\input.txt",
+                    "C:\\Users\\7480\\Documents\\BME\\Projlab\\vik_szine_java\\output.txt",
+                };
+                startTest(testArgs);
+                break;
         }
 
         scanner.close();
@@ -265,7 +292,34 @@ public class Main {
         } catch (FileNotFoundException e) {
             System.err.println("Nem sikerült létrehozni az output.txt fájlt: " + e.getMessage());
         }
+        try {
+            reverseOutputFile(outputFilePath);
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
 
+    }
+
+    public static void reverseOutputFile(String filePath) throws IOException {
+    Path path = Path.of(filePath);
+
+    if (!Files.exists(path)) {
+        System.err.println("A megadott fájl nem létezik: " + filePath);
+        return;
+    }
+
+    // Beolvassuk a fájlt soronként
+    List<String> lines = Files.readAllLines(path);
+
+    // Megfordítjuk a sorok sorrendjét
+    Collections.reverse(lines);
+
+    // Opció a megfordított sorok visszaírására az eredeti fájlba
+    Files.write(path, lines);
+
+    // Vagy írhatjuk másik fájlba is
+    // Files.write(Path.of("reversed_output.txt"), lines);
     }
     
 }
