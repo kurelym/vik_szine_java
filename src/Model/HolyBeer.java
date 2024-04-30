@@ -31,7 +31,9 @@ public class HolyBeer extends Item{
     }
     public void useAtPickUp() {
         activated=true;
-        owner.dropItem();
+        if(owner.inventory.size()>1){
+            owner.dropItem();
+        }
     }
     public boolean useAgainstTeacher(){
         if(activated){

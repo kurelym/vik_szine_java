@@ -1,0 +1,3 @@
+
+Teacher_1 DROPPED DirtyRag_1 IN Room_1
+Teacher_1 PICKED_UP DirtyRag_6

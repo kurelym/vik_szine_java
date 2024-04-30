@@ -1,0 +1,3 @@
+
+Teacher_1 MOVED Room_1
+RAG_ATTACKED Teacher_1

@@ -227,9 +227,6 @@ public class Room implements Description {
             activatedItems.remove(u);
         }
         u.setLocation(null);
-        if(output!=null){
-            output.println(u.getName()+" REMOVED_FROM "+this.name);
-        }
     }
     /**
      * Visszaadja az ID-t.

@@ -1,0 +1,2 @@
+Teacher_1 PICKED_UP SlideRule_1
+GAME_NOT_WON
