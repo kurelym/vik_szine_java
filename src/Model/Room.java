@@ -60,9 +60,9 @@ public class Room implements Description {
                 neighbours.get(f).addNeighbour(newroom);
                 this.removeNeighbour(neighbours.get(f));
             }
-        }
-        if(output!=null){
-            output.println(this.name+" SPLITTED_INTO "+newroom.name);
+            if(output!=null){
+                output.println(this.name+" SPLITTED_INTO "+newroom.name);
+            }
         }
         return newroom;
     }
@@ -102,13 +102,13 @@ public class Room implements Description {
                         nR.addNeighbour(this);
                     }
                 }
+                if(output!=null){
+                    output.println(r.name+" MERGED_INTO "+this.name);
+                }
                 r = null;
             }
             else{
                 r.Merge(this);
-            }
-            if(output!=null){
-                output.println(r.name+" MERGED_INTO "+this.name);
             }
         }
     }

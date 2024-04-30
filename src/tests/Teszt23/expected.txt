@@ -1,2 +1,2 @@
 
-Room_1 SPLIT_INTO new_room
+Room_1 SPLIT_INTO Room_2

@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -240,29 +241,24 @@ public class Main {
                                 fileOutput.println("Hiba: Nem található szoba ezzel a névvel: " + roomName22);
                                 break;
                             }
-
+                            CursedRoom room23 = (CursedRoom)room21;
                             switch(words[3]){
                                 case "0":
-                                    room21.neighbours.remove(room22);
-                                    room22.neighbours.remove(room21);
+                                    room23.doorManipulation();
                                     break;
                                 case "1":
-                                    if (!room21.getNeighbours().contains(room22)) {
-                                        room21.getNeighbours().add(room22);
+                                    List<Room> remove=new ArrayList<>();
+                                    for(Room r: room23.neighbours){
+                                        remove.add(r);
                                     }
-                                    room22.getNeighbours().remove(room21);
-                                    
+                                    for(Room r: remove){
+                                        room23.neighbours.remove(r);
+                                        room23.hiddenNeighbours.add(r);
+                                        room23.directionOfConnecntion.add(2);
+                                    }
+                                    room23.doorManipulation();
                                     break;
                     
-                                case "2":
-                                    if (!room21.getNeighbours().contains(room22)) {
-                                        room21.getNeighbours().add(room22);
-                                    }
-                                    if (!room22.getNeighbours().contains(room21)) {
-                                        room22.getNeighbours().add(room21);
-                                    }
-                                    break;
-                        
                                 default:
                                     fileOutput.println("Hiba: Ismeretlen kapcsolat típus: " + words[3]);
                                     break;
