@@ -13,7 +13,7 @@ public class Student extends Character {
      * Konstruktor a Student osztályhoz.
      */
     public Student(Room r, PrintStream _output){
-        super(r);
+        super(r,_output);
         output = _output;
         name = "Student_"+globalID;
         globalID++;

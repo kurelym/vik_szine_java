@@ -14,7 +14,7 @@ public class Teacher extends Character {
      * Konstruktor a Teacher osztályhoz.
      */
     public Teacher(Room r, PrintStream _output){
-        super(r);
+        super(r,_output);
         output = _output;
         name = "Teacher_"+globalID;
         globalID++;

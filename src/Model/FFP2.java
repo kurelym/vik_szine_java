@@ -1,10 +1,16 @@
 package Model;
+
+import java.io.PrintStream;
+
 /**
  * Az FFP2-maszk tárgyak működéséért felel, kezeli a maszk használatát, és megszűnését.
  */
 public class FFP2 extends Item {
     private static int globalID = 0;
-    public FFP2(){
+    private PrintStream output;
+
+    public FFP2(PrintStream _output) {
+        output = _output;
         name = "FFP2_"+globalID;
         globalID++;
         durability = 1;
@@ -12,10 +18,9 @@ public class FFP2 extends Item {
         owner = null;
         location = null;
         fake = false;
-        //System.out.println("Function: FFP2 class + Constructor func");
+
     }
     public String getDescription(){
-        //System.out.println("Function: FFP2 class + getDescription func");
         if(owner ==null){
             return "Name: " +name+" Durability: "+durability+" isActive: "+activated+"Room: "+location.getID()+" isFake: "+fake;
         }
@@ -24,7 +29,10 @@ public class FFP2 extends Item {
         }
     }
     public boolean useAgainstGas(){
-        //System.out.println("Function: FFP2 class + useAgainstGas func");
+        if(output != null) {
+            output.println(this.name + " USED_AGAINST_GAS");
+        }
+
         if(fake){
             return false;
         }
