@@ -45,7 +45,7 @@ public class Student extends Character {
         alive = false;
         System.out.println(getName() + " kiesett a játékból");
         this.getRoom().removeCharacter(this);
-        return alive;
+        return true;
     }
 
     /**

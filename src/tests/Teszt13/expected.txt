@@ -1,5 +1,5 @@
 
 Teacher_1 MOVED Room_1
-GAS_ATTACKED
+GAS_ATTACK
 Teacher_1 DAZED
-Teacher_1 DROPPED CamambertCheese_2 IN 
+Teacher_1 DROPPED CamambertCheese_2 IN Room_1
