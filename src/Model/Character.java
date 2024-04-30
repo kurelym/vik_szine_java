@@ -33,8 +33,8 @@ public abstract class Character implements Description {
      */
     public boolean goToRoom(Room destination) {
         if(destination.addCharacter(this)){
-            location.removeCharacter(this);
-            location = destination;
+            /*location.removeCharacter(this);
+            location = destination;*/
             return true;
         }
         else {
@@ -192,8 +192,4 @@ public abstract class Character implements Description {
      * @return true, ha a karakterre hatással van a táblatörlő rongy, egyébként false.
      */
     abstract boolean ragAttack();
-
-    abstract boolean isTeacher();
-
-    abstract boolean isCleaner();
 }

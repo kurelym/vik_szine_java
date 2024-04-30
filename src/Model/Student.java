@@ -77,16 +77,5 @@ public class Student extends Character {
         boolean winner = hasTheSlideRule();
         return "Name: "+name+" Location: "+location.getID()+" isAlive: "+alive+" isDazed: "+dazed+itemnames+" Has the SlideRule: "+winner;
     }
-
-    @Override
-    public boolean isTeacher() {
-        return false;
-    }
-
-    @Override
-    public boolean isCleaner() {
-        return false;
-    }
-
 }
 

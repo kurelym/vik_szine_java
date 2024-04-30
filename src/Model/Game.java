@@ -403,7 +403,11 @@ public class Game implements Description {
 
         for(Teacher teacher : teachers) {  //Végigmegyünk a játékban lévő tanárok listáján
             //Minden tanár véletlenszerűen választ szobát a tartózkodási szobájának szomszédai közül (neighbours(0, size-1))
-            int i = random.nextInt(teacher.getRoom().getNeighbours().size());
+            int i;
+            if(teacher.getRoom().getNeighbours().size()>0){
+                i = random.nextInt(teacher.getRoom().getNeighbours().size());
+            }
+            else i=0;
             teacher.goToRoom(teacher.getRoom().getNeighbours().get(i));
             if(teacher.dazed) {
                 System.out.println(teacher.getName() + " elkábult, kimarad egy körből!");
@@ -465,7 +469,7 @@ public class Game implements Description {
             return gameOver;
         }
 
-        //manipulateRooms();
+        manipulateRooms();
 
         round++;
         System.out.println("Kör: " + round);
@@ -497,7 +501,7 @@ public class Game implements Description {
         }
     }
 
-        /**
+    /**
      * Oktato hozzaadasa a jatekhoz
      * 
      * @param t oktató
@@ -574,11 +578,6 @@ public class Game implements Description {
         for(CursedRoom cR:cursedRooms){
             cR.doorManipulation();
         }
-        //TODO: Mivel komplexebb lesz az algoritmus, így összecsapni nem akartam, szóval adok egy pongyolább leírást:
-        //Végig iterálunk a rooms listán és páratlan körben minden második szobára split-et hívunk, míg párosban merge-t a 
-        //az adott szoba egyik szomszédjára. Most ez jó kérdés, hogy hogyan lesz meghatározva, de a mostani fázisba írjuk bele, 
-        //hogy az első szomszédra, aztán majd ennél egy valamivel okosabb algoritmust kitalálunk mert ez ilyen ping pongos szar
-        //SPLIT-NÉL KELL, hogy a GAME IS ÉRTESÜLJÖN RÓLA
         if(round%2==1){
             for(int i = 0; i < rooms.size() - 1; i += 2) {
                 if(rooms.get(i).characters.size()==0){
@@ -604,7 +603,6 @@ public class Game implements Description {
                     Random random = new Random();
                     Room newRoom = rooms.get(i).getNeighbours().get(random.nextInt(0, rooms.get(i).getNeighbours().size()));
                     if (newRoom.characters.size()==0 && rooms.get(i).characters.size()==0){
-                        System.out.println("Meghívjuk a merge-t "+rooms.get(i).getName()+"-n");
                         rooms.get(i).Merge(newRoom);
                         System.out.println(rooms.get(i).getName() + " és " + newRoom.getName() + " összeolvadtak, a szoba új tulajdonságai:\n" + rooms.get(i).getDescription());
                         rooms.remove(newRoom);

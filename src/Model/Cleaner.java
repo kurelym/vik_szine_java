@@ -65,14 +65,4 @@ public class Cleaner extends Character  {
         //System.out.println("Function: Cleaner class + getDescription Func");
         return "Name: "+name+" Location: "+location.getID()+" isAlive: "+alive+" isDazed: "+dazed;
     }
-    @Override
-    public boolean isTeacher() {
-        return false;
-    }
-
-    @Override
-    public boolean isCleaner() {
-        return true;
-    }
-
 }

@@ -133,7 +133,9 @@ public class Room implements Description {
         //System.out.println("Function: Room class + removeNeighbour func");
         if(neighbours.contains(delete)){
             neighbours.remove(delete);
-            output.println(delete.name+" DECONNECTED_TO "+this.name);
+            if(output!=null){
+                output.println(delete.name+" DECONNECTED_TO "+this.name);
+            }    
         }
     }
     /**
@@ -165,8 +167,6 @@ public class Room implements Description {
                     stickyItems.add(ua);
                 }
             }
-            
-
             return true;
         }
         else{
@@ -279,7 +279,7 @@ public class Room implements Description {
                 Random random = new Random();
                 List<Integer> escape = new ArrayList<>();
                 for(int i=0;i<characters.size();i++){
-                    if(!characters.get(i).isCleaner()){
+                    if(!characters.get(i).equals(cleaner)){
                         if(!characters.get(i).isDazed()){
                             escape.add(i);
                         }
