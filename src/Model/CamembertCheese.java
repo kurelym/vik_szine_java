@@ -49,6 +49,9 @@ public class CamembertCheese extends Item{
     public boolean removeGas(){
         //System.out.println("Function: CamembertCheese class + removeGas func");
         activated=false;
+        if(output!=null){
+            output.println(this.name+" REMOVED_FROM "+location.name);
+        }
         this.decreaseDurability();
         return true;
     }

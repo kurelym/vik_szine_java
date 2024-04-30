@@ -32,10 +32,6 @@ public abstract class Character implements Description {
      * @return true, ha a karakter sikeresen átmegy a szobába, egyébként false.
      */
     public boolean goToRoom(Room destination) {
-        if(output != null) {
-            output.println(this.name + " MOVED " + destination.name);
-        }
-
         if(destination.addCharacter(this)){
             location.removeCharacter(this);
             location = destination;
@@ -61,10 +57,6 @@ public abstract class Character implements Description {
      * @return true, ha a tárgy sikeresen fel lett véve, egyébként false.
      */
     public boolean pickUpItem(Using item) {
-        if(output != null) {
-            output.println(this.name + " PICKED_UP " + item.getName());
-        }
-
         if(inventory.size()==5) {
             return false;
         }
@@ -73,6 +65,9 @@ public abstract class Character implements Description {
             item.setLocation(null);
             inventory.add(item);
             item.setOwner(this);
+            if(output != null) {
+                output.println(this.name + " PICKED_UP " + item.getName());
+            }
             item.useAtPickUp();
             return true;
         }
@@ -89,13 +84,12 @@ public abstract class Character implements Description {
      * @param item Az eldobni kívánt tárgy.
      */
     public void dropItem(Using item) {
-        if(output != null) {
-            output.println(this.name + " DROPPED " + item.getName() + " IN " + this.location);
-        }
-
         if(!inventory.isEmpty()){
             location.addItem(item);
             inventory.remove(item);
+            if(output != null) {
+                output.println(this.name + " DROPPED " + item.getName() + " IN " + this.location);
+            }
         }
     }
     /**
@@ -104,6 +98,9 @@ public abstract class Character implements Description {
     public void dropItem() {
         if(!inventory.isEmpty()){
             location.addItem(inventory.get(0));
+            if(output != null) {
+                output.println(this.name + " DROPPED " + inventory.get(0).getName() + " IN " + this.location);
+            }
             inventory.remove(0);
         }
     }
@@ -128,6 +125,9 @@ public abstract class Character implements Description {
     public void dropAllItem(){
         for(Using u:inventory){
             location.addItem(u);
+            if(output != null) {
+                output.println(this.name + " DROPPED " + u.getName() + " IN " + this.location);
+            }
         }
         inventory.clear();
     }
@@ -137,10 +137,6 @@ public abstract class Character implements Description {
      * @return true, ha a karakter meg tudja magát védeni a gáz támadás ellen, egyébként false.
      */
     public boolean gasAttack() {
-        if(output != null) {
-            output.println("GAS_ATTACKED " + this.name);
-        }
-
         if(!this.inventory.isEmpty()) {
             for(Using u :  inventory){
                 if(u.useAgainstGas()){
@@ -152,6 +148,9 @@ public abstract class Character implements Description {
         }
         System.out.println(getName() + " gáz támadás ért, sajnos nem volt módod védekezni ellene");
         dazed = true;
+        if(output!=null){
+            output.println(this.name+" DAZED");
+        }
         dropAllItem();
         return false;
     }

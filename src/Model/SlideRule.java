@@ -34,9 +34,15 @@ public class SlideRule extends Item{
     public boolean isRealSlideRule(){
         //System.out.println("Function: SlideRule class + finishGame func");
         if(!fake){
+            if(output!=null){
+                output.println("GAME_WON");
+            }
             return true;
         }
         else{
+            if(output!=null){
+                output.println("GAME_NOT_WON");
+            }
             return false;
         }
     }

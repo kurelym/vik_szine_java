@@ -55,6 +55,9 @@ public class Transistor extends Item{
             removePair();
             tmp.addItem(this);
             tmp=null;
+            if(output!=null){
+                output.println(this.name+" USED_BY "+this.owner.name);
+            }
         }
 
         else{
@@ -67,6 +70,7 @@ public class Transistor extends Item{
             owner.location.addItem(this);
             if(output!=null){
                 output.println(this.name+" PAIRED_WITH "+_new.name);
+                output.println(_new.name+" PAIRED_WITH "+this.name);
             }
         }
         return true;
@@ -99,9 +103,6 @@ public class Transistor extends Item{
 
                 if(input<=useableItems.size()){
                     if(this.pairing(useableItems.get(input-1))){
-                        if(output!=null){
-                            output.println(this.name+" USED_BY "+this.owner.name);
-                        }
                         return true;
                     }
                     else{
