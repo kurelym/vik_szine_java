@@ -1,18 +1,23 @@
 package Model;
 
+import java.io.PrintStream;
+import java.util.List;
+
 /**
  * Az osztály egy hallgatót reprezentál a játékban.
  */
 public class Student extends Character {
-    private static int globalID = 0;
+    private static int globalID = 1;
+    private PrintStream output;
     /**
      * Konstruktor a Student osztályhoz.
      */
-    public Student(){
-        super();
+    public Student(Room r, PrintStream _output){
+        super(r,_output);
+        output = _output;
         name = "Student_"+globalID;
         globalID++;
-        System.out.println("Function: Student osztály + Konstruktor Func");
+        //System.out.println("Function: Student osztály + Konstruktor Func");
         
     }
 
@@ -20,9 +25,12 @@ public class Student extends Character {
      * Metódus egy tárgy használatára (aktiválására) a hallgató által.
      * @param item A használni kívánt tárgy indexe a táskában.
      */
-    public void useItem(int idx, Transistor anotherItem){
-        System.out.println("Function: Student osztály + useItem Func");
-        inventory.get(idx).useSelectedItem(anotherItem);
+    public void useItem(int idx){
+        //System.out.println("Function: Student osztály + useItem Func");
+        inventory.get(idx).useSelectedItem();
+        if(output!=null){
+            output.println(this.name+" USING "+inventory.get(idx).getName());
+        }
     }
 
     /**
@@ -30,13 +38,16 @@ public class Student extends Character {
      * @return true, ha a hallgató meg tudja védeni magát az oktatóval szemben, egyébként false.
      */
     public boolean teacherAttack(){
-        System.out.println("Function: Student osztály + teacherAttack Func");
+        //System.out.println("Function: Student osztály + teacherAttack Func");
         for(Using u: inventory){
             if(u.useAgainstTeacher()){
+                System.out.println(getName() + " megvédte magát " + u.getName() + "-t használva");
                 return alive;
             }
         }
         alive = false;
+        System.out.println(getName() + " kiesett a játékból");
+        this.getRoom().removeCharacter(this);
         return alive;
     }
 
@@ -45,8 +56,12 @@ public class Student extends Character {
      * @return Mindig false, mivel a táblatörlő rongy a hallgatókra nincs hatással.
      */
     public boolean ragAttack(){
-        System.out.println("Function: Student osztály + ragAttack Func");
+        //System.out.println("Function: Student osztály + ragAttack Func");
         return false;
+    }
+
+    public List<Using> getInventory(){
+        return inventory;
     }
 
     /**
@@ -54,8 +69,8 @@ public class Student extends Character {
      * @return Egy stringbe adja vissza a halggatóról a leíást
      */
     public String getDescription() {
-        System.out.println("Function: Student osztály + getDescription Func");
-        String itemnames = "Items:";
+        //System.out.println("Function: Student osztály + getDescription Func");
+        String itemnames = " Items:";
         for(Using u:inventory){
             itemnames = itemnames + " "+u.getName();
         }

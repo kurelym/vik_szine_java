@@ -1,0 +1,1 @@
+DROP Student_1 TVSZ_1

@@ -1,0 +1,2 @@
+Cleaner_1 MOVED Room_1
+Student_1 MOVED Room_2

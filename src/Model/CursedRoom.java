@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,26 +11,32 @@ import java.util.Random;
 public class CursedRoom extends Room{
     private List<Room> hiddenNeighbours;
     private List<Integer> directionOfConnecntion;
-    private static int globalID = 0;
+    private PrintStream output;
+    //private static int globalID = 0;
     /**
      * Létrehozza az osztályt
      */
-    public CursedRoom(){
-        name="CursedRoom_"+globalID;
-        globalID++;
+    public CursedRoom(PrintStream _output){
+        super(_output);
         hiddenNeighbours=new ArrayList<>(); 
         directionOfConnecntion = new ArrayList<>();
-        System.out.println("Function: CursedRoom class + constructor func");
+        //System.out.println("Function: CursedRoom class + constructor func");
     }
     /**
      * Amennyiben a hiddenNeighbours lista üres, eltüntet ajtókat, amennyiben nem üres, előhoz ajtókat
      */
     public void doorManipulation(){
-        System.out.println("Function: CursedRoom class + doorManipulation func");
-        if(characters.isEmpty()){
+        //System.out.println("Function: CursedRoom class + doorManipulation func");
+        int non_empty_neighbours = 0;
+        for(Room n: this.neighbours){
+            if(n.characters.size()!=0){
+                non_empty_neighbours++;
+            }
+        }
+        if(characters.isEmpty() && non_empty_neighbours==0){
             if(hiddenNeighbours.isEmpty()){
                 Random r = new Random();
-                int id = r.nextInt(0, neighbours.size()-1);
+                int id = r.nextInt(0, neighbours.size());
                 if(neighbours.get(id).isNeighbours(this)){
                     neighbours.get(id).removeNeighbour(this);
                     directionOfConnecntion.add(2);
@@ -41,6 +48,7 @@ public class CursedRoom extends Room{
                     hiddenNeighbours.add(neighbours.get(id));
                     this.removeNeighbour(neighbours.get(id));
                 }
+                System.out.println(this.getName()+" ajtajai eltűntek!");
             }
             else{
                 for(int i=0;i<hiddenNeighbours.size();i++){
@@ -54,6 +62,7 @@ public class CursedRoom extends Room{
                 }
                 hiddenNeighbours.clear();
                 directionOfConnecntion.clear();
+                System.out.println(this.getName()+" ajtajai megjelentek!");
             }
         }
     }
@@ -63,7 +72,7 @@ public class CursedRoom extends Room{
      */
     @Override
     public String getDescription() {
-        System.out.println("Function: CursedRoom class + getDescription Func");
+        //System.out.println("Function: CursedRoom class + getDescription Func");
         String members ="Characters:";
         String stuff ="Items:";
         String stuffA ="Activated Items:";

@@ -1,0 +1,21 @@
+-- Rooms --
+Room_1 0
+Room_2 0
+
+-- Room Connections --
+Room_1 Room_2 2
+
+-- Characters --
+Teacher_1 T Room_2
+
+-- Objects --
+CamambertCheese_1 CC 1
+CamambertCheese_2 CC 1
+
+-- Objects in Rooms --
+
+-- Activated Objects in Rooms --
+Room_1 CamambertCheese_1
+
+-- Objects Carried by Characters --
+Teacher_1 CamambertCheese_2

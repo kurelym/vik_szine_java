@@ -1,0 +1,17 @@
+-- Rooms --
+Room_1 0
+
+-- Room Connections --
+
+-- Characters --
+Student_1 S Room_1
+
+-- Objects --
+DirtyRag_1 DR 1
+
+-- Objects in Rooms --
+Room_1 DirtyRag_1
+
+-- Activated Objects in Rooms --
+
+-- Objects Carried by Characters --

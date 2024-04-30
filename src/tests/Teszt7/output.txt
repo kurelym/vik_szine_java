@@ -1,0 +1,4 @@
+Character MOVED Room_1
+Student_1 MOVED Room_1
+Character MOVED Room_1
+Student_2 MOVED Room_1

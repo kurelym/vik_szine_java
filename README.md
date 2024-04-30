@@ -1,3 +1,6 @@
+Elindítani: 
+java -jar skeletonTest.jar
+
 1 Áttekintés
 1.1 Általános áttekintés
 Társasjáték szerű, körökre osztott többjátékosra szabott 2D-s program. A játékot egy

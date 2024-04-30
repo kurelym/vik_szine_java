@@ -1,0 +1,1 @@
+Room_2 DECONNECTED_FROM Room_1

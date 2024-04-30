@@ -1,0 +1,2 @@
+PICKUP Student_1 Transistor_1
+PICKUP Student_1 Transistor_2

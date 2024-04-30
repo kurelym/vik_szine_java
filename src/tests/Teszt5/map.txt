@@ -1,0 +1,17 @@
+-- Rooms --
+Room_1 0
+
+-- Room Connections --
+
+-- Characters --
+Student_1 S Room_1
+
+-- Objects --
+TVSZ_1 TVSZ 1
+
+-- Objects in Rooms --
+
+-- Activated Objects in Rooms --
+
+-- Objects Carried by Characters --
+Student_1 TVSZ_1

@@ -1,0 +1,3 @@
+
+Cleaner_1 MOVED Room_1
+CamembertCheese_1 REMOVED_FROM Room_1

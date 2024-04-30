@@ -1,0 +1,21 @@
+-- Rooms --
+Room_1 0
+Room_2 0
+
+-- Room Connections --
+Room_1 Room_2 2
+
+-- Characters --
+Teacher_1 T Room_2
+Student_1 S Room_1
+
+-- Objects --
+HolyBeer_1 HB 0
+
+-- Objects in Rooms --
+
+-- Activated Objects in Rooms --
+
+-- Objects Carried by Characters --
+Student_1 HolyBeer_1
+

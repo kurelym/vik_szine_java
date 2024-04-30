@@ -1,22 +1,26 @@
 package Model;
+
+import java.io.PrintStream;
+
 /**
  * A Szent söröspoharak tárgyak működéséért felel, 
  * és számon tartja hogy hány körig tart még a hatása, és kezeli a megszűnését.
  */
 public class HolyBeer extends Item{
-    private static int globalID = 0;
-    public HolyBeer(){
+    private static int globalID = 1;
+    private PrintStream output;
+
+    public HolyBeer(PrintStream _output) {
+        output = _output;
         name = "HolyBeer_"+globalID;
         globalID++;
-        durability = 3;
+        durability = 4;
         activated =false;
         owner = null;
         location = null;
         fake = false;
-        System.out.println("Function: HolyBeer class + Constructor func");
     }
     public String getDescription(){
-        System.out.println("Function: HolyBeer class + getDescription func");
         if(owner ==null){
             return "Name: " +name+" Durability: "+durability+" isActive: "+activated+"Room: "+location.getID()+" isFake: "+fake;
         }
@@ -25,61 +29,61 @@ public class HolyBeer extends Item{
         }
         
     }
-    public void useAtPickUp(){
-        System.out.println("Function: HolyBeer class + useAtPickUp func");
+    public void useAtPickUp() {
         activated=true;
-        if(owner!=null){
+        if(owner.inventory.size()>1){
             owner.dropItem();
         }
     }
     public boolean useAgainstTeacher(){
-        System.out.println("Function: HolyBeer class + useAgainstTeacher func");
+        if(activated){
+            if(output!=null){
+                output.println(this.name+" USED_AGAINST_TEACHER");
+            }
+        }
         return activated;
     }
     public void roundPassed(){
-        System.out.println("Function: HolyBeer class + roundPassed func");
         if(durability>0){
             durability--;
+            if(durability!=0) System.out.println(getName() + " még " + durability + " körig hat!");
             if(durability==0){
                 activated=false;
+                System.out.println(getName() + " nem hat tovább!");
             }
         }
     }
+
+    public boolean useable() {
+        return false;
+    }
+
     //Érdemi működést nem valósít meg
-    public boolean useSelectedItem(Transistor anotherItem){
-        System.out.println("Function: HolyBeer class + useSelectedItem func");
+    public boolean useSelectedItem(){
         return false;
     }
     public boolean useIt(){
-        System.out.println("Function: HolyBeer class + useIt func");
         return false;
     }
     public boolean useAgainstGas(){
-        System.out.println("Function: HolyBeer class + useAgainstGas func");
         return false;
     }
-    public boolean finishGame(){
-        System.out.println("Function: HolyBeer class + finishGame func");
+    public boolean isRealSlideRule(){
         return false;
     }
     public boolean pairing(Transistor pair){
-        System.out.println("Function: HolyBeer class + pairing func");
         return false;
     }
     public boolean daze(Character target){
-        System.out.println("Function: HolyBeer class + daze func");
         return false;
     }
     public boolean removePair(){
-        System.out.println("Function: HolyBeer class + removePair func");
         return false;
     }
     public boolean removeGas(){
-        System.out.println("Function: HolyBeer class + removeGas func");
         return false;
     }
     public boolean cleanTheRoom(Room r){
-        System.out.println("Function: HolyBeer class + cleanTheRoom func");
         return false;
     }
 }
