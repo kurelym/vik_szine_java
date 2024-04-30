@@ -162,24 +162,20 @@ public class Game implements Description {
                         System.err.println(parts[0]+" "+ parts[1]+" "+parts[2]);
                         continue;
                     }
-
                     switch (characterType) {
                         case "S":
                             Student student = new Student(room,output);
                             students.add(student);
-                            room.addCharacter(student);
                             characterMap.put(student.getName(), student);
                             break;
                         case "T":
                             Teacher teacher = new Teacher(room,output);
                             teachers.add(teacher);
-                            room.addCharacter(teacher);
                             characterMap.put(teacher.getName(), teacher);
                             break;
                         case "C":
                             Cleaner cleaner = new Cleaner(room,output);
                             cleaners.add(cleaner);
-                            room.addCharacter(cleaner);
                             characterMap.put(cleaner.getName(), cleaner);
                             break;
                         default:

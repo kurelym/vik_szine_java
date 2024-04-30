@@ -144,7 +144,7 @@ public class Room implements Description {
      * @return a szobába való lépés sikerességét adja vissza
      */
     public boolean addCharacter(Character character){
-        //System.out.println("Function: Room class + addCharacter func"+name+" - "+anotherone.getName());
+        //System.out.println("Function: Room class + addCharacter func"+name+" - "+character.getName());
         if(capacity>characters.size()){
             if(output!=null){
                 output.println(character.name+" MOVED "+this.name);
