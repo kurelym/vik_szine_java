@@ -1,34 +1,34 @@
 -- Rooms --
-Room_0 0
-Room_1 1
-Room_2 0
+Room_1 0
+Room_2 1
 Room_3 0
-Room_4 1
+Room_4 0
+Room_5 1
 -- Room Connections --
-Room_0 Room_1 2
-Room_1 Room_2 2
-Room_2 Room_3 2
-Room_3 Room_4 2
+Room_1 Room_1 2
+Room_2 Room_2 2
+Room_3 Room_3 2
+Room_4 Room_4 2
 -- Characters --
 -- Objects --
-HolyBeer_0 H 0
-FFP2_0 F 0
-FFP2_1 F 1
-TVSZ_0 TVSZ 0
-TVSZ_1 TVSZ 1
-SlideRule_0 SR 0
-SlideRule_1 SR 1
-CamambertCheese_0 CC 0
-CamambertCheese_1 CC 1
-Transistor_0 T 0
+HolyBeer_1 H 0
+FFP2_1 F 0
+FFP2_2 F 1
+TVSZ_1 TVSZ 0
+TVSZ_2 TVSZ 1
+SlideRule_1 SR 0
+SlideRule_2 SR 1
+CamambertCheese_1 CC 0
+CamambertCheese_2 CC 1
 Transistor_1 T 0
-DirtyRag_0 DR 0
-DirtyRag_1 DR 1
-WunderBaum_0 WB 0
+Transistor_2 T 0
+DirtyRag_1 DR 0
+DirtyRag_2 DR 1
+WunderBaum_1 WB 0
 -- Objects in Rooms --
-Room_0 HolyBeer_0 CamambertCheese_0 CamambertCheese_1 DirtyRag_0
-Room_1 FFP2_1 SlideRule_0
-Room_2 Transistor_0 TVSZ_0
-Room_3 SlideRule_1 FFP2_0
-Room_4 Transistor_1 WunderBaum_0
+Room_1 HolyBeer_1 CamambertCheese_1 CamambertCheese_2 DirtyRag_1
+Room_2 FFP2_2 SlideRule_1
+Room_3 Transistor_1 TVSZ_1
+Room_4 SlideRule_2 FFP2_1
+Room_5 Transistor_2 WunderBaum_1
 -- Objects Carried by Characters --

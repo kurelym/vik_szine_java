@@ -6,7 +6,7 @@ import java.io.PrintStream;
  * A WunderBaum tárgy működéséért felel. Kezeli a WunderBaum használatát és megszűnését.
  */
 public class WunderBaum extends Item{
-    private static int globalID = 0;
+    private static int globalID = 1;
     private PrintStream output;
     public WunderBaum(PrintStream _output){
         output = _output;

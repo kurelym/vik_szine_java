@@ -3,7 +3,7 @@ package Model;
 import java.io.PrintStream;
 
 public class Cleaner extends Character  {
-    private static int globalID = 0;
+    private static int globalID = 1;
     private PrintStream output;
     public Cleaner(Room r, PrintStream _output){
         super(r,_output);

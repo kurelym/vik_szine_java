@@ -6,7 +6,7 @@ import java.io.PrintStream;
  * A Dobozolt káposztás camembert tárgy működéséért felel. Kezeli a sajt használatát és megszűnését.
  */
 public class CamembertCheese extends Item{
-    private static int globalID = 0;
+    private static int globalID = 1;
     private PrintStream output;
     public CamembertCheese(PrintStream _output){
         output = _output;

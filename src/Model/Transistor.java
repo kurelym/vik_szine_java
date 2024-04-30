@@ -10,7 +10,7 @@ import java.util.Scanner;
  * illetve ennek a kapcsolatnak a bontását.
  */
 public class Transistor extends Item{
-    private static int globalID = 0;
+    private static int globalID = 1;
     private Transistor pair;
     private PrintStream output;
     public Transistor(PrintStream _output){
