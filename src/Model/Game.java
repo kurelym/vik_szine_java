@@ -68,6 +68,10 @@ public class Game implements Description {
         // Feldolgozza a fájl tartalmát soronként
         for (String line : lines) {
             line = line.trim();
+            if (line.isEmpty()){
+                System.err.println("Ures sor volt");
+                continue;
+            } 
 
             switch (line) {
                 case "-- Rooms --":
@@ -257,6 +261,7 @@ public class Game implements Description {
 
                 if (current_room == null) {
                     System.err.println("Error: Room " + roomName + " not found.");
+                    System.err.println(line);
                     continue;
                 }
 
@@ -276,6 +281,7 @@ public class Game implements Description {
                         current_room.addItem(item); // A szobába felvesszük a tárgyat
                     } else {
                         System.err.println("Error: Item " + itemName + " not found in items list.");
+                        System.err.println(line);
                     }
                 }
                 break;
@@ -289,6 +295,7 @@ public class Game implements Description {
 
                     if (current_room == null) {
                         System.err.println("Error: Room " + roomName + " not found.");
+                        System.err.println(line);
                         continue;
                     }
 
@@ -308,6 +315,7 @@ public class Game implements Description {
                             current_room.addItem(item); // A szobába felvesszük a tárgyat
                         } else {
                             System.err.println("Error: Item " + itemName + " not found in items list.");
+                            System.err.println(line);
                         }
                     }
                     break;
@@ -321,6 +329,7 @@ public class Game implements Description {
 
                     if (this_character == null) {
                         System.err.println("Error: Character " + charName + " not found.");
+                        System.err.println(line);
                         continue;
                     }
 
@@ -340,6 +349,7 @@ public class Game implements Description {
                             this_character.add(item); // Hozzáadjuk a karakterhez
                         } else {
                             System.err.println("Error: Item " + itemName + " not found in items list.");
+                            System.err.println(line);
                         }
                     }
                     break;
