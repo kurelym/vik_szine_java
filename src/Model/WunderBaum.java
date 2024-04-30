@@ -34,19 +34,20 @@ public class WunderBaum extends Item{
         if(output!=null){
             output.println(this.name+" USED_BY "+owner.name);
         }
-        return owner.getRoom().addItem(this);
+        return true;
     }
     public boolean cleanTheRoom(Room r){
         //System.out.println("Function: WunderBaum class + cleanTheRoom func");
         activated=true;
         this.decreaseDurability();
         r.Clean();
+        activated=false;
         return true;
     }
     public boolean useSelectedItem(){
         //System.out.println("Function: WunderBaum class + useSelectedItem func");
         boolean success = useIt();
-        cleanTheRoom(location);
+        cleanTheRoom(owner.location);
         return success;
     }
 

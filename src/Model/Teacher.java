@@ -57,8 +57,10 @@ public class Teacher extends Character {
                 }
             }
             originalCharacters.removeAll(toRemove);
-            if(output!=null){
-                output.println(this.name+" KILLING_IN "+location.name);
+            if (toRemove.size()!=0){
+                if(output!=null){
+                    output.println(this.name+" KILLING_IN "+location.name);
+                }
             }
         }
     }
@@ -78,6 +80,9 @@ public class Teacher extends Character {
     public boolean ragAttack(){
         //System.out.println("Function: Teacher class + ragAttack Func");
         dazed = true;
+        if(output!=null){
+            output.println("RAG_ATTACKED "+this.name);
+        }
         return true;
     }
     /**

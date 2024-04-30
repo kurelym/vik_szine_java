@@ -161,6 +161,9 @@ public class Room implements Description {
                 }
             }
             characters.add(character);
+            if(output!=null){
+                output.println(character.name+" MOVED "+this.name);
+            }
             return true;
         }
         else{

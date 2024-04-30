@@ -24,9 +24,6 @@ public class Cleaner extends Character  {
             location.removeCharacter(this);
             location = destination;
             destination.Clean(this);
-            if(output!=null){
-                output.println(this.name+" MOVED "+destination.name);
-            }
             return true;
         }
         else{
