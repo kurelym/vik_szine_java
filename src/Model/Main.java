@@ -134,9 +134,7 @@ public class Main {
                             Teacher t = (Teacher)character;
                             t.tryToKill();
                         }
-                        catch(Exception e){
-
-                        }
+                        catch(Exception e){}
                         break;
 
                         case "USE":

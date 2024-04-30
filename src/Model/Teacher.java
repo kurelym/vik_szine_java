@@ -48,11 +48,12 @@ public class Teacher extends Character {
             List<Character> toRemove = new ArrayList<>();
     
             for (Character c : characters) {
-                boolean survived = c.teacherAttack();
-                if (survived) {
+                boolean dead = c.teacherAttack();
+                if (dead) {
                     toRemove.add(c);
                 }
             }
+
             originalCharacters.removeAll(toRemove);
             if (toRemove.size()!=0){
                 if(output!=null){

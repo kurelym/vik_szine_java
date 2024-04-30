@@ -52,6 +52,9 @@ public class SlideRule extends Item{
     }
 
     public void useAtPickUp(){
+        for(Character c: owner.location.characters){
+            System.out.println(c.name);
+        }
         isRealSlideRule();
     }
 
