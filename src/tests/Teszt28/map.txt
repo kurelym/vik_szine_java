@@ -19,7 +19,7 @@ Student_5 S Room_3
 CamembertCheese CC 1
 Transistor_1 T 1
 
--- Objects in Room --
+-- Objects in Rooms --
 Room_1 Transistor
 
 -- Activated Objects in Rooms --

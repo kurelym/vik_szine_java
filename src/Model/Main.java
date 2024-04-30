@@ -129,10 +129,13 @@ public class Main {
                         }
             
                         character.goToRoom(destinationRoom);
-                        /*if(character.isTeacher()){
-                            Teacher t=(Teacher)character;
+                        try{
+                            Teacher t = (Teacher)character;
                             t.tryToKill();
-                        }*/
+                        }
+                        catch(Exception e){
+
+                        }
                         break;
 
                         case "USE":

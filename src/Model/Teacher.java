@@ -49,7 +49,7 @@ public class Teacher extends Character {
     
             for (Character c : characters) {
                 boolean survived = c.teacherAttack();
-                if (!survived) {
+                if (survived) {
                     toRemove.add(c);
                 }
             }

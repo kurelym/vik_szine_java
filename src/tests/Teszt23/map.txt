@@ -1,4 +1,4 @@
--- Rooms –-
+-- Rooms --
 Room_1 0
 
 -- Room Connections --
@@ -7,7 +7,7 @@ Room_1 0
 
 -- Objects --
 
--- Objects in Room --
+-- Objects in Rooms --
 
 -- Activated Objects in Rooms --
 
