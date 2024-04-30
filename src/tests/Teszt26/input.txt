@@ -1,0 +1,2 @@
+BUILDMAP map.txt
+DOORMANIPULATION Room_1 Room_2 1

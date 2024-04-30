@@ -1,0 +1,22 @@
+-- Rooms --
+Room_1 0
+Room_2 0
+
+-- Room Connections --
+Room_1 Room_2 2
+
+-- Characters --
+Student_1 S Room_1
+
+-- Objects --
+CamembertCheese_1 CC 1
+WunderBaum_1 WB 1
+FFP2_1 F 1
+
+-- Objects in Room --
+
+-- Activated Objects in Rooms --
+Room_2 CamembertCheese_1
+
+-- Objects Carried by Characters --
+Student_1 FFP2_1 WunderBaum_1

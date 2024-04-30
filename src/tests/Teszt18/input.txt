@@ -1,0 +1,2 @@
+BUILDMAP map.txt
+PICKUP Teacher_1 SlideRule_1

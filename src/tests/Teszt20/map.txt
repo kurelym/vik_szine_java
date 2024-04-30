@@ -1,0 +1,17 @@
+-- Rooms –-
+Room_1 0
+
+-- Room Connections –-
+
+-- Characters –-
+Student_1 S Room_1
+
+-- Objects –-
+SlideRule SR 1
+
+-- Objects in Room –-
+Room_1 SlideRule
+
+-- Activated Objects in Rooms –-
+
+-- Objects Carried by Characters –-

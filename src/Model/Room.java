@@ -41,7 +41,7 @@ public class Room implements Description {
     /**
      * Az osztódó szoba két olyan szobára válik szét, amelyek egymás szomszédai lesznek, és megosztoznak a korábbi szoba képességein és szomszédain (a korábbi szomszédok vagy csak az egyik, vagy csak a
      * másik “új” szobának lesznek szomszédai). Csak olyan szobák transzformálódhatnak amelyekben nincsen se hallgató se oktató.
-     * AKTIVÁLT ITEM_EK MARADNAK
+     * AKTIVALT ITEM_EK MARADNAK
      */
     public Room Split(){
         Room newroom = new Room(output);
@@ -69,7 +69,7 @@ public class Room implements Description {
     /**
      * Két szomszédos szoba egyesülésével létrejött szoba a korábbi két szoba tulajdonságaival és szomszédaival rendelkezik,de a befogadóképessége a nagyobb szoba
      * befogadóképességével lesz azonos. Csak olyan szobák transzformálódhatnak amelyekben nincsen se hallgató se oktató.
-     * RAGADÓS TÁRGYAK NEM KERÜLNEK ÁT A MERGE SORÁN
+     * RAGADÓS TARGYAK NEM KERÜLNEK AT A MERGE SORAN
      * @param r az a szoba amivel egyesül ez a helyiség
      */
     public void Merge(Room r){
@@ -144,6 +144,11 @@ public class Room implements Description {
     public boolean addCharacter(Character character){
         //System.out.println("Function: Room class + addCharacter func"+name+" - "+anotherone.getName());
         if(capacity>characters.size()){
+            if(output!=null){
+                output.println(character.name+" MOVED "+this.name);
+            }
+            characters.add(character);
+            character.location = this;
             for(Using aI:activatedItems){
                 aI.daze(character);
                 if(character.dazed) {
@@ -160,10 +165,8 @@ public class Room implements Description {
                     stickyItems.add(ua);
                 }
             }
-            characters.add(character);
-            if(output!=null){
-                output.println(character.name+" MOVED "+this.name);
-            }
+            
+
             return true;
         }
         else{
@@ -207,7 +210,7 @@ public class Room implements Description {
             u.setLocation(this);
             u.setOwner(null);
             if(output!=null){
-                output.println(u.getName()+" ADDED_TO "+this.name);
+                //output.println(u.getName()+" ADDED_TO "+this.name);
             }
         }
         return true;

@@ -1,0 +1,2 @@
+BUILDMAP map.txt
+SPLIT Room_1
