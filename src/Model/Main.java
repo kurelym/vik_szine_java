@@ -173,7 +173,6 @@ public class Main {
                             break;
 
                         case "DROP":
-                           
                             characterName = words[1];
                             itemName = words[2];
                 
@@ -182,8 +181,7 @@ public class Main {
                                 fileOutput.println("Hiba: Nem található karakter ezzel a névvel: " + characterName);
                                 break;
                             }
-
-                            int idx = game.findItemIndexByNameAtStudent(itemName,(Student)character3);
+                            int idx = game.findItemIndexByNameAtCharacter(itemName,character3);
                             if(idx < 0){
                                 fileOutput.println("Hiba: Nem található item ezzel a névvel: " + itemName+", ebben a szobában: "+character3.location.getName());
                                 break;

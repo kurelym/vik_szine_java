@@ -733,4 +733,15 @@ public class Game implements Description {
         }
         return null; // Ha nem találtunk ilyen nevű tárgyat
     }
+
+    public int findItemIndexByNameAtCharacter(String itemName, Character c) {
+        int i= 0;
+        for (Using item : c.inventory) {
+            if (item.getName().equals(itemName)) {
+                return i; // Ha megtaláltuk a tárgyat
+            }
+            i++;
+        }
+        return -1;
+    }
 }
