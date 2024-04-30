@@ -1,2 +1,1 @@
-BUILDMAP map.txt
 MOVE Teacher_1 Room_1

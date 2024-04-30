@@ -1,2 +1,1 @@
-BUILDMAP map.txt
 DROP Teacher_1 TVSZ_1
