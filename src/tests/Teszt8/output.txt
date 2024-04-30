@@ -1,4 +1,3 @@
-MAP BUILT
 Transistor_2 USED_BY Student_1
 Student_1 DROPPED Transistor_2 IN Room_2
 Student_1 MOVED Room_1

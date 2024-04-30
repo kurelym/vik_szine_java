@@ -1,4 +1,3 @@
-BUILDMAP map.txt
 MOVE Cleaner_1 Room_1
 MOVE Cleaner_1 Room_3
 MOVE Student_1 Room_1
