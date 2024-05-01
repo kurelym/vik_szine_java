@@ -48,7 +48,7 @@ public class Main {
         int studentCnt = 0;
         int teacherCnt = 0;
         int cleanerCnt = 0;
-        String filePath = "src\\Model\\map.txt";
+        String filePath = "Model\\map.txt";
         Game game = new Game();
         game.buildGame(filePath);
 
