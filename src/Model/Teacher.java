@@ -48,15 +48,12 @@ public class Teacher extends Character {
             List<Character> toRemove = new ArrayList<>();
     
             for (Character c : characters) {
-                if (c.isTeacher() || c.isCleaner()) {
-                    continue;
-                }
-                System.out.println(this.getName() + " megtámadta " + c.getName() + "-t");
-                boolean survived = c.teacherAttack();
-                if (!survived) {
+                boolean dead = c.teacherAttack();
+                if (dead) {
                     toRemove.add(c);
                 }
             }
+
             originalCharacters.removeAll(toRemove);
             if (toRemove.size()!=0){
                 if(output!=null){
@@ -98,14 +95,4 @@ public class Teacher extends Character {
         }
         return "Name: "+name+" Location: "+location.getID()+" isAlive: "+alive+" isDazed: "+dazed+itemnames;
     }
-    @Override
-    public boolean isTeacher() {
-        return true;
-    }
-
-    @Override
-    public boolean isCleaner() {
-        return false;
-    }
-
 }

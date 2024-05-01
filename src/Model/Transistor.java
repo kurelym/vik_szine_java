@@ -47,36 +47,35 @@ public class Transistor extends Item{
         }
         return true;
     }
-    public boolean pairing(Using _pair){
+    public boolean pairing(Transistor _pair){
         //System.out.println("Function: Transistor class + pairing func");
-        if(this.pair!=null){
-            Room tmp=owner.location;
-            if(output!=null){
-                output.println(this.name+" USED_BY "+this.owner.name);
-                output.println(this.owner.name+" DROPPED "+this.name+" IN "+tmp.name);
-            }
-            owner.goToRoom(this.pair.location);
-            removePair();
-            tmp.addItem(this);
-            tmp=null;
-        }
-
-        else{
-            if(_pair.getName().contains("Transistor")){
-                Transistor _new = (Transistor)_pair;
-                this.pair = _new;
-                activated = true;
-                _new.pair = this;
-                _new.activated = true;
-                owner.inventory.remove(this);
+        
+            if(this.pair!=null){
+                Room tmp=owner.location;
                 if(output!=null){
-                    output.println(this.name+" PAIRED_WITH "+_new.name);
-                    output.println(_new.name+" PAIRED_WITH "+this.name);
+                    output.println(this.name+" USED_BY "+this.owner.name);
+                    output.println(this.owner.name+" DROPPED "+this.name+" IN "+tmp.name);
                 }
-                owner.location.addItem(this);
+                owner.goToRoom(this.pair.location);
+                removePair();
+                tmp.addItem(this);
+                tmp=null;
             }
-            else return false;
-        }
+    
+            else if(_pair!=null){
+                
+                    this.pair = _pair;
+                    activated = true;
+                    _pair.pair = this;
+                    _pair.activated = true;
+                    
+                    if(output!=null){
+                        output.println(this.name+" PAIRED_WITH "+_pair.name);
+                        output.println(_pair.name+" PAIRED_WITH "+this.name);
+                    }
+                    
+            }
+        
         return true;
     }
 
@@ -106,10 +105,11 @@ public class Transistor extends Item{
                 }
 
                 if(input<=useableItems.size()){
-                    if(this.pairing(useableItems.get(input-1))){
+                    try{
+                        this.pairing((Transistor)useableItems.get(input-1));
                         return true;
                     }
-                    else{
+                    catch(Exception e){
                         System.out.println("Ezt a két tárgyat nem lehet párosítani");
                     }
                 }

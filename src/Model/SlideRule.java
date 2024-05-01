@@ -51,6 +51,10 @@ public class SlideRule extends Item{
         return false;
     }
 
+    public void useAtPickUp(){
+        isRealSlideRule();
+    }
+
     //Érdemi működést megvalósító függvénye
     public boolean useSelectedItem(){
         //System.out.println("Function: SlideRule class + useSelectedItem func");
@@ -59,10 +63,6 @@ public class SlideRule extends Item{
     public void roundPassed(){
         //System.out.println("Function: SlideRule class + roundPassed func");
         
-    }
-    public void useAtPickUp(){
-        //System.out.println("Function: SlideRule class + useAtPickUp func");
-        isRealSlideRule();
     }
     public boolean useAgainstGas(){
         //System.out.println("Function: SlideRule class + useAgainstGas func");
@@ -76,7 +76,7 @@ public class SlideRule extends Item{
         //System.out.println("Function: SlideRule class + useAgainstTeacher func");
         return false;
     }
-    public boolean pairing(Using pair){
+    public boolean pairing(Transistor pair){
         //System.out.println("Function: SlideRule class + pairing func");
         return false;
     }

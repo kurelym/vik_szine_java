@@ -67,7 +67,7 @@ public interface Using {
      * Tranzisztorok párosításához szükséges(Leszármazottakban felüldefiniált)
      * @return A sikerességét adja meg az adott függvénynek
      */
-    public boolean pairing(Using pair);
+    public boolean pairing(Transistor pair);
     /**
      * Megbénítja az adott karaktert(Leszármazottakban felüldefiniált)
      * @return A sikerességét adja meg az adott függvénynek

@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 public class Main {
     
     public static void main(String[] args) throws IOException {
@@ -18,7 +20,21 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         if (args.length > 0) {
-            startTest(args);
+            if(args[0].equals("TESTALL")){
+                String[] tempPaths= new String[3];
+                for(int i=1;i<28;i++){
+                    tempPaths[0]="tests/Teszt"+i+"/map.txt";
+                    
+                    tempPaths[1]="tests/Teszt"+i+"/input.txt";
+                    
+                    tempPaths[2]="tests/Teszt"+i+"/output.txt";
+                    
+                    startTest(tempPaths);
+                }
+            }
+            else{
+                startTest(args);
+            }
         } else {
             startGame(scanner);
         }
@@ -129,10 +145,11 @@ public class Main {
                         }
             
                         character.goToRoom(destinationRoom);
-                        if(character.isTeacher()){
-                            Teacher t=(Teacher)character;
+                        try{
+                            Teacher t = (Teacher)character;
                             t.tryToKill();
                         }
+                        catch(Exception e){}
                         break;
 
                         case "USE":
@@ -237,29 +254,24 @@ public class Main {
                                 fileOutput.println("Hiba: Nem található szoba ezzel a névvel: " + roomName22);
                                 break;
                             }
-
+                            CursedRoom room23 = (CursedRoom)room21;
                             switch(words[3]){
                                 case "0":
-                                    room21.neighbours.remove(room22);
-                                    room22.neighbours.remove(room21);
+                                    room23.doorManipulation();
                                     break;
                                 case "1":
-                                    if (!room21.getNeighbours().contains(room22)) {
-                                        room21.getNeighbours().add(room22);
+                                    List<Room> remove=new ArrayList<>();
+                                    for(Room r: room23.neighbours){
+                                        remove.add(r);
                                     }
-                                    room22.getNeighbours().remove(room21);
-                                    
+                                    for(Room r: remove){
+                                        room23.neighbours.remove(r);
+                                        room23.hiddenNeighbours.add(r);
+                                        room23.directionOfConnecntion.add(2);
+                                    }
+                                    room23.doorManipulation();
                                     break;
                     
-                                case "2":
-                                    if (!room21.getNeighbours().contains(room22)) {
-                                        room21.getNeighbours().add(room22);
-                                    }
-                                    if (!room22.getNeighbours().contains(room21)) {
-                                        room22.getNeighbours().add(room21);
-                                    }
-                                    break;
-                        
                                 default:
                                     fileOutput.println("Hiba: Ismeretlen kapcsolat típus: " + words[3]);
                                     break;
@@ -274,19 +286,44 @@ public class Main {
             } catch (IOException e) {
                 fileOutput.println("Hiba történt az input.txt fájl beolvasása közben: " + e.getMessage());
             }
-
         } catch (FileNotFoundException e) {
             System.err.println("Nem sikerült létrehozni az output.txt fájlt: " + e.getMessage());
         }
-        /*try {
-            reverseOutputFile(outputFilePath);
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        }*/
-
+        try{
+            String[] cutedPath = initFilePath.split("/");
+            String expectedPath = cutedPath[0]+"/"+cutedPath[1]+"/expected.txt";
+            if(checkOutPutFile(expectedPath, outputFilePath)){
+                System.out.println("*****");
+                System.out.println("SIKERES A KÖVETKEZŐ TESZT: "+cutedPath[1]);
+                System.out.println("*****");
+            }
+            else{
+                System.out.println("*****");
+                System.out.println("SIKERTELEN A KÖVETKEZŐ TESZT: "+cutedPath[1]);
+                System.out.println("*****");
+            }
+        }
+        catch(Exception e){
+            System.err.println("Nem sikerült az expected.txt és output.txt fájl összehasonlítása IOException miatt");
+        }
     }
-
+    public static boolean checkOutPutFile(String expectedPath, String outPutPath)throws IOException{
+        Path pathExpected = Paths.get(expectedPath);
+        Path pathOutput = Paths.get(outPutPath);
+        List<String> linesExpected = Files.readAllLines(pathExpected);
+        List<String> linesOutput = Files.readAllLines(pathOutput);
+        if(linesExpected.size()!=linesOutput.size()){
+            return false;
+        }
+        for(int i=0;i<linesExpected.size();i++){
+            String tmpFirst = linesExpected.get(i).trim();
+            String tmpSecond = linesOutput.get(i).trim();
+            if(!tmpFirst.equals(tmpSecond)){
+                return false;
+            }
+        }
+        return true;
+    }
     public static void reverseOutputFile(String filePath) throws IOException {
     Path path = Path.of(filePath);
 

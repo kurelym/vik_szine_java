@@ -60,9 +60,9 @@ public class Room implements Description {
                 neighbours.get(f).addNeighbour(newroom);
                 this.removeNeighbour(neighbours.get(f));
             }
-        }
-        if(output!=null){
-            output.println(this.name+" SPLITTED_INTO "+newroom.name);
+            if(output!=null){
+                output.println(this.name+" SPLITTED_INTO "+newroom.name);
+            }
         }
         return newroom;
     }
@@ -102,13 +102,13 @@ public class Room implements Description {
                         nR.addNeighbour(this);
                     }
                 }
+                if(output!=null){
+                    output.println(r.name+" MERGED_INTO "+this.name);
+                }
                 r = null;
             }
             else{
                 r.Merge(this);
-            }
-            if(output!=null){
-                output.println(r.name+" MERGED_INTO "+this.name);
             }
         }
     }
@@ -133,7 +133,9 @@ public class Room implements Description {
         //System.out.println("Function: Room class + removeNeighbour func");
         if(neighbours.contains(delete)){
             neighbours.remove(delete);
-            output.println(delete.name+" DECONNECTED_TO "+this.name);
+            if(output!=null){
+                output.println(delete.name+" DECONNECTED_TO "+this.name);
+            }    
         }
     }
     /**
@@ -142,7 +144,7 @@ public class Room implements Description {
      * @return a szobába való lépés sikerességét adja vissza
      */
     public boolean addCharacter(Character character){
-        //System.out.println("Function: Room class + addCharacter func"+name+" - "+anotherone.getName());
+        //System.out.println("Function: Room class + addCharacter func"+name+" - "+character.getName());
         if(capacity>characters.size()){
             if(output!=null){
                 output.println(character.name+" MOVED "+this.name);
@@ -160,13 +162,15 @@ public class Room implements Description {
             if(visitor>=5){
                 for(Using u: items){
                     stickyItems.add(u);
+                    
                 }
+                items.clear();
                 for(Using ua: activatedItems){
                     stickyItems.add(ua);
+                    
                 }
+                activatedItems.clear();
             }
-            
-
             return true;
         }
         else{
@@ -279,7 +283,7 @@ public class Room implements Description {
                 Random random = new Random();
                 List<Integer> escape = new ArrayList<>();
                 for(int i=0;i<characters.size();i++){
-                    if(!characters.get(i).isCleaner()){
+                    if(!characters.get(i).equals(cleaner)){
                         if(!characters.get(i).isDazed()){
                             escape.add(i);
                         }

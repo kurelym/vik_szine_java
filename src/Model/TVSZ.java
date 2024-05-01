@@ -70,7 +70,7 @@ public class TVSZ extends Item{
         //System.out.println("Function: TVSZ class + finishGame func");
         return false;
     }
-    public boolean pairing(Using pair){
+    public boolean pairing(Transistor pair){
         //System.out.println("Function: TVSZ class + pairing func");
         return false;
     }

@@ -1,1 +1,1 @@
-PICKUP Studnet_1 SliderRule_1
+MOVE Cleaner_1 Room_1

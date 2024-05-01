@@ -6,18 +6,12 @@ Room_2 0
 Room_1 Room_2 2
 
 -- Characters --
+Student_1 S Room_1
 
 -- Objects --
-CamembertCheese_1 CC 1
-WunderBaum_1 WB 1
-FFP2_1 F 1
-HolyBeer_1 1
 
--- Objects in Room --
-Room_1 HolyBeer_1
-Room_2 FFP2_1 WunderBaum_1
+-- Objects in Rooms --
 
 -- Activated Objects in Rooms --
-Room_1 CamembertCheese
 
 -- Objects Carried by Characters --

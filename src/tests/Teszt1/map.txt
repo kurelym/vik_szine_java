@@ -17,7 +17,5 @@ TVSZ_1 TVSZ 1
 -- Activated Objects in Rooms --
 Room_2 CamambertCheese_1
 
--- Objects Carried by Characters –-
+-- Objects Carried by Characters --
 Student_1 TVSZ_1
-
-

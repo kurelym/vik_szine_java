@@ -1,4 +1,9 @@
-Student_1  PICKED_UP Transistor_1
-Student_1  PICKED_UP Transistor_2
-Transistor_1 PAIRED_WITH Transistor_2
-Transistor_2 PAIRED_WITH Transistor_1
+
+Student_1 PICKED_UP Transistor_1
+Student_1 PICKED_UP Transistor_2
+Transistor_1 ACTIVATED_IN Room_1
+Student_1 DROPPED Transistor_1 IN Room_1
+Student_1 MOVED Room_2
+Transistor_2 USED_BY Student_1
+Student_1 DROPPED Transistor_2 IN Room_2
+Student_1 MOVED Room_1

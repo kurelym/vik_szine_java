@@ -1,1 +1,1 @@
-MERGE Room_1 Room_2
+DOORMANIPULATION Room_1 Room_2 0

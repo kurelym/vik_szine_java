@@ -1,2 +1,1 @@
-USE Student_1 Transistor_1
-PICKUP Studnet_2 Transistor_1
+PICKUP Student_1 SlideRule_1

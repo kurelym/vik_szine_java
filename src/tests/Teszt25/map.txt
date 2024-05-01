@@ -1,14 +1,15 @@
 -- Rooms --
-Room_1 0
+Room_1 1
+Room_2 0
 
 -- Room Connections --
+Room_1 Room_2 1
 
 -- Characters --
-Student_1 S Room_1
 
 -- Objects --
 
--- Objects in Room --
+-- Objects in Rooms --
 
 -- Activated Objects in Rooms --
 

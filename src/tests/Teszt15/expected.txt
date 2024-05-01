@@ -1,3 +1,2 @@
 
 Teacher_1 MOVED Room_1
-Teacher_1 KILLING_IN Room_1

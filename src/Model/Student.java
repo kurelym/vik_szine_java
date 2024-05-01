@@ -28,9 +28,6 @@ public class Student extends Character {
     public void useItem(int idx){
         //System.out.println("Function: Student osztály + useItem Func");
         inventory.get(idx).useSelectedItem();
-        if(output!=null){
-            output.println(this.name+" USING "+inventory.get(idx).getName());
-        }
     }
 
     /**
@@ -42,13 +39,13 @@ public class Student extends Character {
         for(Using u: inventory){
             if(u.useAgainstTeacher()){
                 System.out.println(getName() + " megvédte magát " + u.getName() + "-t használva");
-                return alive;
+                return false;
             }
         }
         alive = false;
         System.out.println(getName() + " kiesett a játékból");
         this.getRoom().removeCharacter(this);
-        return alive;
+        return true;
     }
 
     /**
@@ -77,16 +74,5 @@ public class Student extends Character {
         boolean winner = hasTheSlideRule();
         return "Name: "+name+" Location: "+location.getID()+" isAlive: "+alive+" isDazed: "+dazed+itemnames+" Has the SlideRule: "+winner;
     }
-
-    @Override
-    public boolean isTeacher() {
-        return false;
-    }
-
-    @Override
-    public boolean isCleaner() {
-        return false;
-    }
-
 }
 
