@@ -1,4 +1,4 @@
-                                                                                                                                               
+
 Student_1 MOVED Room_1
 GAS_ATTACK
 FFP2_1 USED_AGAINST_GAS

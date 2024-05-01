@@ -8,7 +8,6 @@ Student_1 MOVED Room_2
 Student_2 MOVED Room_1
 Student_2 MOVED Room_2
 Student_3 MOVED Room_1
-Student_3 MOVED Room_2
 Student_4 MOVED Room_1
 Student_4 MOVED Room_3
 Student_5 MOVED Room_1
