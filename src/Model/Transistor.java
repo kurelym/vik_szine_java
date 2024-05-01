@@ -49,31 +49,33 @@ public class Transistor extends Item{
     }
     public boolean pairing(Transistor _pair){
         //System.out.println("Function: Transistor class + pairing func");
-        if(this.pair!=null){
-            Room tmp=owner.location;
-            if(output!=null){
-                output.println(this.name+" USED_BY "+this.owner.name);
-                output.println(this.owner.name+" DROPPED "+this.name+" IN "+tmp.name);
-            }
-            owner.goToRoom(this.pair.location);
-            removePair();
-            tmp.addItem(this);
-            tmp=null;
-        }
-
-        else{
-            
-                this.pair = _pair;
-                activated = true;
-                _pair.pair = this;
-                _pair.activated = true;
-                owner.inventory.remove(this);
+        
+            if(this.pair!=null){
+                Room tmp=owner.location;
                 if(output!=null){
-                    output.println(this.name+" PAIRED_WITH "+_pair.name);
-                    output.println(_pair.name+" PAIRED_WITH "+this.name);
+                    output.println(this.name+" USED_BY "+this.owner.name);
+                    output.println(this.owner.name+" DROPPED "+this.name+" IN "+tmp.name);
                 }
-                owner.location.addItem(this);
-        }
+                owner.goToRoom(this.pair.location);
+                removePair();
+                tmp.addItem(this);
+                tmp=null;
+            }
+    
+            else if(_pair!=null){
+                
+                    this.pair = _pair;
+                    activated = true;
+                    _pair.pair = this;
+                    _pair.activated = true;
+                    
+                    if(output!=null){
+                        output.println(this.name+" PAIRED_WITH "+_pair.name);
+                        output.println(_pair.name+" PAIRED_WITH "+this.name);
+                    }
+                    
+            }
+        
         return true;
     }
 

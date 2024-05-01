@@ -1,19 +1,17 @@
- -- Rooms --
+-- Rooms --
 Room_1 0
-Room_2 0
 
 -- Room Connections --
-Room_1 Room_2 2
 
 -- Characters --
-Teacher_1 T Room_2
-Teacher_2 T Room_1
-Cleaner_1 C Room_1
+Teacher_1 T Room_1
 
 -- Objects --
+TVSZ_1 TVSZ 0
 
 -- Objects in Rooms --
 
 -- Activated Objects in Rooms --
 
 -- Objects Carried by Characters --
+Teacher_1 TVSZ_1

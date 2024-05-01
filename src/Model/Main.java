@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 public class Main {
     
     public static void main(String[] args) throws IOException {
@@ -19,7 +20,21 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         if (args.length > 0) {
-            startTest(args);
+            if(args[0].equals("TESTALL")){
+                String[] tempPaths= new String[3];
+                for(int i=1;i<28;i++){
+                    tempPaths[0]="tests/Teszt"+i+"/map.txt";
+                    
+                    tempPaths[1]="tests/Teszt"+i+"/input.txt";
+                    
+                    tempPaths[2]="tests/Teszt"+i+"/output.txt";
+                    
+                    startTest(tempPaths);
+                }
+            }
+            else{
+                startTest(args);
+            }
         } else {
             startGame(scanner);
         }
@@ -271,19 +286,44 @@ public class Main {
             } catch (IOException e) {
                 fileOutput.println("Hiba történt az input.txt fájl beolvasása közben: " + e.getMessage());
             }
-
         } catch (FileNotFoundException e) {
             System.err.println("Nem sikerült létrehozni az output.txt fájlt: " + e.getMessage());
         }
-        /*try {
-            reverseOutputFile(outputFilePath);
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        }*/
-
+        try{
+            String[] cutedPath = initFilePath.split("/");
+            String expectedPath = cutedPath[0]+"/"+cutedPath[1]+"/expected.txt";
+            if(checkOutPutFile(expectedPath, outputFilePath)){
+                System.out.println("*****");
+                System.out.println("SIKERES A KÖVETKEZŐ TESZT: "+cutedPath[1]);
+                System.out.println("*****");
+            }
+            else{
+                System.out.println("*****");
+                System.out.println("SIKERTELEN A KÖVETKEZŐ TESZT: "+cutedPath[1]);
+                System.out.println("*****");
+            }
+        }
+        catch(Exception e){
+            System.err.println("Nem sikerült az expected.txt és output.txt fájl összehasonlítása IOException miatt");
+        }
     }
-
+    public static boolean checkOutPutFile(String expectedPath, String outPutPath)throws IOException{
+        Path pathExpected = Paths.get(expectedPath);
+        Path pathOutput = Paths.get(outPutPath);
+        List<String> linesExpected = Files.readAllLines(pathExpected);
+        List<String> linesOutput = Files.readAllLines(pathOutput);
+        if(linesExpected.size()!=linesOutput.size()){
+            return false;
+        }
+        for(int i=0;i<linesExpected.size();i++){
+            String tmpFirst = linesExpected.get(i).trim();
+            String tmpSecond = linesOutput.get(i).trim();
+            if(!tmpFirst.equals(tmpSecond)){
+                return false;
+            }
+        }
+        return true;
+    }
     public static void reverseOutputFile(String filePath) throws IOException {
     Path path = Path.of(filePath);
 

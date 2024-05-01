@@ -1,1 +1,1 @@
-MOVE Teacher_1 Room_1
+PICKUP Teacher_1 SlideRule_1

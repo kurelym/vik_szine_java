@@ -1,0 +1,3 @@
+                            
+Room_1 CONNECTED_TO Room_2
+Room_2 CONNECTED_TO Room_1

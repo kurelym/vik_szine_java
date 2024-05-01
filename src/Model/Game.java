@@ -69,7 +69,6 @@ public class Game implements Description {
         for (String line : lines) {
             line = line.trim();
             if (line.isEmpty()){
-                System.err.println("Ures sor volt");
                 continue;
             } 
 
@@ -226,7 +225,7 @@ public class Game implements Description {
                             
                             // Megkeressük az items listában, hogy megtalálható-e a másik tranzisztor
                             for (Using u : items) {
-                                if (u instanceof Transistor && ((Transistor) u).getName().equals(pairTransistorName)) {
+                                if (u.pairing(null) && ((Transistor) u).getName().equals(pairTransistorName)) {
                                     newItem.pairing((Transistor) u); // Meghívja a pairing függvényt
                                     break;
                                 }
@@ -267,7 +266,7 @@ public class Game implements Description {
                     // Tárgy keresése az items listában
                     Item item = null;
                     for (Using u : items) {
-                        if (u instanceof Item && ((Item) u).getName().equals(itemName)) {
+                        if (((Item) u).getName().equals(itemName)) {
                             item = (Item) u;
                             break;
                         }
@@ -276,7 +275,7 @@ public class Game implements Description {
                         item.activated=true; // aktiváljuk
                         current_room.addItem(item); // A szobába felvesszük a tárgyat
                     } else {
-                        System.err.println("Error: Item " + itemName + " not found in items list.");
+                        System.err.println("ErrorA: Item " + itemName + " not found in items list.");
                         System.err.println(line);
                     }
                 }
@@ -299,10 +298,10 @@ public class Game implements Description {
                         String itemName = objectRoomParts[i];
 
                         // Tárgy keresése az items listában
-                        Item item = null;
+                        Using item = null;
                         for (Using u : items) {
-                            if (u instanceof Item && ((Item) u).getName().equals(itemName)) {
-                                item = (Item) u;
+                            if ( u.getName().equals(itemName)) {
+                                item = u;
                                 break;
                             }
                         }
@@ -310,7 +309,7 @@ public class Game implements Description {
                         if (item != null) {
                             current_room.addItem(item); // A szobába felvesszük a tárgyat
                         } else {
-                            System.err.println("Error: Item " + itemName + " not found in items list.");
+                            System.err.println("ErrorO: Item " + itemName + " not found in items list.");
                             System.err.println(line);
                         }
                     }
@@ -333,10 +332,10 @@ public class Game implements Description {
                         String itemName = characterObjects[i];
 
                         // Tárgy keresése az items listában
-                        Item item = null;
+                        Using item = null;
                         for (Using u : items) {
                             if (u.getName().equals(itemName)) {
-                                item = (Item) u;
+                                item = u;
                                 break;
                             }
                         }
@@ -346,7 +345,7 @@ public class Game implements Description {
                             item.setOwner(this_character);
                             item.useAtPickUp();
                         } else {
-                            System.err.println("Error: Item " + itemName + " not found in items list.");
+                            System.err.println("ErrorOCBC: Item " + itemName + " not found in items list.");
                             System.err.println(line);
                         }
                     }
@@ -725,6 +724,11 @@ public class Game implements Description {
         for (Using item : location.items) {
             if (item.getName().equals(itemName)) {
                 return item; // Ha megtaláltuk a tárgyat
+            }
+        }
+        for(Using item : location.activatedItems){
+            if (item.getName().equals(itemName)) {
+                return item; // Az aktivált tárgyaknál is keressük a tárgyat
             }
         }
         return null; // Ha nem találtunk ilyen nevű tárgyat

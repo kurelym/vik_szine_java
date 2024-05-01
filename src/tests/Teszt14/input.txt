@@ -1,1 +1,1 @@
-PICKUP Teacher_1 DirtyRag_6
+MOVE Teacher_1 Room_1

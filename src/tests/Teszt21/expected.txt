@@ -1,6 +1,4 @@
 
-Student_1 MOVED Room_2
-GAS_ATTACK
-FFP2_1 USED_AGAINST_GAS
-WunderBaum_1 USED_BY Student_1
-CamambertCheese_1 REMOVED_FROM Room_1
+Room_2 CONNECTED_TO Room_1
+Room_1 CONNECTED_TO Room_2
+Room_1 SPLITTED_INTO Room_2
