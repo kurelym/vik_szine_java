@@ -1,9 +1,8 @@
-
-Transistor_2 USED_BY Student_1
-Student_1 DROPPED Transistor_2 IN Room_2
+                                                                                                                                               
 Student_1 MOVED Room_1
-Student_2  PICKED_UP Transistor_1
-Student_2 MOVED Room_2
-Student_2  PICKED_UP Transistor_2
-Transistor_1 PAIRED_WITH Transistor_2
-Transistor_2 PAIRED_WITH Transistor_1
+GAS_ATTACK
+FFP2_1 USED_AGAINST_GAS
+Cleaner_1 MOVED Room_1
+GAS_ATTACK
+CamambertCheese_1 REMOVED_FROM Room_1
+Student_1 MOVED Room_2

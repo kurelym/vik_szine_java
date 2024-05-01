@@ -1,3 +1,4 @@
 
-Student_1 PICKED_UP SlideRule_1
-GAME_NOT_WON
+Cleaner_1 MOVED Room_1
+GAS_ATTACK
+CamambertCheese_1 REMOVED_FROM Room_1

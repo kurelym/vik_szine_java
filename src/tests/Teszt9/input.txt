@@ -1,1 +1,1 @@
-PICKUP Student_1 SlideRule_1
+MOVE Cleaner_1 Room_1

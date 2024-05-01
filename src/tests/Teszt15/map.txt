@@ -1,4 +1,4 @@
--- Rooms --
+ -- Rooms --
 Room_1 0
 Room_2 0
 
@@ -7,7 +7,8 @@ Room_1 Room_2 2
 
 -- Characters --
 Teacher_1 T Room_2
-Student_1 S Room_1
+Teacher_2 T Room_1
+Cleaner_1 C Room_1
 
 -- Objects --
 

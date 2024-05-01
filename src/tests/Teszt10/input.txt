@@ -1,2 +1,1 @@
-MOVE Student_1 Room_1
-MOVE Cleaner_1 Room_1
+MOVE Teacher_1 Room_1

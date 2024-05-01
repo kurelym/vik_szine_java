@@ -1,2 +1,5 @@
 PICKUP Student_1 Transistor_1
 PICKUP Student_1 Transistor_2
+DROP Student_1 Transistor_1
+MOVE Student_1 Room_2
+USE Student_1 Transistor_2
