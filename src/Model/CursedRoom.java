@@ -9,8 +9,8 @@ import java.util.Random;
  * A labirintus menedzselése, a saját kapacitásának és szomszédainak, a benne lévő tárgyak és benne tartózkodó karakterek nyilvántartása. A szoba transzformációk végrehajtása.Elgázosítás esetén az állapotának megváltoztatása.
  */
 public class CursedRoom extends Room{
-    private List<Room> hiddenNeighbours;
-    private List<Integer> directionOfConnecntion;
+    protected List<Room> hiddenNeighbours;
+    protected List<Integer> directionOfConnecntion;
     private PrintStream output;
     //private static int globalID = 0;
     /**

@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 public class Main {
     
     public static void main(String[] args) throws IOException {
@@ -24,7 +26,6 @@ public class Main {
         }
 
         scanner.close();
-
     }
 
     public static void startGame(Scanner scanner) throws IOException {
@@ -32,7 +33,7 @@ public class Main {
         int studentCnt = 0;
         int teacherCnt = 0;
         int cleanerCnt = 0;
-        String filePath = "src\\Model\\map.txt";
+        String filePath = "Model\\map.txt";
         Game game = new Game();
         game.buildGame(filePath);
 
@@ -89,7 +90,6 @@ public class Main {
                 try {
                     FileWriter writer = new FileWriter(outputFilePath, false); // false esetén felülírja a tartalmat
                     writer.close();  // Csak megnyitja és bezárja a fájlt, ezáltal törli a tartalmat
-                    System.out.println("Fájl tartalma sikeresen törölve.");
                 } catch (IOException e) {
                     System.out.println("Hiba történt a fájl törlése közben: " + e.getMessage());
                 }
@@ -133,9 +133,7 @@ public class Main {
                             Teacher t = (Teacher)character;
                             t.tryToKill();
                         }
-                        catch(Exception e){
-
-                        }
+                        catch(Exception e){}
                         break;
 
                         case "USE":
@@ -216,11 +214,14 @@ public class Main {
                                 fileOutput.println("Hiba: Nem található szoba ezzel a névvel: " + roomName1);
                                 break;
                             }
+                            
                             Room Room2 = game.findRoomByName(roomName2);
                             if (Room2 == null) {
                                 fileOutput.println("Hiba: Nem található szoba ezzel a névvel: " + roomName2);
                                 break;
                             }
+                            Room2.capacity = 1;
+                            Room1.capacity = 4;
 
                             Room1.Merge(Room2);
 
@@ -240,29 +241,24 @@ public class Main {
                                 fileOutput.println("Hiba: Nem található szoba ezzel a névvel: " + roomName22);
                                 break;
                             }
-
+                            CursedRoom room23 = (CursedRoom)room21;
                             switch(words[3]){
                                 case "0":
-                                    room21.neighbours.remove(room22);
-                                    room22.neighbours.remove(room21);
+                                    room23.doorManipulation();
                                     break;
                                 case "1":
-                                    if (!room21.getNeighbours().contains(room22)) {
-                                        room21.getNeighbours().add(room22);
+                                    List<Room> remove=new ArrayList<>();
+                                    for(Room r: room23.neighbours){
+                                        remove.add(r);
                                     }
-                                    room22.getNeighbours().remove(room21);
-                                    
+                                    for(Room r: remove){
+                                        room23.neighbours.remove(r);
+                                        room23.hiddenNeighbours.add(r);
+                                        room23.directionOfConnecntion.add(2);
+                                    }
+                                    room23.doorManipulation();
                                     break;
                     
-                                case "2":
-                                    if (!room21.getNeighbours().contains(room22)) {
-                                        room21.getNeighbours().add(room22);
-                                    }
-                                    if (!room22.getNeighbours().contains(room21)) {
-                                        room22.getNeighbours().add(room21);
-                                    }
-                                    break;
-                        
                                 default:
                                     fileOutput.println("Hiba: Ismeretlen kapcsolat típus: " + words[3]);
                                     break;
@@ -277,17 +273,9 @@ public class Main {
             } catch (IOException e) {
                 fileOutput.println("Hiba történt az input.txt fájl beolvasása közben: " + e.getMessage());
             }
-
         } catch (FileNotFoundException e) {
             System.err.println("Nem sikerült létrehozni az output.txt fájlt: " + e.getMessage());
         }
-        /*try {
-            reverseOutputFile(outputFilePath);
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        }*/
-
     }
 
     public static void reverseOutputFile(String filePath) throws IOException {
@@ -298,17 +286,12 @@ public class Main {
         return;
     }
 
-    // Beolvassuk a fájlt soronként
     List<String> lines = Files.readAllLines(path);
 
-    // Megfordítjuk a sorok sorrendjét
     Collections.reverse(lines);
 
-    // Opció a megfordított sorok visszaírására az eredeti fájlba
     Files.write(path, lines);
 
-    // Vagy írhatjuk másik fájlba is
-    // Files.write(Path.of("reversed_output.txt"), lines);
     }
     
 }

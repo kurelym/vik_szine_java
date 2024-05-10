@@ -1,2 +1,15 @@
 
-Room_2 DECONNECTED_FROM Room_1
+Cleaner_1 MOVED Room_1
+GAS_ATTACK
+CamambertCheese_1 REMOVED_FROM Room_1
+Cleaner_1 MOVED Room_3
+Student_1 MOVED Room_1
+Student_1 MOVED Room_2
+Student_2 MOVED Room_1
+Student_2 MOVED Room_2
+Student_3 MOVED Room_1
+Student_4 MOVED Room_1
+Student_4 MOVED Room_3
+Student_5 MOVED Room_1
+Hiba: Nem található item ezzel a névvel: Transistor_1, ebben a szobában: Room_1
+Student_5 MOVED Room_3

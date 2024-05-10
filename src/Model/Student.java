@@ -39,13 +39,13 @@ public class Student extends Character {
         for(Using u: inventory){
             if(u.useAgainstTeacher()){
                 System.out.println(getName() + " megvédte magát " + u.getName() + "-t használva");
-                return alive;
+                return false;
             }
         }
         alive = false;
         System.out.println(getName() + " kiesett a játékból");
         this.getRoom().removeCharacter(this);
-        return alive;
+        return true;
     }
 
     /**

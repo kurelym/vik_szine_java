@@ -1,4 +1,2 @@
-USE Student_1 Transistor_2
-PICKUP Student_2 Transistor_1
-MOVE Student_2 Room_2
-PICKUP Student_2 Transistor_2
+MOVE Student_1 Room_1
+MOVE Cleaner_1 Room_1

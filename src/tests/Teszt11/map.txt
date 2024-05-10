@@ -6,10 +6,11 @@ Room_2 0
 Room_1 Room_2 2
 
 -- Characters --
-Cleaner_1 C Room_2
+Teacher_1 T Room_2
 
 -- Objects --
 CamambertCheese_1 CC 1
+CamambertCheese_2 CC 1
 
 -- Objects in Rooms --
 
@@ -17,3 +18,4 @@ CamambertCheese_1 CC 1
 Room_1 CamambertCheese_1
 
 -- Objects Carried by Characters --
+Teacher_1 CamambertCheese_2

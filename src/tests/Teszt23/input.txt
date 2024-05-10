@@ -1,1 +1,1 @@
-SPLIT Room_1
+SPLIT Room_1 Room_2

@@ -1,0 +1,36 @@
+# Mappák listázása a 'tests' könyvtárban
+$testFolders = Get-ChildItem -Path "tests" -Filter "Teszt*" -Directory
+$successfulTests = 0
+
+# Végigmegy a mappákon
+foreach ($folder in $testFolders) {
+    $folderPath = $folder.FullName
+    $mapFile = Join-Path $folderPath "map.txt"
+    $inputFile = Join-Path $folderPath "input.txt"
+    $outputFile = Join-Path $folderPath "output.txt"
+    $expectedFile = Join-Path $folderPath "expected.txt"
+
+    # Ellenőrzi, hogy a szükséges fájlok léteznek-e
+    if (Test-Path $mapFile -and Test-Path $inputFile -and Test-Path $expectedFile) {
+        # Futtatja a Java parancsot
+        java Model.Main $mapFile $inputFile $outputFile
+        
+        # Összehasonlítja az output.txt-t az expected.txt-vel
+        $outputContent = Get-Content $outputFile
+        $expectedContent = Get-Content $expectedFile
+
+        if ($outputContent -eq $expectedContent) {
+            # Ha a tartalom megegyezik, a teszt sikeres
+            $successfulTests++
+            Write-Host "Sikeres teszt a(z) $($folder.Name) almappában."
+        } else {
+            # Ha a tartalom eltér, a teszt sikertelen
+            Write-Host "Sikertelen teszt a(z) $($folder.Name) almappában."
+        }
+    } else {
+        Write-Host "Hiányzó fájlok a(z) $($folder.Name) almappában."
+    }
+}
+
+# Kiírja a sikeres tesztek számát
+Write-Host "Összesen sikeres tesztek száma: $successfulTests"
