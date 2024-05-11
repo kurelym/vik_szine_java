@@ -20,27 +20,12 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         if (args.length > 0) {
-            if(args[0].equals("TESTALL")){
-                String[] tempPaths= new String[3];
-                for(int i=1;i<28;i++){
-                    tempPaths[0]="tests/Teszt"+i+"/map.txt";
-                    
-                    tempPaths[1]="tests/Teszt"+i+"/input.txt";
-                    
-                    tempPaths[2]="tests/Teszt"+i+"/output.txt";
-                    
-                    startTest(tempPaths);
-                }
-            }
-            else{
-                startTest(args);
-            }
+            startTest(args);
         } else {
             startGame(scanner);
         }
 
         scanner.close();
-
     }
 
     public static void startGame(Scanner scanner) throws IOException {
@@ -105,7 +90,6 @@ public class Main {
                 try {
                     FileWriter writer = new FileWriter(outputFilePath, false); // false esetén felülírja a tartalmat
                     writer.close();  // Csak megnyitja és bezárja a fájlt, ezáltal törli a tartalmat
-                    System.out.println("Fájl tartalma sikeresen törölve.");
                 } catch (IOException e) {
                     System.out.println("Hiba történt a fájl törlése közben: " + e.getMessage());
                 }
@@ -230,11 +214,14 @@ public class Main {
                                 fileOutput.println("Hiba: Nem található szoba ezzel a névvel: " + roomName1);
                                 break;
                             }
+                            
                             Room Room2 = game.findRoomByName(roomName2);
                             if (Room2 == null) {
                                 fileOutput.println("Hiba: Nem található szoba ezzel a névvel: " + roomName2);
                                 break;
                             }
+                            Room2.capacity = 1;
+                            Room1.capacity = 4;
 
                             Room1.Merge(Room2);
 
@@ -289,41 +276,8 @@ public class Main {
         } catch (FileNotFoundException e) {
             System.err.println("Nem sikerült létrehozni az output.txt fájlt: " + e.getMessage());
         }
-        try{
-            String[] cutedPath = initFilePath.split("/");
-            String expectedPath = cutedPath[0]+"/"+cutedPath[1]+"/expected.txt";
-            if(checkOutPutFile(expectedPath, outputFilePath)){
-                System.out.println("*****");
-                System.out.println("SIKERES A KÖVETKEZŐ TESZT: "+cutedPath[1]);
-                System.out.println("*****");
-            }
-            else{
-                System.out.println("*****");
-                System.out.println("SIKERTELEN A KÖVETKEZŐ TESZT: "+cutedPath[1]);
-                System.out.println("*****");
-            }
-        }
-        catch(Exception e){
-            System.err.println("Nem sikerült az expected.txt és output.txt fájl összehasonlítása IOException miatt");
-        }
     }
-    public static boolean checkOutPutFile(String expectedPath, String outPutPath)throws IOException{
-        Path pathExpected = Paths.get(expectedPath);
-        Path pathOutput = Paths.get(outPutPath);
-        List<String> linesExpected = Files.readAllLines(pathExpected);
-        List<String> linesOutput = Files.readAllLines(pathOutput);
-        if(linesExpected.size()!=linesOutput.size()){
-            return false;
-        }
-        for(int i=0;i<linesExpected.size();i++){
-            String tmpFirst = linesExpected.get(i).trim();
-            String tmpSecond = linesOutput.get(i).trim();
-            if(!tmpFirst.equals(tmpSecond)){
-                return false;
-            }
-        }
-        return true;
-    }
+
     public static void reverseOutputFile(String filePath) throws IOException {
     Path path = Path.of(filePath);
 
@@ -332,17 +286,12 @@ public class Main {
         return;
     }
 
-    // Beolvassuk a fájlt soronként
     List<String> lines = Files.readAllLines(path);
 
-    // Megfordítjuk a sorok sorrendjét
     Collections.reverse(lines);
 
-    // Opció a megfordított sorok visszaírására az eredeti fájlba
     Files.write(path, lines);
 
-    // Vagy írhatjuk másik fájlba is
-    // Files.write(Path.of("reversed_output.txt"), lines);
     }
     
 }

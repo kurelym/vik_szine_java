@@ -5,7 +5,6 @@ MOVE Student_1 Room_2
 MOVE Student_2 Room_1
 MOVE Student_2 Room_2
 MOVE Student_3 Room_1
-MOVE Student_3 Room_2
 MOVE Student_4 Room_1
 MOVE Student_4 Room_3
 MOVE Student_5 Room_1

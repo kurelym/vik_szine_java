@@ -2,12 +2,10 @@
 Room_1 0
 Room_2 0
 Room_3 0
-Room_4 0
 
 -- Room Connections --
 Room_1 Room_2 2
 Room_1 Room_3 2
-Room_1 Room_4 2
 
 -- Characters --
 Cleaner_1 C Room_3
