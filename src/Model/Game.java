@@ -659,6 +659,10 @@ public class Game implements Description {
        
     }
 
+    public int getRound(){
+        return round;
+    }
+
     public Room findRoomByName(String roomName) {
         for (Room room : rooms) {
             if (room.getName().equals(roomName)) {
